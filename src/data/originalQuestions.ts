@@ -11,11 +11,11 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "What is a computer network?",
     "options": [
       {
-        "id": "w1_q1_opt1",
-        "text": "A collection of interconnected devices that can communicate and share resources",
-        "isCorrect": true,
-        "isGeneratedOption": false,
-        "explanation": "Correct. A computer network is a system of interconnected autonomous computing devices capable of exchanging data and sharing resources."
+        "id": "w1_q1_opt3",
+        "text": "A proprietary database management software for enterprise servers",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Database software is an application layer program, not a network."
       },
       {
         "id": "w1_q1_opt2",
@@ -25,11 +25,11 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "explanation": "Incorrect. A stand-alone machine is not interconnected with other systems."
       },
       {
-        "id": "w1_q1_opt3",
-        "text": "A proprietary database management software for enterprise servers",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. Database software is an application layer program, not a network."
+        "id": "w1_q1_opt1",
+        "text": "A collection of interconnected devices that can communicate and share resources",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct. A computer network is a system of interconnected autonomous computing devices capable of exchanging data and sharing resources."
       },
       {
         "id": "w1_q1_opt4",
@@ -75,6 +75,13 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "explanation": "Correct. On October 29, 1969, researchers at UCLA transmitted 'LOGIN' to SRI (though the system crashed after 'LO', 'LOGIN' was the intended and historically cited message)."
       },
       {
+        "id": "w1_q2_opt4",
+        "text": "PING",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Ping was invented over a decade later in 1983 by Mike Muuss."
+      },
+      {
         "id": "w1_q2_opt2",
         "text": "HELLO",
         "isCorrect": false,
@@ -87,13 +94,6 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "isCorrect": false,
         "isGeneratedOption": true,
         "explanation": "Incorrect. 'START' was not the transmitted command."
-      },
-      {
-        "id": "w1_q2_opt4",
-        "text": "PING",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. Ping was invented over a decade later in 1983 by Mike Muuss."
       }
     ],
     "originalAnswer": "LOGIN",
@@ -125,25 +125,11 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "If you have 4 hops (N = 4), 15 packets (P = 15), and each packet takes 2 ms to transmit, what is the total transmission time in a packet-switched network (store-and-forward)?",
     "options": [
       {
-        "id": "w1_q3_opt1",
-        "text": "36 ms",
-        "isCorrect": true,
-        "isGeneratedOption": false,
-        "explanation": "Correct. Total time = (N + P - 1) \u00d7 t_trans = (4 + 15 - 1) \u00d7 2 ms = 18 \u00d7 2 ms = 36 ms."
-      },
-      {
-        "id": "w1_q3_opt2",
-        "text": "30 ms",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. 15 packets \u00d7 2 ms = 30 ms accounts only for a single hop and ignores store-and-forward transit through the 4 hops."
-      },
-      {
         "id": "w1_q3_opt3",
         "text": "60 ms",
         "isCorrect": false,
         "isGeneratedOption": true,
-        "explanation": "Incorrect. 4 hops \u00d7 15 packets \u00d7 2 ms = 120 ms or 60 ms incorrectly assumes no pipelining between hops."
+        "explanation": "Incorrect. 4 hops × 15 packets × 2 ms = 120 ms or 60 ms incorrectly assumes no pipelining between hops."
       },
       {
         "id": "w1_q3_opt4",
@@ -151,23 +137,37 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "isCorrect": false,
         "isGeneratedOption": true,
         "explanation": "Incorrect. Calculation arithmetic error."
+      },
+      {
+        "id": "w1_q3_opt2",
+        "text": "30 ms",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. 15 packets × 2 ms = 30 ms accounts only for a single hop and ignores store-and-forward transit through the 4 hops."
+      },
+      {
+        "id": "w1_q3_opt1",
+        "text": "36 ms",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct. Total time = (N + P - 1) × t_trans = (4 + 15 - 1) × 2 ms = 18 × 2 ms = 36 ms."
       }
     ],
     "originalAnswer": "36 ms",
     "verifiedAnswer": "36 ms",
     "answersAgree": true,
-    "originalExplanation": "In a store-and-forward packet switching network, the first packet takes N \u00d7 t_trans to reach the destination, and each subsequent packet arrives t_trans later. Total time = (N + P - 1) \u00d7 t_trans.",
-    "detailedReasoning": "Store-and-forward pipelining formula: Packet 1 traverses all N hops in N \u00d7 t_trans time. While packet 1 is at hop 2, packet 2 is transmitted at hop 1. Thus, each of the remaining (P - 1) packets emerges at the destination with an interval of t_trans. Total Time = N \u00d7 t_trans + (P - 1) \u00d7 t_trans = (N + P - 1) \u00d7 t_trans. Substituting N = 4, P = 15, t_trans = 2 ms: Total Time = (4 + 15 - 1) \u00d7 2 ms = 18 \u00d7 2 ms = 36 ms.",
+    "originalExplanation": "In a store-and-forward packet switching network, the first packet takes N × t_trans to reach the destination, and each subsequent packet arrives t_trans later. Total time = (N + P - 1) × t_trans.",
+    "detailedReasoning": "Store-and-forward pipelining formula: Packet 1 traverses all N hops in N × t_trans time. While packet 1 is at hop 2, packet 2 is transmitted at hop 1. Thus, each of the remaining (P - 1) packets emerges at the destination with an interval of t_trans. Total Time = N × t_trans + (P - 1) × t_trans = (N + P - 1) × t_trans. Substituting N = 4, P = 15, t_trans = 2 ms: Total Time = (4 + 15 - 1) × 2 ms = 18 × 2 ms = 36 ms.",
     "stepByStepCalculation": [
       "Step 1: Identify given parameters: Number of hops N = 4, Number of packets P = 15, Transmission time per packet t_trans = 2 ms.",
-      "Step 2: Recall store-and-forward pipelined transmission formula: Total Time T = (N + P - 1) \u00d7 t_trans.",
+      "Step 2: Recall store-and-forward pipelined transmission formula: Total Time T = (N + P - 1) × t_trans.",
       "Step 3: Calculate hops plus remaining packet delays: N + P - 1 = 4 + 15 - 1 = 18 time slots.",
-      "Step 4: Multiply by time per slot: 18 \u00d7 2 ms = 36 ms."
+      "Step 4: Multiply by time per slot: 18 × 2 ms = 36 ms."
     ],
     "formulasUsed": [
-      "Total Time = (N + P - 1) \u00d7 t_trans"
+      "Total Time = (N + P - 1) × t_trans"
     ],
-    "examTakeaway": "Pipelined packet switching time over N hops for P packets = (N + P - 1) \u00d7 t_trans.",
+    "examTakeaway": "Pipelined packet switching time over N hops for P packets = (N + P - 1) × t_trans.",
     "sourceFileName": "media_1792420320898.pdf",
     "pageNumber": "Page 1",
     "extractionConfidence": 100,
@@ -191,6 +191,13 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "Transmission delay is defined as the time required to:",
     "options": [
       {
+        "id": "w1_q4_opt3",
+        "text": "Process the packet header and check for bit errors at a router",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. That is nodal processing delay (d_proc)."
+      },
+      {
         "id": "w1_q4_opt1",
         "text": "Push all bits of a packet onto the transmission link",
         "isCorrect": true,
@@ -203,13 +210,6 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "isCorrect": false,
         "isGeneratedOption": true,
         "explanation": "Incorrect. That is propagation delay (d_prop = d / s)."
-      },
-      {
-        "id": "w1_q4_opt3",
-        "text": "Process the packet header and check for bit errors at a router",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. That is nodal processing delay (d_proc)."
       },
       {
         "id": "w1_q4_opt4",
@@ -248,11 +248,11 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "Which network is considered the predecessor of the modern Internet?",
     "options": [
       {
-        "id": "w1_q5_opt1",
-        "text": "ARPANET",
-        "isCorrect": true,
-        "isGeneratedOption": false,
-        "explanation": "Correct. ARPANET (funded by DARPA in 1969) is the direct historical and architectural predecessor of the modern Internet."
+        "id": "w1_q5_opt4",
+        "text": "BITNET",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. BITNET was a university network using store-and-forward NJE protocol."
       },
       {
         "id": "w1_q5_opt2",
@@ -269,11 +269,11 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "explanation": "Incorrect. ALOHANET was a pioneering Hawaiian wireless packet system, not the Internet predecessor."
       },
       {
-        "id": "w1_q5_opt4",
-        "text": "BITNET",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. BITNET was a university network using store-and-forward NJE protocol."
+        "id": "w1_q5_opt1",
+        "text": "ARPANET",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct. ARPANET (funded by DARPA in 1969) is the direct historical and architectural predecessor of the modern Internet."
       }
     ],
     "originalAnswer": "ARPANET",
@@ -312,13 +312,6 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "explanation": "Correct. The end-to-end throughput is bottlenecked by the slowest link: min(10, 100, 5) = 5 Mbps."
       },
       {
-        "id": "w1_q6_opt2",
-        "text": "10 Mbps",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. Exceeds the 5 Mbps bottleneck link capacity."
-      },
-      {
         "id": "w1_q6_opt3",
         "text": "100 Mbps",
         "isCorrect": false,
@@ -331,6 +324,13 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "isCorrect": false,
         "isGeneratedOption": true,
         "explanation": "Incorrect. Bandwidths of serial hops cannot be added together."
+      },
+      {
+        "id": "w1_q6_opt2",
+        "text": "10 Mbps",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Exceeds the 5 Mbps bottleneck link capacity."
       }
     ],
     "originalAnswer": "5 Mbps",
@@ -370,11 +370,11 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "What is the main advantage of packet switching over circuit switching?",
     "options": [
       {
-        "id": "w1_q7_opt1",
-        "text": "More efficient utilization of network resources",
-        "isCorrect": true,
-        "isGeneratedOption": false,
-        "explanation": "Correct. Packet switching uses statistical multiplexing, sharing link capacity dynamically on demand rather than reserving idle dedicated circuits."
+        "id": "w1_q7_opt3",
+        "text": "Completely zero queuing delay and zero packet loss under all loads",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Packet switching involves buffers, meaning queuing delay and packet loss can occur during congestion."
       },
       {
         "id": "w1_q7_opt2",
@@ -384,11 +384,11 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "explanation": "Incorrect. Guaranteed dedicated bandwidth is a characteristic of circuit switching (like traditional telephony)."
       },
       {
-        "id": "w1_q7_opt3",
-        "text": "Completely zero queuing delay and zero packet loss under all loads",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. Packet switching involves buffers, meaning queuing delay and packet loss can occur during congestion."
+        "id": "w1_q7_opt1",
+        "text": "More efficient utilization of network resources",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct. Packet switching uses statistical multiplexing, sharing link capacity dynamically on demand rather than reserving idle dedicated circuits."
       },
       {
         "id": "w1_q7_opt4",
@@ -427,11 +427,18 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "Consider a 100 Mbps link. In a circuit-switching network, each user requires 25 Mbps of dedicated bandwidth. In a packet-switching network, each user also requires 25 Mbps when transmitting but is active only 10% of the time. Which statement is correct?",
     "options": [
       {
+        "id": "w1_q8_opt4",
+        "text": "Circuit switching can support 25 users, and packet switching can support 250 users",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Grossly overstates link capacity."
+      },
+      {
         "id": "w1_q8_opt1",
         "text": "Circuit switching can support 4 users, and packet switching can support 40 users",
         "isCorrect": true,
         "isGeneratedOption": false,
-        "explanation": "Correct. Circuit switching: 100 / 25 = 4 users. Packet switching: average demand = 25 \u00d7 0.10 = 2.5 Mbps, supporting 100 / 2.5 = 40 users on average."
+        "explanation": "Correct. Circuit switching: 100 / 25 = 4 users. Packet switching: average demand = 25 × 0.10 = 2.5 Mbps, supporting 100 / 2.5 = 40 users on average."
       },
       {
         "id": "w1_q8_opt2",
@@ -446,28 +453,21 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "isCorrect": false,
         "isGeneratedOption": true,
         "explanation": "Incorrect. Underestimates packet switching capacity by a factor of 4."
-      },
-      {
-        "id": "w1_q8_opt4",
-        "text": "Circuit switching can support 25 users, and packet switching can support 250 users",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. Grossly overstates link capacity."
       }
     ],
     "originalAnswer": "Circuit switching can support 4 users, and packet switching can support 40 users",
     "verifiedAnswer": "Circuit switching can support 4 users, and packet switching can support 40 users",
     "answersAgree": true,
     "originalExplanation": "Circuit switching dedicates 25 Mbps per user: 100 / 25 = 4 users. Packet switching users are active only 10% of the time, demanding 2.5 Mbps on average: 100 / 2.5 = 40 users.",
-    "detailedReasoning": "Under circuit switching, each user must be allocated a dedicated 25 Mbps slice regardless of activity. Max users = 100 Mbps / 25 Mbps = 4. Under packet switching, since each user transmits only 10% of the time, the average bandwidth required per user is 25 Mbps \u00d7 0.10 = 2.5 Mbps. The 100 Mbps link can support 100 / 2.5 = 40 users with negligible probability of buffer overflow.",
+    "detailedReasoning": "Under circuit switching, each user must be allocated a dedicated 25 Mbps slice regardless of activity. Max users = 100 Mbps / 25 Mbps = 4. Under packet switching, since each user transmits only 10% of the time, the average bandwidth required per user is 25 Mbps × 0.10 = 2.5 Mbps. The 100 Mbps link can support 100 / 2.5 = 40 users with negligible probability of buffer overflow.",
     "stepByStepCalculation": [
       "Step 1: Circuit switching capacity = Total Link Bandwidth / Bandwidth per user = 100 Mbps / 25 Mbps = 4 users.",
-      "Step 2: Packet switching average bandwidth per user = Peak Bandwidth \u00d7 Activity Factor = 25 Mbps \u00d7 0.10 = 2.5 Mbps.",
+      "Step 2: Packet switching average bandwidth per user = Peak Bandwidth × Activity Factor = 25 Mbps × 0.10 = 2.5 Mbps.",
       "Step 3: Packet switching average supported users = 100 Mbps / 2.5 Mbps = 40 users."
     ],
     "formulasUsed": [
       "N_circuit = Total_Bandwidth / User_Bandwidth",
-      "N_packet = Total_Bandwidth / (User_Bandwidth \u00d7 Activity_Probability)"
+      "N_packet = Total_Bandwidth / (User_Bandwidth × Activity_Probability)"
     ],
     "examTakeaway": "Packet switching supports 10x more users here because users are active only 10% of the time.",
     "sourceFileName": "media_1792420320898.pdf",
@@ -490,28 +490,21 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "assignment": 1,
     "collection": "original",
     "questionNumber": 9,
-    "questionText": "If a packet of 200 bytes is sent over a link with a capacity of 1 Mbps over a distance of 2000 km, what are the transmission delay, propagation delay, and total delay? Assume the propagation speed is 2.8\u00d710\u2078 m/s.",
+    "questionText": "If a packet of 200 bytes is sent over a link with a capacity of 1 Mbps over a distance of 2000 km, what are the transmission delay, propagation delay, and total delay? Assume the propagation speed is 2.8×10⁸ m/s.",
     "options": [
       {
         "id": "w1_q9_opt1",
         "text": "Transmission = 1.6 ms, Propagation = 7.14 ms, Total = 8.74 ms",
         "isCorrect": true,
         "isGeneratedOption": false,
-        "explanation": "Correct. d_trans = (200 \u00d7 8 bits) / 10^6 bps = 1.6 ms. d_prop = 2,000,000 m / (2.8 \u00d7 10^8 m/s) = 7.14 ms. Total = 1.6 + 7.14 = 8.74 ms."
-      },
-      {
-        "id": "w1_q9_opt2",
-        "text": "Transmission = 0.2 ms, Propagation = 7.14 ms, Total = 7.34 ms",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. Forgets to convert bytes to bits (200 bytes \u00d7 8 = 1600 bits)."
+        "explanation": "Correct. d_trans = (200 × 8 bits) / 10^6 bps = 1.6 ms. d_prop = 2,000,000 m / (2.8 × 10^8 m/s) = 7.14 ms. Total = 1.6 + 7.14 = 8.74 ms."
       },
       {
         "id": "w1_q9_opt3",
         "text": "Transmission = 1.6 ms, Propagation = 10.0 ms, Total = 11.6 ms",
         "isCorrect": false,
         "isGeneratedOption": true,
-        "explanation": "Incorrect. Uses 2.0 \u00d7 10^8 m/s instead of given propagation speed 2.8 \u00d7 10^8 m/s."
+        "explanation": "Incorrect. Uses 2.0 × 10^8 m/s instead of given propagation speed 2.8 × 10^8 m/s."
       },
       {
         "id": "w1_q9_opt4",
@@ -519,18 +512,25 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "isCorrect": false,
         "isGeneratedOption": true,
         "explanation": "Incorrect. Units conversion error."
+      },
+      {
+        "id": "w1_q9_opt2",
+        "text": "Transmission = 0.2 ms, Propagation = 7.14 ms, Total = 7.34 ms",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Forgets to convert bytes to bits (200 bytes × 8 = 1600 bits)."
       }
     ],
     "originalAnswer": "Transmission = 1.6 ms, Propagation = 7.14 ms, Total = 8.74 ms",
     "verifiedAnswer": "Transmission = 1.6 ms, Propagation = 7.14 ms, Total = 8.74 ms",
     "answersAgree": true,
-    "originalExplanation": "d_trans = (200 \u00d7 8) / 1,000,000 = 1.6 ms; d_prop = (2,000 \u00d7 10^3) / (2.8 \u00d7 10^8) = 7.14 ms; Total Delay = 1.6 + 7.14 = 8.74 ms.",
-    "detailedReasoning": "1) Transmission delay d_trans = L / R = (200 bytes \u00d7 8 bits/byte) / (1 \u00d7 10^6 bps) = 1600 / 1,000,000 = 0.0016 s = 1.6 ms. 2) Propagation delay d_prop = d / s = (2000 \u00d7 10^3 m) / (2.8 \u00d7 10^8 m/s) = 2 / 280 s = 0.0071428 s \u2248 7.14 ms. 3) Total Delay = d_trans + d_prop = 1.6 ms + 7.14 ms = 8.74 ms.",
+    "originalExplanation": "d_trans = (200 × 8) / 1,000,000 = 1.6 ms; d_prop = (2,000 × 10^3) / (2.8 × 10^8) = 7.14 ms; Total Delay = 1.6 + 7.14 = 8.74 ms.",
+    "detailedReasoning": "1) Transmission delay d_trans = L / R = (200 bytes × 8 bits/byte) / (1 × 10^6 bps) = 1600 / 1,000,000 = 0.0016 s = 1.6 ms. 2) Propagation delay d_prop = d / s = (2000 × 10^3 m) / (2.8 × 10^8 m/s) = 2 / 280 s = 0.0071428 s ≈ 7.14 ms. 3) Total Delay = d_trans + d_prop = 1.6 ms + 7.14 ms = 8.74 ms.",
     "stepByStepCalculation": [
-      "Step 1: Convert packet size to bits: L = 200 bytes \u00d7 8 = 1600 bits.",
+      "Step 1: Convert packet size to bits: L = 200 bytes × 8 = 1600 bits.",
       "Step 2: Compute transmission delay: d_trans = L / R = 1600 bits / 1,000,000 bps = 0.0016 s = 1.6 ms.",
-      "Step 3: Distance in meters: d = 2000 km = 2,000,000 meters = 2 \u00d7 10^6 m.",
-      "Step 4: Compute propagation delay: d_prop = d / s = (2 \u00d7 10^6 m) / (2.8 \u00d7 10^8 m/s) = 2 / 280 s \u2248 0.00714 s = 7.14 ms.",
+      "Step 3: Distance in meters: d = 2000 km = 2,000,000 meters = 2 × 10^6 m.",
+      "Step 4: Compute propagation delay: d_prop = d / s = (2 × 10^6 m) / (2.8 × 10^8 m/s) = 2 / 280 s ≈ 0.00714 s = 7.14 ms.",
       "Step 5: Total delay: d_trans + d_prop = 1.6 ms + 7.14 ms = 8.74 ms."
     ],
     "formulasUsed": [
@@ -562,13 +562,6 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "For bursty data traffic (e.g., web browsing), which switching technique is more suitable and why?",
     "options": [
       {
-        "id": "w1_q10_opt1",
-        "text": "Packet switching, because it uses resources only when data is sent",
-        "isCorrect": true,
-        "isGeneratedOption": false,
-        "explanation": "Correct. Bursty traffic alternates between brief data transmissions and long idle think periods; packet switching dynamically allocates resources only on demand."
-      },
-      {
         "id": "w1_q10_opt2",
         "text": "Circuit switching, because it reserves dedicated bandwidth during idle intervals",
         "isCorrect": false,
@@ -581,6 +574,13 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "isCorrect": false,
         "isGeneratedOption": true,
         "explanation": "Incorrect. Message switching causes massive queuing delays and buffer hogging."
+      },
+      {
+        "id": "w1_q10_opt1",
+        "text": "Packet switching, because it uses resources only when data is sent",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct. Bursty traffic alternates between brief data transmissions and long idle think periods; packet switching dynamically allocates resources only on demand."
       },
       {
         "id": "w1_q10_opt4",
@@ -619,13 +619,6 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "Which OSI layer is responsible for routing and logical addressing?",
     "options": [
       {
-        "id": "w2_q1_opt1",
-        "text": "Network Layer",
-        "isCorrect": true,
-        "isGeneratedOption": false,
-        "explanation": "Correct. The Network layer (Layer 3) handles end-to-end packet routing across networks and manages logical addressing (such as IPv4 and IPv6 addresses)."
-      },
-      {
         "id": "w2_q1_opt2",
         "text": "Data Link Layer",
         "isCorrect": false,
@@ -633,11 +626,11 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "explanation": "Incorrect. Data Link Layer (Layer 2) handles framing and physical MAC addressing within a single local link."
       },
       {
-        "id": "w2_q1_opt3",
-        "text": "Transport Layer",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. Transport Layer (Layer 4) provides process-to-process communication, port addressing, and reliability."
+        "id": "w2_q1_opt1",
+        "text": "Network Layer",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct. The Network layer (Layer 3) handles end-to-end packet routing across networks and manages logical addressing (such as IPv4 and IPv6 addresses)."
       },
       {
         "id": "w2_q1_opt4",
@@ -645,6 +638,13 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "isCorrect": false,
         "isGeneratedOption": true,
         "explanation": "Incorrect. Physical Layer (Layer 1) transmits raw unstructured bit streams over physical media."
+      },
+      {
+        "id": "w2_q1_opt3",
+        "text": "Transport Layer",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Transport Layer (Layer 4) provides process-to-process communication, port addressing, and reliability."
       }
     ],
     "originalAnswer": "Network Layer",
@@ -676,18 +676,11 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "Which function is performed by the Presentation Layer of the OSI model?",
     "options": [
       {
-        "id": "w2_q2_opt1",
-        "text": "Data encryption, compression, and formatting",
-        "isCorrect": true,
-        "isGeneratedOption": false,
-        "explanation": "Correct. The Presentation layer (Layer 6) is responsible for syntax translation, character encoding, data compression, and cryptographic encryption/decryption."
-      },
-      {
-        "id": "w2_q2_opt2",
-        "text": "Process-to-process reliable byte stream delivery",
+        "id": "w2_q2_opt4",
+        "text": "MAC framing and error detection via CRC",
         "isCorrect": false,
         "isGeneratedOption": true,
-        "explanation": "Incorrect. This is the core function of the Transport layer (TCP)."
+        "explanation": "Incorrect. Framing and CRC error detection are performed by the Data Link layer (Layer 2)."
       },
       {
         "id": "w2_q2_opt3",
@@ -697,11 +690,18 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "explanation": "Incorrect. This is handled by the Physical layer (Layer 1)."
       },
       {
-        "id": "w2_q2_opt4",
-        "text": "MAC framing and error detection via CRC",
+        "id": "w2_q2_opt2",
+        "text": "Process-to-process reliable byte stream delivery",
         "isCorrect": false,
         "isGeneratedOption": true,
-        "explanation": "Incorrect. Framing and CRC error detection are performed by the Data Link layer (Layer 2)."
+        "explanation": "Incorrect. This is the core function of the Transport layer (TCP)."
+      },
+      {
+        "id": "w2_q2_opt1",
+        "text": "Data encryption, compression, and formatting",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct. The Presentation layer (Layer 6) is responsible for syntax translation, character encoding, data compression, and cryptographic encryption/decryption."
       }
     ],
     "originalAnswer": "Data encryption, compression, and formatting",
@@ -790,13 +790,6 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "In the TCP/IP model, what is the data unit called at the Transport Layer?",
     "options": [
       {
-        "id": "w2_q4_opt1",
-        "text": "Segment",
-        "isCorrect": true,
-        "isGeneratedOption": false,
-        "explanation": "Correct. At the Transport layer, the Protocol Data Unit (PDU) is termed a 'Segment' for TCP (and datagram for UDP)."
-      },
-      {
         "id": "w2_q4_opt2",
         "text": "Packet",
         "isCorrect": false,
@@ -804,18 +797,25 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "explanation": "Incorrect. At the Network layer, the PDU is called a Packet (or Datagram)."
       },
       {
-        "id": "w2_q4_opt3",
-        "text": "Frame",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. At the Data Link layer, the PDU is called a Frame."
-      },
-      {
         "id": "w2_q4_opt4",
         "text": "Bit",
         "isCorrect": false,
         "isGeneratedOption": true,
         "explanation": "Incorrect. At the Physical layer, the data unit is a Bit."
+      },
+      {
+        "id": "w2_q4_opt1",
+        "text": "Segment",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct. At the Transport layer, the Protocol Data Unit (PDU) is termed a 'Segment' for TCP (and datagram for UDP)."
+      },
+      {
+        "id": "w2_q4_opt3",
+        "text": "Frame",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. At the Data Link layer, the PDU is called a Frame."
       }
     ],
     "originalAnswer": "Segment",
@@ -854,11 +854,11 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "explanation": "Correct. HTTP (Hypertext Transfer Protocol) operates at the Application layer (Layer 7)."
       },
       {
-        "id": "w2_q5_opt2",
-        "text": "IP",
+        "id": "w2_q5_opt4",
+        "text": "Ethernet",
         "isCorrect": false,
         "isGeneratedOption": true,
-        "explanation": "Incorrect. IP (Internet Protocol) operates at the Network layer (Layer 3)."
+        "explanation": "Incorrect. Ethernet operates at the Data Link and Physical layers (Layers 2 & 1)."
       },
       {
         "id": "w2_q5_opt3",
@@ -868,11 +868,11 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "explanation": "Incorrect. TCP operates at the Transport layer (Layer 4)."
       },
       {
-        "id": "w2_q5_opt4",
-        "text": "Ethernet",
+        "id": "w2_q5_opt2",
+        "text": "IP",
         "isCorrect": false,
         "isGeneratedOption": true,
-        "explanation": "Incorrect. Ethernet operates at the Data Link and Physical layers (Layers 2 & 1)."
+        "explanation": "Incorrect. IP (Internet Protocol) operates at the Network layer (Layer 3)."
       }
     ],
     "originalAnswer": "HTTP",
@@ -904,13 +904,6 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "When data moves from the Application Layer down to the Physical Layer in the OSI model, what happens to the data at each layer?",
     "options": [
       {
-        "id": "w2_q6_opt1",
-        "text": "Headers are added (encapsulation)",
-        "isCorrect": true,
-        "isGeneratedOption": false,
-        "explanation": "Correct. As data moves downward through the protocol stack, each layer encapsulates the payload from above by prepending its own control header (and trailer at Layer 2)."
-      },
-      {
         "id": "w2_q6_opt2",
         "text": "Headers are removed (decapsulation)",
         "isCorrect": false,
@@ -930,6 +923,13 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "isCorrect": false,
         "isGeneratedOption": true,
         "explanation": "Incorrect. Framing size and encryption vary and are not uniform across all layers."
+      },
+      {
+        "id": "w2_q6_opt1",
+        "text": "Headers are added (encapsulation)",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct. As data moves downward through the protocol stack, each layer encapsulates the payload from above by prepending its own control header (and trailer at Layer 2)."
       }
     ],
     "originalAnswer": "Headers are added (encapsulation)",
@@ -961,13 +961,6 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "In the bit-stuffing framing mechanism, what does the transmitter do whenever it encounters five consecutive '1' bits in the data stream?",
     "options": [
       {
-        "id": "w2_q7_opt1",
-        "text": "Stuffs a '0' bit immediately after the five '1's",
-        "isCorrect": true,
-        "isGeneratedOption": true,
-        "explanation": "Correct. Bit stuffing inserts a '0' after five consecutive '1's so that the payload never inadvertently mimics the 01111110 frame delimiter flag."
-      },
-      {
         "id": "w2_q7_opt2",
         "text": "Stuffs a '1' bit immediately after the five '1's",
         "isCorrect": false,
@@ -975,11 +968,11 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "explanation": "Incorrect. Stuffing a '1' would generate six '1's (01111110) which falsely signals the frame delimiter."
       },
       {
-        "id": "w2_q7_opt3",
-        "text": "Replaces the sequence with an escape byte ESC",
-        "isCorrect": false,
+        "id": "w2_q7_opt1",
+        "text": "Stuffs a '0' bit immediately after the five '1's",
+        "isCorrect": true,
         "isGeneratedOption": true,
-        "explanation": "Incorrect. Byte stuffing uses escape characters (ESC), while bit stuffing inserts single bits."
+        "explanation": "Correct. Bit stuffing inserts a '0' after five consecutive '1's so that the payload never inadvertently mimics the 01111110 frame delimiter flag."
       },
       {
         "id": "w2_q7_opt4",
@@ -987,6 +980,13 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "isCorrect": false,
         "isGeneratedOption": true,
         "explanation": "Incorrect. An abort flag (seven 1s) terminates frame transmission rather than stuffing."
+      },
+      {
+        "id": "w2_q7_opt3",
+        "text": "Replaces the sequence with an escape byte ESC",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Byte stuffing uses escape characters (ESC), while bit stuffing inserts single bits."
       }
     ],
     "originalAnswer": "Stuffs a '0' bit immediately after the five '1's",
@@ -1018,6 +1018,20 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "In Cyclic Redundancy Check (CRC), if the generator polynomial G(x) is of degree r, how many check bits (zeros) are initially appended to the data message M(x)?",
     "options": [
       {
+        "id": "w2_q8_opt4",
+        "text": "2r bits",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. 2r is unnecessary redundancy."
+      },
+      {
+        "id": "w2_q8_opt3",
+        "text": "r + 1 bits",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. (r + 1) is the length of the divisor bit pattern, not the number of check bits."
+      },
+      {
         "id": "w2_q8_opt1",
         "text": "r bits",
         "isCorrect": true,
@@ -1030,20 +1044,6 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "isCorrect": false,
         "isGeneratedOption": true,
         "explanation": "Incorrect. Appending r - 1 bits results in an incomplete remainder."
-      },
-      {
-        "id": "w2_q8_opt3",
-        "text": "r + 1 bits",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. (r + 1) is the length of the divisor bit pattern, not the number of check bits."
-      },
-      {
-        "id": "w2_q8_opt4",
-        "text": "2r bits",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. 2r is unnecessary redundancy."
       }
     ],
     "originalAnswer": "r bits",
@@ -1075,13 +1075,6 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "To detect up to d bit errors in any transmitted code word, what is the minimum Hamming distance (d_min) required by the error-detecting code?",
     "options": [
       {
-        "id": "w2_q9_opt1",
-        "text": "d + 1",
-        "isCorrect": true,
-        "isGeneratedOption": true,
-        "explanation": "Correct. An error-detecting code can detect up to d errors if and only if the minimum Hamming distance between any two valid codewords is at least d + 1."
-      },
-      {
         "id": "w2_q9_opt2",
         "text": "2d + 1",
         "isCorrect": false,
@@ -1101,13 +1094,20 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "isCorrect": false,
         "isGeneratedOption": true,
         "explanation": "Incorrect. Incomplete boundary condition."
+      },
+      {
+        "id": "w2_q9_opt1",
+        "text": "d + 1",
+        "isCorrect": true,
+        "isGeneratedOption": true,
+        "explanation": "Correct. An error-detecting code can detect up to d errors if and only if the minimum Hamming distance between any two valid codewords is at least d + 1."
       }
     ],
     "originalAnswer": "d + 1",
     "verifiedAnswer": "d + 1",
     "answersAgree": true,
     "originalExplanation": "Curated NPTEL Syllabus Focus: Minimum Hamming distance to detect d errors is d + 1; to correct d errors is 2d + 1.",
-    "detailedReasoning": "If d_min = d + 1, no combination of d bit flips can transform one valid codeword into another valid codeword; hence any error of weight \u2264 d is detected. To correct d errors, the spheres of radius d around valid codewords must be disjoint, requiring d_min \u2265 2d + 1.",
+    "detailedReasoning": "If d_min = d + 1, no combination of d bit flips can transform one valid codeword into another valid codeword; hence any error of weight ≤ d is detected. To correct d errors, the spheres of radius d around valid codewords must be disjoint, requiring d_min ≥ 2d + 1.",
     "examTakeaway": "Hamming Distance: Detect d errors = d + 1. Correct d errors = 2d + 1.",
     "sourceFileName": "media_1792420320859.pdf (Curated Supplement)",
     "pageNumber": "Syllabus Error Detection",
@@ -1132,6 +1132,13 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "How is the standard Internet Checksum calculated over 16-bit words?",
     "options": [
       {
+        "id": "w2_q10_opt4",
+        "text": "By polynomial division modulo x^16 + x^12 + x^5 + 1",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. That is CRC-16 (CCITT), not the Internet Checksum."
+      },
+      {
         "id": "w2_q10_opt1",
         "text": "By taking the 1s complement of the 1s complement sum of the 16-bit words",
         "isCorrect": true,
@@ -1151,13 +1158,6 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "isCorrect": false,
         "isGeneratedOption": true,
         "explanation": "Incorrect. Simple XOR does not capture byte position permutations."
-      },
-      {
-        "id": "w2_q10_opt4",
-        "text": "By polynomial division modulo x^16 + x^12 + x^5 + 1",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. That is CRC-16 (CCITT), not the Internet Checksum."
       }
     ],
     "originalAnswer": "By taking the 1s complement of the 1s complement sum of the 16-bit words",
@@ -1190,20 +1190,6 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "Which protocol is primarily used to transfer web pages between a client and a web server?",
     "options": [
       {
-        "id": "w3_q1_opt1",
-        "text": "HTTP",
-        "isCorrect": true,
-        "isGeneratedOption": false,
-        "explanation": "Correct. HTTP (Hypertext Transfer Protocol) is the primary application protocol for fetching web pages (HTML, CSS, JS, images) from servers."
-      },
-      {
-        "id": "w3_q1_opt2",
-        "text": "FTP",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. FTP is used for bulk file transfers between client and server."
-      },
-      {
         "id": "w3_q1_opt3",
         "text": "SMTP",
         "isCorrect": false,
@@ -1216,6 +1202,20 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "isCorrect": false,
         "isGeneratedOption": true,
         "explanation": "Incorrect. SNMP is used for network management and monitoring."
+      },
+      {
+        "id": "w3_q1_opt2",
+        "text": "FTP",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. FTP is used for bulk file transfers between client and server."
+      },
+      {
+        "id": "w3_q1_opt1",
+        "text": "HTTP",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct. HTTP (Hypertext Transfer Protocol) is the primary application protocol for fetching web pages (HTML, CSS, JS, images) from servers."
       }
     ],
     "originalAnswer": "HTTP",
@@ -1247,11 +1247,11 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "What is the primary function of DNS?",
     "options": [
       {
-        "id": "w3_q2_opt1",
-        "text": "Convert domain names into IP addresses",
-        "isCorrect": true,
-        "isGeneratedOption": false,
-        "explanation": "Correct. DNS translates human-friendly alphanumeric domain names (e.g. google.com) into machine-routable numerical IP addresses."
+        "id": "w3_q2_opt3",
+        "text": "Encrypt HTTP web traffic using TLS certificates",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Traffic encryption is performed by TLS/HTTPS."
       },
       {
         "id": "w3_q2_opt2",
@@ -1261,11 +1261,11 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "explanation": "Incorrect. Dynamic IP assignment is the function of DHCP (Dynamic Host Configuration Protocol)."
       },
       {
-        "id": "w3_q2_opt3",
-        "text": "Encrypt HTTP web traffic using TLS certificates",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. Traffic encryption is performed by TLS/HTTPS."
+        "id": "w3_q2_opt1",
+        "text": "Convert domain names into IP addresses",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct. DNS translates human-friendly alphanumeric domain names (e.g. google.com) into machine-routable numerical IP addresses."
       },
       {
         "id": "w3_q2_opt4",
@@ -1304,6 +1304,13 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "Which of the following is an example of a text-based protocol?",
     "options": [
       {
+        "id": "w3_q3_opt4",
+        "text": "IPsec",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. IPsec is a binary network-layer security architecture."
+      },
+      {
         "id": "w3_q3_opt1",
         "text": "HTTP/1.1",
         "isCorrect": true,
@@ -1323,13 +1330,6 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "isCorrect": false,
         "isGeneratedOption": true,
         "explanation": "Incorrect. HTTP/3 is built on QUIC with binary framing."
-      },
-      {
-        "id": "w3_q3_opt4",
-        "text": "IPsec",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. IPsec is a binary network-layer security architecture."
       }
     ],
     "originalAnswer": "HTTP/1.1",
@@ -1368,13 +1368,6 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "explanation": "Correct. HTTP/2 replaced HTTP/1.1's text format with binary framing, dividing messages into typed binary frames (HEADERS, DATA, SETTINGS)."
       },
       {
-        "id": "w3_q4_opt2",
-        "text": "HTTP/1.0",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. HTTP/1.0 is a text-based protocol."
-      },
-      {
         "id": "w3_q4_opt3",
         "text": "HTTP/1.1",
         "isCorrect": false,
@@ -1387,6 +1380,13 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "isCorrect": false,
         "isGeneratedOption": true,
         "explanation": "Incorrect. SMTP is an ASCII text-based mail transfer protocol."
+      },
+      {
+        "id": "w3_q4_opt2",
+        "text": "HTTP/1.0",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. HTTP/1.0 is a text-based protocol."
       }
     ],
     "originalAnswer": "HTTP/2",
@@ -1418,11 +1418,11 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "What is a non-persistent HTTP connection?",
     "options": [
       {
-        "id": "w3_q5_opt1",
-        "text": "A new TCP connection is established for each HTTP request/response",
-        "isCorrect": true,
-        "isGeneratedOption": false,
-        "explanation": "Correct. In non-persistent HTTP (HTTP/1.0 default), at most one object is sent over a TCP connection; the connection is closed immediately after the response is delivered."
+        "id": "w3_q5_opt3",
+        "text": "A connection that uses UDP instead of TCP for data delivery",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Non-persistent HTTP uses TCP, but terminates it after each object."
       },
       {
         "id": "w3_q5_opt2",
@@ -1432,11 +1432,11 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "explanation": "Incorrect. That describes persistent HTTP."
       },
       {
-        "id": "w3_q5_opt3",
-        "text": "A connection that uses UDP instead of TCP for data delivery",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. Non-persistent HTTP uses TCP, but terminates it after each object."
+        "id": "w3_q5_opt1",
+        "text": "A new TCP connection is established for each HTTP request/response",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct. In non-persistent HTTP (HTTP/1.0 default), at most one object is sent over a TCP connection; the connection is closed immediately after the response is delivered."
       },
       {
         "id": "w3_q5_opt4",
@@ -1475,6 +1475,13 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "A client establishes a connection, requests the homepage, receives it, and then requests the logo image on the same connection. The server keeps the connection open for future requests. What is this HTTP behavior called?",
     "options": [
       {
+        "id": "w3_q6_opt4",
+        "text": "Stateless HTTP",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. HTTP is stateless, but keeping the TCP transport connection open is called persistence."
+      },
+      {
         "id": "w3_q6_opt1",
         "text": "Persistent HTTP",
         "isCorrect": true,
@@ -1494,13 +1501,6 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "isCorrect": false,
         "isGeneratedOption": true,
         "explanation": "Incorrect. Asynchronous refers to non-blocking client execution models."
-      },
-      {
-        "id": "w3_q6_opt4",
-        "text": "Stateless HTTP",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. HTTP is stateless, but keeping the TCP transport connection open is called persistence."
       }
     ],
     "originalAnswer": "Persistent HTTP",
@@ -1532,20 +1532,6 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "Which HTTP method is mainly used to retrieve data from a server?",
     "options": [
       {
-        "id": "w3_q7_opt1",
-        "text": "GET",
-        "isCorrect": true,
-        "isGeneratedOption": false,
-        "explanation": "Correct. The GET method requests a representation of the specified resource without modifying server state (safe and idempotent)."
-      },
-      {
-        "id": "w3_q7_opt2",
-        "text": "POST",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. POST submits data to be processed to the specified resource (often resulting in state change)."
-      },
-      {
         "id": "w3_q7_opt3",
         "text": "PUT",
         "isCorrect": false,
@@ -1558,6 +1544,20 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "isCorrect": false,
         "isGeneratedOption": true,
         "explanation": "Incorrect. DELETE removes the specified resource."
+      },
+      {
+        "id": "w3_q7_opt2",
+        "text": "POST",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. POST submits data to be processed to the specified resource (often resulting in state change)."
+      },
+      {
+        "id": "w3_q7_opt1",
+        "text": "GET",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct. The GET method requests a representation of the specified resource without modifying server state (safe and idempotent)."
       }
     ],
     "originalAnswer": "GET",
@@ -1596,18 +1596,18 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "explanation": "Correct. ASCII (7-bit) and UTF-8 (variable-width Unicode) are standard character encodings for text-based network protocols like HTTP/1.1 and SMTP."
       },
       {
-        "id": "w3_q8_opt2",
-        "text": "EBCDIC",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. EBCDIC is a legacy IBM mainframe encoding, not the standard Internet protocol encoding."
-      },
-      {
         "id": "w3_q8_opt3",
         "text": "Base64",
         "isCorrect": false,
         "isGeneratedOption": true,
         "explanation": "Incorrect. Base64 is a binary-to-text encoding scheme, not a character set."
+      },
+      {
+        "id": "w3_q8_opt2",
+        "text": "EBCDIC",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. EBCDIC is a legacy IBM mainframe encoding, not the standard Internet protocol encoding."
       },
       {
         "id": "w3_q8_opt4",
@@ -1646,11 +1646,11 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "A user submits a form on a website, but the server cannot understand the request because the data format is incorrect. Which status code will the server return?",
     "options": [
       {
-        "id": "w3_q9_opt1",
-        "text": "400",
-        "isCorrect": true,
-        "isGeneratedOption": false,
-        "explanation": "Correct. HTTP 400 Bad Request indicates that the server cannot process the request due to client-side error (malformed syntax, invalid framing, or bad data)."
+        "id": "w3_q9_opt4",
+        "text": "301",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. 301 Moved Permanently is a redirection status code."
       },
       {
         "id": "w3_q9_opt2",
@@ -1660,18 +1660,18 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "explanation": "Incorrect. 404 Not Found indicates that the requested URI resource does not exist on the server."
       },
       {
+        "id": "w3_q9_opt1",
+        "text": "400",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct. HTTP 400 Bad Request indicates that the server cannot process the request due to client-side error (malformed syntax, invalid framing, or bad data)."
+      },
+      {
         "id": "w3_q9_opt3",
         "text": "500",
         "isCorrect": false,
         "isGeneratedOption": true,
         "explanation": "Incorrect. 500 Internal Server Error indicates an unexpected condition encountered on the server side."
-      },
-      {
-        "id": "w3_q9_opt4",
-        "text": "301",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. 301 Moved Permanently is a redirection status code."
       }
     ],
     "originalAnswer": "400",
@@ -1710,11 +1710,11 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "explanation": "Correct. 1 TCP connection is needed to retrieve the base HTML file, plus 1 separate connection for each of the 10 referenced images: 1 + 10 = 11 TCP connections."
       },
       {
-        "id": "w3_q10_opt2",
-        "text": "10",
+        "id": "w3_q10_opt4",
+        "text": "20",
         "isCorrect": false,
         "isGeneratedOption": true,
-        "explanation": "Incorrect. Forgets the initial connection required to download the base HTML file."
+        "explanation": "Incorrect. Each object requires exactly 1 TCP connection in non-persistent HTTP."
       },
       {
         "id": "w3_q10_opt3",
@@ -1724,11 +1724,11 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "explanation": "Incorrect. 1 connection is the behavior of persistent HTTP, not non-persistent HTTP."
       },
       {
-        "id": "w3_q10_opt4",
-        "text": "20",
+        "id": "w3_q10_opt2",
+        "text": "10",
         "isCorrect": false,
         "isGeneratedOption": true,
-        "explanation": "Incorrect. Each object requires exactly 1 TCP connection in non-persistent HTTP."
+        "explanation": "Incorrect. Forgets the initial connection required to download the base HTML file."
       }
     ],
     "originalAnswer": "11",
@@ -1825,13 +1825,6 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "A client sends 5 pipelined requests on a persistent connection (HTTP/1.1). The second request takes long time to process. What will happen to the remaining requests?",
     "options": [
       {
-        "id": "w4_q2_opt1",
-        "text": "All subsequent responses are delayed waiting for the second response",
-        "isCorrect": true,
-        "isGeneratedOption": false,
-        "explanation": "Correct. In HTTP/1.1 pipelining, responses must be sent in the exact FIFO order of requests. A slow second response blocks responses 3, 4, and 5 (Head-of-Line blocking)."
-      },
-      {
         "id": "w4_q2_opt2",
         "text": "The server transmits responses 3, 4, and 5 immediately out-of-order",
         "isCorrect": false,
@@ -1839,11 +1832,11 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "explanation": "Incorrect. HTTP/1.1 lacks stream identifiers, making out-of-order response transmission impossible over a single TCP stream."
       },
       {
-        "id": "w4_q2_opt3",
-        "text": "The client aborts the connection and resets all pending requests",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. The client waits for the response unless a client timeout expires."
+        "id": "w4_q2_opt1",
+        "text": "All subsequent responses are delayed waiting for the second response",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct. In HTTP/1.1 pipelining, responses must be sent in the exact FIFO order of requests. A slow second response blocks responses 3, 4, and 5 (Head-of-Line blocking)."
       },
       {
         "id": "w4_q2_opt4",
@@ -1851,6 +1844,13 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "isCorrect": false,
         "isGeneratedOption": true,
         "explanation": "Incorrect. HTTP servers do not open outbound client TCP connections."
+      },
+      {
+        "id": "w4_q2_opt3",
+        "text": "The client aborts the connection and resets all pending requests",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. The client waits for the response unless a client timeout expires."
       }
     ],
     "originalAnswer": "All subsequent responses are delayed waiting for the second response",
@@ -1882,6 +1882,20 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "A client sends requests R1, R2, and R3 over a single HTTP/2 connection, where R2 is a large file. What is the expected behavior?",
     "options": [
       {
+        "id": "w4_q3_opt4",
+        "text": "R2 is dropped by the server because large files cannot be multiplexed",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Large files are broken into multiple small DATA frames and interleaved."
+      },
+      {
+        "id": "w4_q3_opt3",
+        "text": "The client must open a separate TCP connection specifically for R3",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. HTTP/2 multiplexes all streams over a single connection."
+      },
+      {
         "id": "w4_q3_opt1",
         "text": "R1, R2, and R3 are transmitted as independent streams, so R3 is not blocked by R2",
         "isCorrect": true,
@@ -1894,20 +1908,6 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "isCorrect": false,
         "isGeneratedOption": true,
         "explanation": "Incorrect. That is HTTP/1.1 Head-of-Line blocking, which HTTP/2 specifically solved."
-      },
-      {
-        "id": "w4_q3_opt3",
-        "text": "The client must open a separate TCP connection specifically for R3",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. HTTP/2 multiplexes all streams over a single connection."
-      },
-      {
-        "id": "w4_q3_opt4",
-        "text": "R2 is dropped by the server because large files cannot be multiplexed",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. Large files are broken into multiple small DATA frames and interleaved."
       }
     ],
     "originalAnswer": "R1, R2, and R3 are transmitted as independent streams, so R3 is not blocked by R2",
@@ -1939,13 +1939,6 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "Which statement about HTTP/2 is TRUE?",
     "options": [
       {
-        "id": "w4_q4_opt1",
-        "text": "HTTP/2 uses binary framing and supports multiplexing",
-        "isCorrect": true,
-        "isGeneratedOption": false,
-        "explanation": "Correct. HTTP/2 replaces textual messages with binary framing layers and fully supports bi-directional multiplexing over a single TCP connection."
-      },
-      {
         "id": "w4_q4_opt2",
         "text": "HTTP/2 is a text-based protocol that strictly forbids header compression",
         "isCorrect": false,
@@ -1965,6 +1958,13 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "isCorrect": false,
         "isGeneratedOption": true,
         "explanation": "Incorrect. HTTP/2 runs over TCP; it is HTTP/3 that runs over UDP via QUIC."
+      },
+      {
+        "id": "w4_q4_opt1",
+        "text": "HTTP/2 uses binary framing and supports multiplexing",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct. HTTP/2 replaces textual messages with binary framing layers and fully supports bi-directional multiplexing over a single TCP connection."
       }
     ],
     "originalAnswer": "HTTP/2 uses binary framing and supports multiplexing",
@@ -1996,13 +1996,6 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "A user enters www.nptel.ac.in into a web browser. The DNS resolver has no cached record. Which sequence of DNS servers is contacted to resolve the domain name?",
     "options": [
       {
-        "id": "w4_q5_opt1",
-        "text": "Root DNS Server, TLD Server, Authoritative DNS Server",
-        "isCorrect": true,
-        "isGeneratedOption": false,
-        "explanation": "Correct. Standard iterative DNS resolution queries Root DNS server first, which returns the TLD (.in) server, which in turn returns the Authoritative server (nptel.ac.in)."
-      },
-      {
         "id": "w4_q5_opt2",
         "text": "Authoritative DNS Server, TLD Server, Root DNS Server",
         "isCorrect": false,
@@ -2010,11 +2003,11 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "explanation": "Incorrect. Reverses the hierarchical resolution tree."
       },
       {
-        "id": "w4_q5_opt3",
-        "text": "TLD Server, Root DNS Server, Authoritative DNS Server",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. The resolver cannot query the TLD server without first obtaining its address from the Root."
+        "id": "w4_q5_opt1",
+        "text": "Root DNS Server, TLD Server, Authoritative DNS Server",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct. Standard iterative DNS resolution queries Root DNS server first, which returns the TLD (.in) server, which in turn returns the Authoritative server (nptel.ac.in)."
       },
       {
         "id": "w4_q5_opt4",
@@ -2022,6 +2015,13 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "isCorrect": false,
         "isGeneratedOption": true,
         "explanation": "Incorrect. The Root points to TLD, not directly to third-level authoritative servers."
+      },
+      {
+        "id": "w4_q5_opt3",
+        "text": "TLD Server, Root DNS Server, Authoritative DNS Server",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. The resolver cannot query the TLD server without first obtaining its address from the Root."
       }
     ],
     "originalAnswer": "Root DNS Server, TLD Server, Authoritative DNS Server",
@@ -2053,6 +2053,20 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "In HTTP/3, when a single packet is lost during a video stream, only that specific stream is affected while others continue. Which protocol makes this possible?",
     "options": [
       {
+        "id": "w4_q6_opt4",
+        "text": "SCTP over Ethernet",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. While SCTP supports multi-streaming, HTTP/3 is standardized on QUIC over UDP."
+      },
+      {
+        "id": "w4_q6_opt3",
+        "text": "Raw IP without transport protocol",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Raw IP provides zero stream or port multiplexing."
+      },
+      {
         "id": "w4_q6_opt1",
         "text": "UDP with QUIC",
         "isCorrect": true,
@@ -2065,20 +2079,6 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "isCorrect": false,
         "isGeneratedOption": true,
         "explanation": "Incorrect. Standard TCP enforces strict byte-stream ordering; a lost packet halts all streams on that TCP connection."
-      },
-      {
-        "id": "w4_q6_opt3",
-        "text": "Raw IP without transport protocol",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. Raw IP provides zero stream or port multiplexing."
-      },
-      {
-        "id": "w4_q6_opt4",
-        "text": "SCTP over Ethernet",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. While SCTP supports multi-streaming, HTTP/3 is standardized on QUIC over UDP."
       }
     ],
     "originalAnswer": "UDP with QUIC",
@@ -2167,18 +2167,18 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "A streaming service stores copies of video chunks on multiple geographically distributed servers. What is the primary purpose of this approach?",
     "options": [
       {
-        "id": "w4_q8_opt1",
-        "text": "To reduce latency and improve streaming performance",
-        "isCorrect": true,
-        "isGeneratedOption": false,
-        "explanation": "Correct. Geographically distributed Content Delivery Networks (CDNs) place data near end users, drastically cutting propagation delay, avoiding network bottlenecks, and enhancing playback quality."
-      },
-      {
         "id": "w4_q8_opt2",
         "text": "To bypass copyright laws and international telecommunications regulations",
         "isCorrect": false,
         "isGeneratedOption": true,
         "explanation": "Incorrect. CDNs are legitimate content distribution architectures."
+      },
+      {
+        "id": "w4_q8_opt4",
+        "text": "To convert analog broadcast television signals into raw binary packets",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Irrelevant to distributed web caching."
       },
       {
         "id": "w4_q8_opt3",
@@ -2188,11 +2188,11 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "explanation": "Incorrect. CDNs rely extensively on DNS redirection to route clients to nearest edge nodes."
       },
       {
-        "id": "w4_q8_opt4",
-        "text": "To convert analog broadcast television signals into raw binary packets",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. Irrelevant to distributed web caching."
+        "id": "w4_q8_opt1",
+        "text": "To reduce latency and improve streaming performance",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct. Geographically distributed Content Delivery Networks (CDNs) place data near end users, drastically cutting propagation delay, avoiding network bottlenecks, and enhancing playback quality."
       }
     ],
     "originalAnswer": "To reduce latency and improve streaming performance",
@@ -2224,18 +2224,18 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "A user requests a video file from the nearest CDN edge server. The requested file is not available in the edge server's cache. What happens next?",
     "options": [
       {
+        "id": "w4_q9_opt4",
+        "text": "The user request is queued indefinitely until an administrator uploads the video",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Origin fetch is automated and immediate."
+      },
+      {
         "id": "w4_q9_opt1",
         "text": "The CDN edge server retrieves the file from the origin server/another CDN server, delivers it to the user, and may cache it for future requests",
         "isCorrect": true,
         "isGeneratedOption": false,
         "explanation": "Correct. On a cache miss, the CDN edge server acts as a proxy, fetching the requested file from the origin server, streaming it to the requesting client, and caching a copy locally."
-      },
-      {
-        "id": "w4_q9_opt2",
-        "text": "The edge server drops the connection and returns HTTP 404 Not Found to the client",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. A cache miss does not cause a 404 error; the edge server fetches the object from origin."
       },
       {
         "id": "w4_q9_opt3",
@@ -2245,11 +2245,11 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "explanation": "Incorrect. CDNs manage origin-pull transparently."
       },
       {
-        "id": "w4_q9_opt4",
-        "text": "The user request is queued indefinitely until an administrator uploads the video",
+        "id": "w4_q9_opt2",
+        "text": "The edge server drops the connection and returns HTTP 404 Not Found to the client",
         "isCorrect": false,
         "isGeneratedOption": true,
-        "explanation": "Incorrect. Origin fetch is automated and immediate."
+        "explanation": "Incorrect. A cache miss does not cause a 404 error; the edge server fetches the object from origin."
       }
     ],
     "originalAnswer": "The CDN edge server retrieves the file from the origin server/another CDN server, delivers it to the user, and may cache it for future requests",
@@ -2281,11 +2281,11 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "A file-sharing application allows users to contribute their own storage and bandwidth while downloading files from other users. Which concept does this illustrate?",
     "options": [
       {
-        "id": "w4_q10_opt1",
-        "text": "Peer-to-Peer",
-        "isCorrect": true,
-        "isGeneratedOption": false,
-        "explanation": "Correct. Peer-to-Peer architecture leverages participant resources: each user contributes upload bandwidth and storage capacity as they consume content."
+        "id": "w4_q10_opt3",
+        "text": "Circuit Switching",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Circuit switching is a physical/network layer multiplexing technique."
       },
       {
         "id": "w4_q10_opt2",
@@ -2295,18 +2295,18 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "explanation": "Incorrect. In Client-Server, clients consume resources without contributing infrastructure to the community."
       },
       {
-        "id": "w4_q10_opt3",
-        "text": "Circuit Switching",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. Circuit switching is a physical/network layer multiplexing technique."
-      },
-      {
         "id": "w4_q10_opt4",
         "text": "Store-and-Forward Routing",
         "isCorrect": false,
         "isGeneratedOption": true,
         "explanation": "Incorrect. Store-and-forward is router packet handling, not an application architecture."
+      },
+      {
+        "id": "w4_q10_opt1",
+        "text": "Peer-to-Peer",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct. Peer-to-Peer architecture leverages participant resources: each user contributes upload bandwidth and storage capacity as they consume content."
       }
     ],
     "originalAnswer": "Peer-to-Peer",
@@ -2338,11 +2338,11 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "Which of the following are not essential services offered by a transport layer protocol?",
     "options": [
       {
-        "id": "w5_q1_opt1",
-        "text": "Segmentation",
-        "isCorrect": true,
-        "isGeneratedOption": false,
-        "explanation": "Correct (Selected). Segmentation is performed by TCP but not UDP (which preserves application message boundaries as datagrams); hence not an essential service."
+        "id": "w5_q1_opt3",
+        "text": "Multiplexing and Demultiplexing",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Port multiplexing and demultiplexing are the absolute bare minimum mandatory services for any transport protocol."
       },
       {
         "id": "w5_q1_opt2",
@@ -2352,11 +2352,11 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "explanation": "Correct (Selected). Error correction (retransmission) is provided by TCP but omitted by UDP; hence it is not an essential service of a transport layer protocol."
       },
       {
-        "id": "w5_q1_opt3",
-        "text": "Multiplexing and Demultiplexing",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. Port multiplexing and demultiplexing are the absolute bare minimum mandatory services for any transport protocol."
+        "id": "w5_q1_opt1",
+        "text": "Segmentation",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct (Selected). Segmentation is performed by TCP but not UDP (which preserves application message boundaries as datagrams); hence not an essential service."
       },
       {
         "id": "w5_q1_opt4",
@@ -2396,20 +2396,6 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "Following is the name assigned to the data unit at the transport layer:",
     "options": [
       {
-        "id": "w5_q2_opt1",
-        "text": "Segment",
-        "isCorrect": true,
-        "isGeneratedOption": false,
-        "explanation": "Correct. At the Transport layer, the Protocol Data Unit (PDU) is designated as a 'Segment'."
-      },
-      {
-        "id": "w5_q2_opt2",
-        "text": "Packet",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. Packet is the PDU of the Network layer."
-      },
-      {
         "id": "w5_q2_opt3",
         "text": "Frame",
         "isCorrect": false,
@@ -2422,6 +2408,20 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "isCorrect": false,
         "isGeneratedOption": true,
         "explanation": "Incorrect. Segment is the general name assigned in standard curriculum."
+      },
+      {
+        "id": "w5_q2_opt2",
+        "text": "Packet",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Packet is the PDU of the Network layer."
+      },
+      {
+        "id": "w5_q2_opt1",
+        "text": "Segment",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct. At the Transport layer, the Protocol Data Unit (PDU) is designated as a 'Segment'."
       }
     ],
     "originalAnswer": "Segment",
@@ -2460,18 +2460,18 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "explanation": "Correct. A TCP socket is identified by a 4-tuple: (Source IP, Source Port, Destination IP, Destination Port). All 4 values are required to demultiplex incoming segments to the exact connection socket."
       },
       {
-        "id": "w5_q3_opt2",
-        "text": "Destination port number and Destination IP address only",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. A 2-tuple is used for UDP demultiplexing, not TCP."
-      },
-      {
         "id": "w5_q3_opt3",
         "text": "MAC address and Destination Port number only",
         "isCorrect": false,
         "isGeneratedOption": true,
         "explanation": "Incorrect. MAC addresses are used at Layer 2 and stripped before reaching the transport layer."
+      },
+      {
+        "id": "w5_q3_opt2",
+        "text": "Destination port number and Destination IP address only",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. A 2-tuple is used for UDP demultiplexing, not TCP."
       },
       {
         "id": "w5_q3_opt4",
@@ -2510,6 +2510,13 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "Which statement best describes multiplexing and demultiplexing in the User Datagram Protocol (UDP)?",
     "options": [
       {
+        "id": "w5_q4_opt4",
+        "text": "UDP ignores port numbers and relies exclusively on application URLs.",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Transport layer protocols operate on 16-bit integer port numbers."
+      },
+      {
         "id": "w5_q4_opt1",
         "text": "Multiplexing combines data from multiple applications into UDP segments using source port numbers, while demultiplexing delivers received segments to the correct application using the destination port number.",
         "isCorrect": true,
@@ -2529,13 +2536,6 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "isCorrect": false,
         "isGeneratedOption": true,
         "explanation": "Incorrect. The OS kernel routes datagrams directly to sockets via destination port."
-      },
-      {
-        "id": "w5_q4_opt4",
-        "text": "UDP ignores port numbers and relies exclusively on application URLs.",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. Transport layer protocols operate on 16-bit integer port numbers."
       }
     ],
     "originalAnswer": "Multiplexing combines data from multiple applications into UDP segments using source port numbers, while demultiplexing delivers received segments to the correct application using the destination port number.",
@@ -2574,18 +2574,18 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "explanation": "Correct (Selected). Because UDP is connectionless, a host can transmit data immediately without waiting for a 3-way handshake (0 RTT setup latency)."
       },
       {
-        "id": "w5_q5_opt2",
-        "text": "It has smaller header size compared to TCP",
-        "isCorrect": true,
-        "isGeneratedOption": false,
-        "explanation": "Correct (Selected). The UDP header is fixed at only 8 bytes, whereas TCP's header is at least 20 bytes."
-      },
-      {
         "id": "w5_q5_opt3",
         "text": "It guarantees in-order byte stream delivery with automatic retransmissions",
         "isCorrect": false,
         "isGeneratedOption": true,
         "explanation": "Incorrect. UDP provides no in-order delivery or retransmission guarantees (that is TCP)."
+      },
+      {
+        "id": "w5_q5_opt2",
+        "text": "It has smaller header size compared to TCP",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct (Selected). The UDP header is fixed at only 8 bytes, whereas TCP's header is at least 20 bytes."
       },
       {
         "id": "w5_q5_opt4",
@@ -2633,11 +2633,11 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "explanation": "Correct (Selected). DNS primarily uses UDP on port 53 for standard short query/response exchanges."
       },
       {
-        "id": "w5_q6_opt2",
-        "text": "SNMP",
-        "isCorrect": true,
-        "isGeneratedOption": false,
-        "explanation": "Correct (Selected). Simple Network Management Protocol (SNMP) uses UDP (ports 161/162) to poll network devices without connection setup overhead."
+        "id": "w5_q6_opt4",
+        "text": "SSH",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Secure Shell (SSH) requires a reliable encrypted TCP connection (port 22)."
       },
       {
         "id": "w5_q6_opt3",
@@ -2647,11 +2647,11 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "explanation": "Incorrect. HTTP/1.1 uses TCP."
       },
       {
-        "id": "w5_q6_opt4",
-        "text": "SSH",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. Secure Shell (SSH) requires a reliable encrypted TCP connection (port 22)."
+        "id": "w5_q6_opt2",
+        "text": "SNMP",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct (Selected). Simple Network Management Protocol (SNMP) uses UDP (ports 161/162) to poll network devices without connection setup overhead."
       }
     ],
     "originalAnswer": "DNS and SNMP",
@@ -2684,11 +2684,11 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "Which of the following fields are included in the UDP pseudo header during UDP checksum calculation?",
     "options": [
       {
-        "id": "w5_q7_opt1",
-        "text": "Source IP Address, Destination IP Address, Protocol Number, UDP Length",
-        "isCorrect": true,
-        "isGeneratedOption": false,
-        "explanation": "Correct. RFC 768 defines the UDP pseudo-header as: Source IP (32 bits), Destination IP (32 bits), Zero byte (8 bits), Protocol Number 17 (8 bits), and UDP Length (16 bits)."
+        "id": "w5_q7_opt4",
+        "text": "Sequence Number, Acknowledgment Number, Window Size",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Those are TCP header fields, not part of UDP."
       },
       {
         "id": "w5_q7_opt2",
@@ -2698,18 +2698,18 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "explanation": "Incorrect. Link-layer Ethernet fields are never part of the transport checksum."
       },
       {
+        "id": "w5_q7_opt1",
+        "text": "Source IP Address, Destination IP Address, Protocol Number, UDP Length",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct. RFC 768 defines the UDP pseudo-header as: Source IP (32 bits), Destination IP (32 bits), Zero byte (8 bits), Protocol Number 17 (8 bits), and UDP Length (16 bits)."
+      },
+      {
         "id": "w5_q7_opt3",
         "text": "Time-to-Live (TTL), Header Checksum, Type of Service",
         "isCorrect": false,
         "isGeneratedOption": true,
         "explanation": "Incorrect. Mutable IP header fields like TTL and IP Checksum are intentionally excluded."
-      },
-      {
-        "id": "w5_q7_opt4",
-        "text": "Sequence Number, Acknowledgment Number, Window Size",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. Those are TCP header fields, not part of UDP."
       }
     ],
     "originalAnswer": "Source IP Address, Destination IP Address, Protocol Number, UDP Length",
@@ -2742,20 +2742,6 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "The UDP pseudo header primarily provides protection against:",
     "options": [
       {
-        "id": "w5_q8_opt1",
-        "text": "Misrouted packets",
-        "isCorrect": true,
-        "isGeneratedOption": false,
-        "explanation": "Correct. By binding the source and destination IP addresses into the checksum, any delivery to an incorrect host (misrouting) causes a checksum failure and packet discard."
-      },
-      {
-        "id": "w5_q8_opt2",
-        "text": "Buffer overflow at intermediate routers",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. Checksums detect bit corruption and misrouting; they do not control router buffer queues."
-      },
-      {
         "id": "w5_q8_opt3",
         "text": "Denial-of-Service SYN floods",
         "isCorrect": false,
@@ -2763,11 +2749,25 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "explanation": "Incorrect. SYN floods target TCP handshake queues."
       },
       {
+        "id": "w5_q8_opt1",
+        "text": "Misrouted packets",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct. By binding the source and destination IP addresses into the checksum, any delivery to an incorrect host (misrouting) causes a checksum failure and packet discard."
+      },
+      {
         "id": "w5_q8_opt4",
         "text": "Eavesdropping on public wireless networks",
         "isCorrect": false,
         "isGeneratedOption": true,
         "explanation": "Incorrect. The checksum is unencrypted and provides zero confidentiality against eavesdropping."
+      },
+      {
+        "id": "w5_q8_opt2",
+        "text": "Buffer overflow at intermediate routers",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Checksums detect bit corruption and misrouting; they do not control router buffer queues."
       }
     ],
     "originalAnswer": "Misrouted packets",
@@ -2799,11 +2799,11 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     "questionText": "Which of the following Python statements correctly creates a UDP socket?",
     "options": [
       {
-        "id": "w5_q9_opt1",
-        "text": "s=socket.socket(socket.AF_INET,socket.SOCK_DGRAM)",
-        "isCorrect": true,
-        "isGeneratedOption": false,
-        "explanation": "Correct. AF_INET indicates IPv4 addressing, and SOCK_DGRAM specifies a datagram (UDP) socket."
+        "id": "w5_q9_opt3",
+        "text": "s=socket.socket(socket.AF_PACKET,socket.SOCK_RAW)",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. SOCK_RAW creates a raw low-level packet socket."
       },
       {
         "id": "w5_q9_opt2",
@@ -2813,11 +2813,11 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "explanation": "Incorrect. SOCK_STREAM creates a TCP stream socket."
       },
       {
-        "id": "w5_q9_opt3",
-        "text": "s=socket.socket(socket.AF_PACKET,socket.SOCK_RAW)",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. SOCK_RAW creates a raw low-level packet socket."
+        "id": "w5_q9_opt1",
+        "text": "s=socket.socket(socket.AF_INET,socket.SOCK_DGRAM)",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct. AF_INET indicates IPv4 addressing, and SOCK_DGRAM specifies a datagram (UDP) socket."
       },
       {
         "id": "w5_q9_opt4",
@@ -2870,18 +2870,18 @@ export const ORIGINAL_QUESTIONS: Question[] = [
         "explanation": "Incorrect. In UDP, receiving an empty datagram does not signal connection close (unlike TCP EOF)."
       },
       {
-        "id": "w5_q10_opt3",
-        "text": "if d == None: break",
-        "isCorrect": false,
-        "isGeneratedOption": true,
-        "explanation": "Incorrect. recvfrom() returns bytes or raises an exception, never Python None."
-      },
-      {
         "id": "w5_q10_opt4",
         "text": "while s.is_connected(): pass",
         "isCorrect": false,
         "isGeneratedOption": true,
         "explanation": "Incorrect. UDP sockets do not maintain connection state."
+      },
+      {
+        "id": "w5_q10_opt3",
+        "text": "if d == None: break",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. recvfrom() returns bytes or raises an exception, never Python None."
       }
     ],
     "originalAnswer": "if d == b\"EOF\": break",
@@ -2903,1897 +2903,1886 @@ export const ORIGINAL_QUESTIONS: Question[] = [
     ],
     "isCalculationBased": false
   },
-
-  // WEEK 7 : ASSIGNMENT 7 (Extracted from media_1792415803904.pdf - Word DOCX)
-  // ==========================================
   {
-    id: 'orig_w7_q1',
-    courseName: 'Computer Networks',
-    week: 7,
-    assignment: 7,
-    collection: 'original',
-    questionNumber: 1,
-    questionText: 'Why does TCP use sequence numbers?',
-    options: [
+    "id": "orig_w7_q1",
+    "courseName": "Computer Networks",
+    "week": 7,
+    "assignment": 7,
+    "collection": "original",
+    "questionNumber": 1,
+    "questionText": "Why does TCP use sequence numbers?",
+    "options": [
       {
-        id: 'w7_q1_opt1',
-        text: 'To enable reliable and ordered delivery of data',
-        isCorrect: true,
-        isGeneratedOption: false,
-        explanation: 'Correct. Sequence numbers track every byte in the TCP stream, enabling in-order assembly, gap detection, and duplicate suppression.'
+        "id": "w7_q1_opt3",
+        "text": "To negotiate the Maximum Segment Size (MSS) with intermediate routers",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. MSS negotiation is done during the 3-way handshake in the TCP options field between the two endpoints, not intermediate routers."
       },
       {
-        id: 'w7_q1_opt2',
-        text: 'To encrypt payload data against man-in-the-middle attacks',
-        isCorrect: false,
-        isGeneratedOption: true,
-        explanation: 'Incorrect. TCP operates in plaintext; payload encryption is handled by TLS/SSL or IPsec at other layers.'
+        "id": "w7_q1_opt2",
+        "text": "To encrypt payload data against man-in-the-middle attacks",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. TCP operates in plaintext; payload encryption is handled by TLS/SSL or IPsec at other layers."
       },
       {
-        id: 'w7_q1_opt3',
-        text: 'To negotiate the Maximum Segment Size (MSS) with intermediate routers',
-        isCorrect: false,
-        isGeneratedOption: true,
-        explanation: 'Incorrect. MSS negotiation is done during the 3-way handshake in the TCP options field between the two endpoints, not intermediate routers.'
+        "id": "w7_q1_opt4",
+        "text": "To calculate round-trip time without using TCP timestamps",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. While ACKs reference sequence numbers, sequence numbers themselves exist for stream ordering and loss detection, not RTT computation."
       },
       {
-        id: 'w7_q1_opt4',
-        text: 'To calculate round-trip time without using TCP timestamps',
-        isCorrect: false,
-        isGeneratedOption: true,
-        explanation: 'Incorrect. While ACKs reference sequence numbers, sequence numbers themselves exist for stream ordering and loss detection, not RTT computation.'
+        "id": "w7_q1_opt1",
+        "text": "To enable reliable and ordered delivery of data",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct. Sequence numbers track every byte in the TCP stream, enabling in-order assembly, gap detection, and duplicate suppression."
       }
     ],
-    originalAnswer: 'To enable reliable and ordered delivery of data',
-    verifiedAnswer: 'To enable reliable and ordered delivery of data',
-    answersAgree: true,
-    originalExplanation: 'Sequence numbers track the byte stream, allowing the receiving TCP entity to detect missing packets, discard duplicate segments, and reorder out-of-order data before passing it to the application layer.',
-    detailedReasoning: 'TCP is a byte-stream oriented transport protocol. Because the underlying IP layer is connectionless and best-effort, IP datagrams can arrive out of order, get duplicated, or be dropped. TCP assigns an incrementing 32-bit sequence number to every transmitted byte. This allows the receiver to reassemble segments in their exact original sequence, detect gaps (triggering retransmission), and eliminate redundant duplicated packets.',
-    examTakeaway: 'TCP assigns sequence numbers to individual bytes (not packet counts) to guarantee reliability and in-order byte stream delivery.',
-    sourceFileName: 'media_1792415803904.pdf (Word DOCX)',
-    pageNumber: 'Paragraph 4-6',
-    extractionConfidence: 98,
-    verificationStatus: 'verified',
-    citations: [
+    "originalAnswer": "To enable reliable and ordered delivery of data",
+    "verifiedAnswer": "To enable reliable and ordered delivery of data",
+    "answersAgree": true,
+    "originalExplanation": "Sequence numbers track the byte stream, allowing the receiving TCP entity to detect missing packets, discard duplicate segments, and reorder out-of-order data before passing it to the application layer.",
+    "detailedReasoning": "TCP is a byte-stream oriented transport protocol. Because the underlying IP layer is connectionless and best-effort, IP datagrams can arrive out of order, get duplicated, or be dropped. TCP assigns an incrementing 32-bit sequence number to every transmitted byte. This allows the receiver to reassemble segments in their exact original sequence, detect gaps (triggering retransmission), and eliminate redundant duplicated packets.",
+    "examTakeaway": "TCP assigns sequence numbers to individual bytes (not packet counts) to guarantee reliability and in-order byte stream delivery.",
+    "sourceFileName": "media_1792415803904.pdf (Word DOCX)",
+    "pageNumber": "Paragraph 4-6",
+    "extractionConfidence": 98,
+    "verificationStatus": "verified",
+    "citations": [
       {
-        title: 'RFC 793 - Transmission Control Protocol Specification',
-        url: 'https://datatracker.ietf.org/doc/html/rfc793',
-        description: 'Section 3.3 specifies the sequence number architecture and byte stream reassembly.',
-        rfcOrStandard: 'RFC 793'
+        "title": "RFC 793 - Transmission Control Protocol Specification",
+        "url": "https://datatracker.ietf.org/doc/html/rfc793",
+        "description": "Section 3.3 specifies the sequence number architecture and byte stream reassembly.",
+        "rfcOrStandard": "RFC 793"
       },
       {
-        title: 'Computer Networking: A Top-Down Approach (Kurose & Ross)',
-        description: 'Chapter 3: Transport Layer, Section 3.5 on Connection-Oriented Transport: TCP.',
-        rfcOrStandard: 'Kurose & Ross 8th Ed.'
+        "title": "Computer Networking: A Top-Down Approach (Kurose & Ross)",
+        "description": "Chapter 3: Transport Layer, Section 3.5 on Connection-Oriented Transport: TCP.",
+        "rfcOrStandard": "Kurose & Ross 8th Ed."
       }
     ],
-    isCalculationBased: false
+    "isCalculationBased": false
   },
   {
-    id: 'orig_w7_q2',
-    courseName: 'Computer Networks',
-    week: 7,
-    assignment: 7,
-    collection: 'original',
-    questionNumber: 2,
-    questionText: 'A TCP Reno sender is in the congestion avoidance phase with a congestion window (cwnd) of 24 MSS and a slow-start threshold (ssthresh) of 16 MSS. It receives three duplicate ACKs. What will be the new values of cwnd and ssthresh immediately after this event?',
-    options: [
+    "id": "orig_w7_q2",
+    "courseName": "Computer Networks",
+    "week": 7,
+    "assignment": 7,
+    "collection": "original",
+    "questionNumber": 2,
+    "questionText": "A TCP Reno sender is in the congestion avoidance phase with a congestion window (cwnd) of 24 MSS and a slow-start threshold (ssthresh) of 16 MSS. It receives three duplicate ACKs. What will be the new values of cwnd and ssthresh immediately after this event?",
+    "options": [
       {
-        id: 'w7_q2_opt1',
-        text: 'cwnd = 15 MSS, ssthresh = 12 MSS',
-        isCorrect: true,
-        isGeneratedOption: false,
-        explanation: 'Correct. In TCP Reno Fast Recovery: ssthresh is halved to 24 / 2 = 12 MSS, and cwnd becomes ssthresh + 3 MSS = 15 MSS.'
+        "id": "w7_q2_opt4",
+        "text": "cwnd = 19 MSS, ssthresh = 16 MSS",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. ssthresh must be halved upon loss detection; leaving ssthresh at 16 MSS violates Reno congestion avoidance rules."
       },
       {
-        id: 'w7_q2_opt2',
-        text: 'cwnd = 1 MSS, ssthresh = 12 MSS',
-        isCorrect: false,
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Resetting cwnd to 1 MSS occurs in TCP Tahoe upon loss or in TCP Reno upon an RTO timeout, not for 3 duplicate ACKs.'
+        "id": "w7_q2_opt1",
+        "text": "cwnd = 15 MSS, ssthresh = 12 MSS",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct. In TCP Reno Fast Recovery: ssthresh is halved to 24 / 2 = 12 MSS, and cwnd becomes ssthresh + 3 MSS = 15 MSS."
       },
       {
-        id: 'w7_q2_opt3',
-        text: 'cwnd = 12 MSS, ssthresh = 12 MSS',
-        isCorrect: false,
-        isGeneratedOption: true,
-        explanation: 'Incorrect. cwnd is inflated by 3 MSS during Fast Recovery to reflect the 3 segments that prompted duplicate ACKs leaving the pipe.'
+        "id": "w7_q2_opt2",
+        "text": "cwnd = 1 MSS, ssthresh = 12 MSS",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Resetting cwnd to 1 MSS occurs in TCP Tahoe upon loss or in TCP Reno upon an RTO timeout, not for 3 duplicate ACKs."
       },
       {
-        id: 'w7_q2_opt4',
-        text: 'cwnd = 19 MSS, ssthresh = 16 MSS',
-        isCorrect: false,
-        isGeneratedOption: true,
-        explanation: 'Incorrect. ssthresh must be halved upon loss detection; leaving ssthresh at 16 MSS violates Reno congestion avoidance rules.'
+        "id": "w7_q2_opt3",
+        "text": "cwnd = 12 MSS, ssthresh = 12 MSS",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. cwnd is inflated by 3 MSS during Fast Recovery to reflect the 3 segments that prompted duplicate ACKs leaving the pipe."
       }
     ],
-    originalAnswer: 'cwnd = 15 MSS, ssthresh = 12 MSS',
-    verifiedAnswer: 'cwnd = 15 MSS, ssthresh = 12 MSS',
-    answersAgree: true,
-    originalExplanation: 'In TCP Reno Fast Recovery: ssthresh is halved (24 / 2 = 12 MSS). The new cwnd is set to ssthresh + 3 MSS = 12 + 3 = 15 MSS to account for the 3 segments that prompted the duplicate ACKs leaving the network pipe.',
-    detailedReasoning: 'When a TCP Reno sender receives 3 duplicate ACKs (4 identical ACKs in total), it infers that a single segment was lost while subsequent segments successfully reached the receiver. Unlike TCP Tahoe (which resets cwnd to 1), Reno executes Fast Retransmit and Fast Recovery: 1) ssthresh is updated to cwnd / 2 = 24 / 2 = 12 MSS. 2) The missing segment is retransmitted. 3) cwnd is set to ssthresh + 3 MSS = 12 + 3 = 15 MSS to account for the 3 out-of-order packets that cleared the network pipe and reside in the receiver buffer.',
-    stepByStepCalculation: [
-      'Step 1: Identify initial state: cwnd = 24 MSS, ssthresh = 16 MSS (Connection in Congestion Avoidance).',
-      'Step 2: Identify event: Reception of 3 duplicate ACKs (Fast Retransmit & Fast Recovery triggered).',
-      'Step 3: Calculate new ssthresh: ssthresh_new = cwnd / 2 = 24 MSS / 2 = 12 MSS.',
-      'Step 4: Calculate new cwnd in Fast Recovery: cwnd_new = ssthresh_new + 3 MSS = 12 MSS + 3 MSS = 15 MSS.',
-      'Step 5: Connection enters Fast Recovery (increments cwnd by 1 MSS for each additional dup ACK until fresh ACK arrives).'
+    "originalAnswer": "cwnd = 15 MSS, ssthresh = 12 MSS",
+    "verifiedAnswer": "cwnd = 15 MSS, ssthresh = 12 MSS",
+    "answersAgree": true,
+    "originalExplanation": "In TCP Reno Fast Recovery: ssthresh is halved (24 / 2 = 12 MSS). The new cwnd is set to ssthresh + 3 MSS = 12 + 3 = 15 MSS to account for the 3 segments that prompted the duplicate ACKs leaving the network pipe.",
+    "detailedReasoning": "When a TCP Reno sender receives 3 duplicate ACKs (4 identical ACKs in total), it infers that a single segment was lost while subsequent segments successfully reached the receiver. Unlike TCP Tahoe (which resets cwnd to 1), Reno executes Fast Retransmit and Fast Recovery: 1) ssthresh is updated to cwnd / 2 = 24 / 2 = 12 MSS. 2) The missing segment is retransmitted. 3) cwnd is set to ssthresh + 3 MSS = 12 + 3 = 15 MSS to account for the 3 out-of-order packets that cleared the network pipe and reside in the receiver buffer.",
+    "stepByStepCalculation": [
+      "Step 1: Identify initial state: cwnd = 24 MSS, ssthresh = 16 MSS (Connection in Congestion Avoidance).",
+      "Step 2: Identify event: Reception of 3 duplicate ACKs (Fast Retransmit & Fast Recovery triggered).",
+      "Step 3: Calculate new ssthresh: ssthresh_new = cwnd / 2 = 24 MSS / 2 = 12 MSS.",
+      "Step 4: Calculate new cwnd in Fast Recovery: cwnd_new = ssthresh_new + 3 MSS = 12 MSS + 3 MSS = 15 MSS.",
+      "Step 5: Connection enters Fast Recovery (increments cwnd by 1 MSS for each additional dup ACK until fresh ACK arrives)."
     ],
-    formulasUsed: [
-      'ssthresh_new = cwnd / 2',
-      'cwnd_new = ssthresh_new + 3 · MSS (Fast Recovery inflation)'
+    "formulasUsed": [
+      "ssthresh_new = cwnd / 2",
+      "cwnd_new = ssthresh_new + 3 · MSS (Fast Recovery inflation)"
     ],
-    examTakeaway: 'For 3 Dup ACKs in Reno: ssthresh = cwnd / 2, cwnd = ssthresh + 3 MSS. For Timeout (RTO) in Reno or Tahoe: cwnd collapses to 1 MSS.',
-    sourceFileName: 'media_1792415803904.pdf (Word DOCX)',
-    pageNumber: 'Paragraph 8-10',
-    extractionConfidence: 100,
-    verificationStatus: 'verified',
-    citations: [
+    "examTakeaway": "For 3 Dup ACKs in Reno: ssthresh = cwnd / 2, cwnd = ssthresh + 3 MSS. For Timeout (RTO) in Reno or Tahoe: cwnd collapses to 1 MSS.",
+    "sourceFileName": "media_1792415803904.pdf (Word DOCX)",
+    "pageNumber": "Paragraph 8-10",
+    "extractionConfidence": 100,
+    "verificationStatus": "verified",
+    "citations": [
       {
-        title: 'RFC 5681 - TCP Congestion Control',
-        url: 'https://datatracker.ietf.org/doc/html/rfc5681',
-        description: 'Section 3.2 details Fast Retransmit and Fast Recovery algorithms in TCP Reno.',
-        rfcOrStandard: 'RFC 5681'
+        "title": "RFC 5681 - TCP Congestion Control",
+        "url": "https://datatracker.ietf.org/doc/html/rfc5681",
+        "description": "Section 3.2 details Fast Retransmit and Fast Recovery algorithms in TCP Reno.",
+        "rfcOrStandard": "RFC 5681"
       }
     ],
-    isCalculationBased: true
+    "isCalculationBased": true
   },
   {
-    id: 'orig_w7_q3',
-    courseName: 'Computer Networks',
-    week: 7,
-    assignment: 7,
-    collection: 'original',
-    questionNumber: 3,
-    questionText: "A TCP receiver advertises a receive window of 8000 bytes. The sender has transmitted bytes up to sequence number 9500 and has received an ACK up to sequence number 2000. How many additional bytes can the sender transmit immediately without violating the receiver's flow control limit?",
-    options: [
+    "id": "orig_w7_q3",
+    "courseName": "Computer Networks",
+    "week": 7,
+    "assignment": 7,
+    "collection": "original",
+    "questionNumber": 3,
+    "questionText": "A TCP receiver advertises a receive window of 8000 bytes. The sender has transmitted bytes up to sequence number 9500 and has received an ACK up to sequence number 2000. How many additional bytes can the sender transmit immediately without violating the receiver's flow control limit?",
+    "options": [
       {
-        id: 'w7_q3_opt1',
-        text: '500 bytes',
-        isCorrect: true,
-        isGeneratedOption: false,
-        explanation: 'Correct. Maximum allowed sequence number is LastByteAcked + rwnd = 2000 + 8000 = 10,000. Since 9500 has been sent, 10,000 - 9500 = 500 bytes remain.'
+        "id": "w7_q3_opt3",
+        "text": "6000 bytes",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. 6000 bytes ignores the unacknowledged data already transmitted by the sender."
       },
       {
-        id: 'w7_q3_opt2',
-        text: '1500 bytes',
-        isCorrect: false,
-        isGeneratedOption: true,
-        explanation: 'Incorrect. 1500 bytes would exceed the receiver advertised window limit.'
+        "id": "w7_q3_opt4",
+        "text": "8000 bytes",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. 8000 bytes is the total window, not the remaining transmission allowance."
       },
       {
-        id: 'w7_q3_opt3',
-        text: '6000 bytes',
-        isCorrect: false,
-        isGeneratedOption: true,
-        explanation: 'Incorrect. 6000 bytes ignores the unacknowledged data already transmitted by the sender.'
+        "id": "w7_q3_opt1",
+        "text": "500 bytes",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct. Maximum allowed sequence number is LastByteAcked + rwnd = 2000 + 8000 = 10,000. Since 9500 has been sent, 10,000 - 9500 = 500 bytes remain."
       },
       {
-        id: 'w7_q3_opt4',
-        text: '8000 bytes',
-        isCorrect: false,
-        isGeneratedOption: true,
-        explanation: 'Incorrect. 8000 bytes is the total window, not the remaining transmission allowance.'
+        "id": "w7_q3_opt2",
+        "text": "1500 bytes",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. 1500 bytes would exceed the receiver advertised window limit."
       }
     ],
-    originalAnswer: '500 bytes',
-    verifiedAnswer: '500 bytes',
-    answersAgree: true,
-    originalExplanation: "Max allowable sequence number = LastByteAcked + rwnd = 2000 + 8000 = 10,000. The sender has already transmitted up to 9500. Remaining bytes = 10,000 - 9500 = 500 bytes.",
-    detailedReasoning: "Flow control prevents sender buffer overflow at the receiver. The receiver advertises its free buffer space via rwnd. The sender must obey the sliding window boundary: LastByteSent - LastByteAcked ≤ rwnd. Here, LastByteAcked = 2000 and rwnd = 8000 bytes, meaning the sender can transmit up to byte 10,000. Since the sender has already transmitted up to byte 9500, the bytes in flight = 9500 - 2000 = 7500 bytes. Thus, remaining allowance = 8000 - 7500 = 500 bytes.",
-    stepByStepCalculation: [
-      'Step 1: Identify given parameters: rwnd = 8000 bytes, LastByteAcked = 2000, LastByteSent = 9500.',
-      'Step 2: Compute upper boundary of sliding window: MaxAllowedSeq = LastByteAcked + rwnd = 2000 + 8000 = 10,000.',
-      'Step 3: Compute currently unacknowledged bytes in flight: BytesInFlight = LastByteSent - LastByteAcked = 9500 - 2000 = 7500 bytes.',
-      'Step 4: Compute allowable additional transmission: RemainingBytes = MaxAllowedSeq - LastByteSent = 10,000 - 9500 = 500 bytes (or rwnd - BytesInFlight = 8000 - 7500 = 500 bytes).'
+    "originalAnswer": "500 bytes",
+    "verifiedAnswer": "500 bytes",
+    "answersAgree": true,
+    "originalExplanation": "Max allowable sequence number = LastByteAcked + rwnd = 2000 + 8000 = 10,000. The sender has already transmitted up to 9500. Remaining bytes = 10,000 - 9500 = 500 bytes.",
+    "detailedReasoning": "Flow control prevents sender buffer overflow at the receiver. The receiver advertises its free buffer space via rwnd. The sender must obey the sliding window boundary: LastByteSent - LastByteAcked ≤ rwnd. Here, LastByteAcked = 2000 and rwnd = 8000 bytes, meaning the sender can transmit up to byte 10,000. Since the sender has already transmitted up to byte 9500, the bytes in flight = 9500 - 2000 = 7500 bytes. Thus, remaining allowance = 8000 - 7500 = 500 bytes.",
+    "stepByStepCalculation": [
+      "Step 1: Identify given parameters: rwnd = 8000 bytes, LastByteAcked = 2000, LastByteSent = 9500.",
+      "Step 2: Compute upper boundary of sliding window: MaxAllowedSeq = LastByteAcked + rwnd = 2000 + 8000 = 10,000.",
+      "Step 3: Compute currently unacknowledged bytes in flight: BytesInFlight = LastByteSent - LastByteAcked = 9500 - 2000 = 7500 bytes.",
+      "Step 4: Compute allowable additional transmission: RemainingBytes = MaxAllowedSeq - LastByteSent = 10,000 - 9500 = 500 bytes (or rwnd - BytesInFlight = 8000 - 7500 = 500 bytes)."
     ],
-    formulasUsed: [
-      'MaxAllowedSeq = LastByteAcked + rwnd',
-      'RemainingAllowance = MaxAllowedSeq - LastByteSent'
+    "formulasUsed": [
+      "MaxAllowedSeq = LastByteAcked + rwnd",
+      "RemainingAllowance = MaxAllowedSeq - LastByteSent"
     ],
-    examTakeaway: "Usable Window = rwnd - (LastByteSent - LastByteAcked). Always subtract unacknowledged in-flight bytes from the advertised window.",
-    sourceFileName: 'media_1792415803904.pdf (Word DOCX)',
-    pageNumber: 'Paragraph 12-14',
-    extractionConfidence: 100,
-    verificationStatus: 'verified',
-    citations: [
+    "examTakeaway": "Usable Window = rwnd - (LastByteSent - LastByteAcked). Always subtract unacknowledged in-flight bytes from the advertised window.",
+    "sourceFileName": "media_1792415803904.pdf (Word DOCX)",
+    "pageNumber": "Paragraph 12-14",
+    "extractionConfidence": 100,
+    "verificationStatus": "verified",
+    "citations": [
       {
-        title: 'RFC 793 - Section 3.7: Flow Control and Sliding Window',
-        url: 'https://datatracker.ietf.org/doc/html/rfc793',
-        description: 'Formal definition of sender send window and receive window management.',
-        rfcOrStandard: 'RFC 793'
+        "title": "RFC 793 - Section 3.7: Flow Control and Sliding Window",
+        "url": "https://datatracker.ietf.org/doc/html/rfc793",
+        "description": "Formal definition of sender send window and receive window management.",
+        "rfcOrStandard": "RFC 793"
       }
     ],
-    isCalculationBased: true
+    "isCalculationBased": true
   },
   {
-    id: 'orig_w7_q4',
-    courseName: 'Computer Networks',
-    week: 7,
-    assignment: 7,
-    collection: 'original',
-    questionNumber: 4,
-    questionText: 'A TCP Tahoe connection is in the congestion avoidance phase with a congestion window (cwnd) of 20 MSS and a slow-start threshold (ssthresh) of 16 MSS. A retransmission timeout (RTO) occurs. What will be the new values of cwnd and ssthresh, and which phase will the connection enter next?',
-    options: [
+    "id": "orig_w7_q4",
+    "courseName": "Computer Networks",
+    "week": 7,
+    "assignment": 7,
+    "collection": "original",
+    "questionNumber": 4,
+    "questionText": "A TCP Tahoe connection is in the congestion avoidance phase with a congestion window (cwnd) of 20 MSS and a slow-start threshold (ssthresh) of 16 MSS. A retransmission timeout (RTO) occurs. What will be the new values of cwnd and ssthresh, and which phase will the connection enter next?",
+    "options": [
       {
-        id: 'w7_q4_opt1',
-        text: 'cwnd = 1 MSS, ssthresh = 10 MSS, enters Slow Start',
-        isCorrect: true,
-        isGeneratedOption: false,
-        explanation: 'Correct. In TCP Tahoe, any packet loss (whether timeout or 3 duplicate ACKs) sets ssthresh = cwnd / 2 = 10 MSS, collapses cwnd to 1 MSS, and restarts in Slow Start.'
+        "id": "w7_q4_opt1",
+        "text": "cwnd = 1 MSS, ssthresh = 10 MSS, enters Slow Start",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct. In TCP Tahoe, any packet loss (whether timeout or 3 duplicate ACKs) sets ssthresh = cwnd / 2 = 10 MSS, collapses cwnd to 1 MSS, and restarts in Slow Start."
       },
       {
-        id: 'w7_q4_opt2',
-        text: 'cwnd = 10 MSS, ssthresh = 10 MSS, enters Congestion Avoidance',
-        isCorrect: false,
-        isGeneratedOption: true,
-        explanation: 'Incorrect. TCP Tahoe never stays at half-window upon timeout; it strictly resets to 1 MSS.'
+        "id": "w7_q4_opt3",
+        "text": "cwnd = 1 MSS, ssthresh = 16 MSS, enters Slow Start",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. ssthresh must be updated to half the current cwnd (20 / 2 = 10 MSS), not kept at its old value of 16 MSS."
       },
       {
-        id: 'w7_q4_opt3',
-        text: 'cwnd = 1 MSS, ssthresh = 16 MSS, enters Slow Start',
-        isCorrect: false,
-        isGeneratedOption: true,
-        explanation: 'Incorrect. ssthresh must be updated to half the current cwnd (20 / 2 = 10 MSS), not kept at its old value of 16 MSS.'
+        "id": "w7_q4_opt2",
+        "text": "cwnd = 10 MSS, ssthresh = 10 MSS, enters Congestion Avoidance",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. TCP Tahoe never stays at half-window upon timeout; it strictly resets to 1 MSS."
       },
       {
-        id: 'w7_q4_opt4',
-        text: 'cwnd = 13 MSS, ssthresh = 10 MSS, enters Fast Recovery',
-        isCorrect: false,
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Fast Recovery is a feature of TCP Reno, not Tahoe, and Fast Recovery is never triggered by an RTO timeout.'
+        "id": "w7_q4_opt4",
+        "text": "cwnd = 13 MSS, ssthresh = 10 MSS, enters Fast Recovery",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Fast Recovery is a feature of TCP Reno, not Tahoe, and Fast Recovery is never triggered by an RTO timeout."
       }
     ],
-    originalAnswer: 'cwnd = 1 MSS, ssthresh = 10 MSS, enters Slow Start',
-    verifiedAnswer: 'cwnd = 1 MSS, ssthresh = 10 MSS, enters Slow Start',
-    answersAgree: true,
-    originalExplanation: 'TCP Tahoe responds to loss/timeouts by setting ssthresh = cwnd / 2 = 20 / 2 = 10 MSS, resetting cwnd to 1 MSS, and entering Slow Start.',
-    detailedReasoning: 'TCP Tahoe represents the original BSD 4.3 Tahoe congestion control algorithm (Van Jacobson, 1988). When packet loss occurs (detected either by retransmission timeout or triple duplicate ACKs), Tahoe reacts drastically: 1) ssthresh is set to half the current cwnd (ssthresh = 20 / 2 = 10 MSS). 2) cwnd is collapsed to 1 MSS. 3) The connection resumes transmission in the Slow Start phase, doubling cwnd every RTT until cwnd reaches ssthresh (10 MSS), after which it transitions into Congestion Avoidance (linear growth).',
-    stepByStepCalculation: [
-      'Step 1: Identify current state: cwnd = 20 MSS, ssthresh = 16 MSS in Congestion Avoidance.',
-      'Step 2: Identify event: Retransmission Timeout (RTO) in TCP Tahoe.',
-      'Step 3: Compute new slow-start threshold: ssthresh_new = cwnd / 2 = 20 MSS / 2 = 10 MSS.',
-      'Step 4: Reset congestion window: cwnd_new = 1 MSS.',
-      'Step 5: Identify subsequent phase: Slow Start (runs until cwnd reaches 10 MSS).'
+    "originalAnswer": "cwnd = 1 MSS, ssthresh = 10 MSS, enters Slow Start",
+    "verifiedAnswer": "cwnd = 1 MSS, ssthresh = 10 MSS, enters Slow Start",
+    "answersAgree": true,
+    "originalExplanation": "TCP Tahoe responds to loss/timeouts by setting ssthresh = cwnd / 2 = 20 / 2 = 10 MSS, resetting cwnd to 1 MSS, and entering Slow Start.",
+    "detailedReasoning": "TCP Tahoe represents the original BSD 4.3 Tahoe congestion control algorithm (Van Jacobson, 1988). When packet loss occurs (detected either by retransmission timeout or triple duplicate ACKs), Tahoe reacts drastically: 1) ssthresh is set to half the current cwnd (ssthresh = 20 / 2 = 10 MSS). 2) cwnd is collapsed to 1 MSS. 3) The connection resumes transmission in the Slow Start phase, doubling cwnd every RTT until cwnd reaches ssthresh (10 MSS), after which it transitions into Congestion Avoidance (linear growth).",
+    "stepByStepCalculation": [
+      "Step 1: Identify current state: cwnd = 20 MSS, ssthresh = 16 MSS in Congestion Avoidance.",
+      "Step 2: Identify event: Retransmission Timeout (RTO) in TCP Tahoe.",
+      "Step 3: Compute new slow-start threshold: ssthresh_new = cwnd / 2 = 20 MSS / 2 = 10 MSS.",
+      "Step 4: Reset congestion window: cwnd_new = 1 MSS.",
+      "Step 5: Identify subsequent phase: Slow Start (runs until cwnd reaches 10 MSS)."
     ],
-    formulasUsed: [
-      'ssthresh_new = max(2 · MSS, cwnd / 2)',
-      'cwnd_new = 1 · MSS (Tahoe loss rule)'
+    "formulasUsed": [
+      "ssthresh_new = max(2 · MSS, cwnd / 2)",
+      "cwnd_new = 1 · MSS (Tahoe loss rule)"
     ],
-    examTakeaway: 'TCP Tahoe ALWAYS collapses cwnd to 1 MSS and restarts Slow Start upon loss. It lacks the Fast Recovery mechanism introduced in Reno.',
-    sourceFileName: 'media_1792415803904.pdf (Word DOCX)',
-    pageNumber: 'Paragraph 16-18',
-    extractionConfidence: 100,
-    verificationStatus: 'verified',
-    citations: [
+    "examTakeaway": "TCP Tahoe ALWAYS collapses cwnd to 1 MSS and restarts Slow Start upon loss. It lacks the Fast Recovery mechanism introduced in Reno.",
+    "sourceFileName": "media_1792415803904.pdf (Word DOCX)",
+    "pageNumber": "Paragraph 16-18",
+    "extractionConfidence": 100,
+    "verificationStatus": "verified",
+    "citations": [
       {
-        title: 'Congestion Avoidance and Control (Van Jacobson, SIGCOMM 1988)',
-        description: 'Original paper introducing Slow Start, Congestion Avoidance, and Fast Retransmit in TCP Tahoe.',
-        rfcOrStandard: 'Van Jacobson 1988'
+        "title": "Congestion Avoidance and Control (Van Jacobson, SIGCOMM 1988)",
+        "description": "Original paper introducing Slow Start, Congestion Avoidance, and Fast Retransmit in TCP Tahoe.",
+        "rfcOrStandard": "Van Jacobson 1988"
       }
     ],
-    isCalculationBased: true
+    "isCalculationBased": true
   },
   {
-    id: 'orig_w7_q5',
-    courseName: 'Computer Networks',
-    week: 7,
-    assignment: 7,
-    collection: 'original',
-    questionNumber: 5,
-    questionText: 'A TCP receiver has a receive buffer size of 10,000 bytes. The last byte received is 8,500, and the last byte read by the receiving application is 3,500. What advertised window (rwnd) value should the receiver send?',
-    options: [
+    "id": "orig_w7_q5",
+    "courseName": "Computer Networks",
+    "week": 7,
+    "assignment": 7,
+    "collection": "original",
+    "questionNumber": 5,
+    "questionText": "A TCP receiver has a receive buffer size of 10,000 bytes. The last byte received is 8,500, and the last byte read by the receiving application is 3,500. What advertised window (rwnd) value should the receiver send?",
+    "options": [
       {
-        id: 'w7_q5_opt1',
-        text: '5000 bytes',
-        isCorrect: true,
-        isGeneratedOption: false,
-        explanation: 'Correct. Buffer occupied = LastByteRcvd - LastByteRead = 8500 - 3500 = 5000 bytes. rwnd = Buffer Size - Occupied = 10,000 - 5000 = 5000 bytes.'
+        "id": "w7_q5_opt4",
+        "text": "8500 bytes",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. 8500 bytes is LastByteRcvd, not the available window."
       },
       {
-        id: 'w7_q5_opt2',
-        text: '1500 bytes',
-        isCorrect: false,
-        isGeneratedOption: true,
-        explanation: 'Incorrect. 1500 bytes confuses the buffer arithmetic.'
+        "id": "w7_q5_opt2",
+        "text": "1500 bytes",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. 1500 bytes confuses the buffer arithmetic."
       },
       {
-        id: 'w7_q5_opt3',
-        text: '6500 bytes',
-        isCorrect: false,
-        isGeneratedOption: true,
-        explanation: 'Incorrect. 6500 bytes would result from subtracting LastByteRead from Buffer Size without considering LastByteRcvd.'
+        "id": "w7_q5_opt1",
+        "text": "5000 bytes",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct. Buffer occupied = LastByteRcvd - LastByteRead = 8500 - 3500 = 5000 bytes. rwnd = Buffer Size - Occupied = 10,000 - 5000 = 5000 bytes."
       },
       {
-        id: 'w7_q5_opt4',
-        text: '8500 bytes',
-        isCorrect: false,
-        isGeneratedOption: true,
-        explanation: 'Incorrect. 8500 bytes is LastByteRcvd, not the available window.'
+        "id": "w7_q5_opt3",
+        "text": "6500 bytes",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. 6500 bytes would result from subtracting LastByteRead from Buffer Size without considering LastByteRcvd."
       }
     ],
-    originalAnswer: '5000 bytes',
-    verifiedAnswer: '5000 bytes',
-    answersAgree: true,
-    originalExplanation: 'Buffer occupied = LastByteRcvd - LastByteRead = 8500 - 3500 = 5000 bytes. rwnd = Buffer Size - Occupied = 10,000 - 5000 = 5000 bytes.',
-    detailedReasoning: "A TCP receiver allocates a total buffer memory RcvBuffer. Data arriving from the network enters this buffer starting at LastByteRcvd. The local application process reads bytes from this buffer starting at LastByteRead. Therefore, the bytes currently sitting in the buffer waiting to be processed = LastByteRcvd - LastByteRead. To ensure the sender does not overflow this allocated memory, the receiver advertises rwnd = RcvBuffer - (LastByteRcvd - LastByteRead).",
-    stepByStepCalculation: [
-      'Step 1: Identify given parameters: RcvBuffer = 10,000 bytes, LastByteRcvd = 8,500, LastByteRead = 3,500.',
-      'Step 2: Calculate buffer space currently occupied by unread data: Occupied = LastByteRcvd - LastByteRead = 8,500 - 3,500 = 5,000 bytes.',
-      'Step 3: Calculate remaining available buffer space (rwnd): rwnd = RcvBuffer - Occupied = 10,000 - 5,000 = 5,000 bytes.'
+    "originalAnswer": "5000 bytes",
+    "verifiedAnswer": "5000 bytes",
+    "answersAgree": true,
+    "originalExplanation": "Buffer occupied = LastByteRcvd - LastByteRead = 8500 - 3500 = 5000 bytes. rwnd = Buffer Size - Occupied = 10,000 - 5000 = 5000 bytes.",
+    "detailedReasoning": "A TCP receiver allocates a total buffer memory RcvBuffer. Data arriving from the network enters this buffer starting at LastByteRcvd. The local application process reads bytes from this buffer starting at LastByteRead. Therefore, the bytes currently sitting in the buffer waiting to be processed = LastByteRcvd - LastByteRead. To ensure the sender does not overflow this allocated memory, the receiver advertises rwnd = RcvBuffer - (LastByteRcvd - LastByteRead).",
+    "stepByStepCalculation": [
+      "Step 1: Identify given parameters: RcvBuffer = 10,000 bytes, LastByteRcvd = 8,500, LastByteRead = 3,500.",
+      "Step 2: Calculate buffer space currently occupied by unread data: Occupied = LastByteRcvd - LastByteRead = 8,500 - 3,500 = 5,000 bytes.",
+      "Step 3: Calculate remaining available buffer space (rwnd): rwnd = RcvBuffer - Occupied = 10,000 - 5,000 = 5,000 bytes."
     ],
-    formulasUsed: [
-      'rwnd = RcvBuffer - (LastByteRcvd - LastByteRead)'
+    "formulasUsed": [
+      "rwnd = RcvBuffer - (LastByteRcvd - LastByteRead)"
     ],
-    examTakeaway: 'rwnd represents available free buffer space: rwnd = RcvBuffer - [LastByteRcvd - LastByteRead].',
-    sourceFileName: 'media_1792415803904.pdf (Word DOCX)',
-    pageNumber: 'Paragraph 20-22',
-    extractionConfidence: 100,
-    verificationStatus: 'verified',
-    citations: [
+    "examTakeaway": "rwnd represents available free buffer space: rwnd = RcvBuffer - [LastByteRcvd - LastByteRead].",
+    "sourceFileName": "media_1792415803904.pdf (Word DOCX)",
+    "pageNumber": "Paragraph 20-22",
+    "extractionConfidence": 100,
+    "verificationStatus": "verified",
+    "citations": [
       {
-        title: 'RFC 793 - Section 3.7: Flow Control and Sliding Window',
-        url: 'https://datatracker.ietf.org/doc/html/rfc793',
-        description: 'Details receive buffer management and receiver window advertisement calculations.',
-        rfcOrStandard: 'RFC 793'
+        "title": "RFC 793 - Section 3.7: Flow Control and Sliding Window",
+        "url": "https://datatracker.ietf.org/doc/html/rfc793",
+        "description": "Details receive buffer management and receiver window advertisement calculations.",
+        "rfcOrStandard": "RFC 793"
       }
     ],
-    isCalculationBased: true
+    "isCalculationBased": true
   },
   {
-    id: 'orig_w7_q6',
-    courseName: 'Computer Networks',
-    week: 7,
-    assignment: 7,
-    collection: 'original',
-    questionNumber: 6,
-    questionText: "Assume that the TCP sender's window size permits the transmission of four TCP segments. Which statement is correct?",
-    options: [
+    "id": "orig_w7_q6",
+    "courseName": "Computer Networks",
+    "week": 7,
+    "assignment": 7,
+    "collection": "original",
+    "questionNumber": 6,
+    "questionText": "Assume that the TCP sender's window size permits the transmission of four TCP segments. Which statement is correct?",
+    "options": [
       {
-        id: 'w7_q6_opt1',
-        text: 'The sender can transmit up to four TCP segments before waiting for acknowledgments',
-        isCorrect: true,
-        isGeneratedOption: false,
-        explanation: 'Correct. A window size of N segments permits pipelining, allowing the sender to transmit up to N segments back-to-back before waiting for an ACK.'
+        "id": "w7_q6_opt3",
+        "text": "The receiver must drop all segments if they do not arrive simultaneously",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. TCP buffers out-of-order segments and does not require simultaneous arrival."
       },
       {
-        id: 'w7_q6_opt2',
-        text: 'The sender must wait for an acknowledgment after transmitting each individual segment',
-        isCorrect: false,
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Waiting after every single segment describes Stop-and-Wait (window size = 1), not pipelined sliding window.'
+        "id": "w7_q6_opt4",
+        "text": "The sender must transmit all four segments over separate IP paths",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. TCP segments normally follow standard IP routing, which forwards packets according to routing tables without requiring multi-path routing."
       },
       {
-        id: 'w7_q6_opt3',
-        text: 'The receiver must drop all segments if they do not arrive simultaneously',
-        isCorrect: false,
-        isGeneratedOption: true,
-        explanation: 'Incorrect. TCP buffers out-of-order segments and does not require simultaneous arrival.'
+        "id": "w7_q6_opt2",
+        "text": "The sender must wait for an acknowledgment after transmitting each individual segment",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Waiting after every single segment describes Stop-and-Wait (window size = 1), not pipelined sliding window."
       },
       {
-        id: 'w7_q6_opt4',
-        text: 'The sender must transmit all four segments over separate IP paths',
-        isCorrect: false,
-        isGeneratedOption: true,
-        explanation: 'Incorrect. TCP segments normally follow standard IP routing, which forwards packets according to routing tables without requiring multi-path routing.'
+        "id": "w7_q6_opt1",
+        "text": "The sender can transmit up to four TCP segments before waiting for acknowledgments",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct. A window size of N segments permits pipelining, allowing the sender to transmit up to N segments back-to-back before waiting for an ACK."
       }
     ],
-    originalAnswer: 'The sender can transmit up to four TCP segments before waiting for acknowledgments',
-    verifiedAnswer: 'The sender can transmit up to four TCP segments before waiting for acknowledgments',
-    answersAgree: true,
-    originalExplanation: 'A window size of N segments enables pipelining, allowing the sender to transmit up to N segments back-to-back without waiting for an ACK for each individual segment.',
-    detailedReasoning: 'TCP implements a sliding window protocol to achieve high link utilization through pipelining. Without pipelining (e.g. Stop-and-Wait), the sender would transmit one packet and remain idle for an entire Round-Trip Time (RTT). With a window of 4 segments, the sender is authorized to inject 4 consecutive segments into the network without blocking. As acknowledgments return from the receiver, the window slides forward, permitting subsequent segments to be sent.',
-    examTakeaway: 'A window size of W allows W unacknowledged segments in flight simultaneously, drastically improving throughput over high bandwidth-delay product links.',
-    sourceFileName: 'media_1792415803904.pdf (Word DOCX)',
-    pageNumber: 'Paragraph 24-26',
-    extractionConfidence: 100,
-    verificationStatus: 'verified',
-    citations: [
+    "originalAnswer": "The sender can transmit up to four TCP segments before waiting for acknowledgments",
+    "verifiedAnswer": "The sender can transmit up to four TCP segments before waiting for acknowledgments",
+    "answersAgree": true,
+    "originalExplanation": "A window size of N segments enables pipelining, allowing the sender to transmit up to N segments back-to-back without waiting for an ACK for each individual segment.",
+    "detailedReasoning": "TCP implements a sliding window protocol to achieve high link utilization through pipelining. Without pipelining (e.g. Stop-and-Wait), the sender would transmit one packet and remain idle for an entire Round-Trip Time (RTT). With a window of 4 segments, the sender is authorized to inject 4 consecutive segments into the network without blocking. As acknowledgments return from the receiver, the window slides forward, permitting subsequent segments to be sent.",
+    "examTakeaway": "A window size of W allows W unacknowledged segments in flight simultaneously, drastically improving throughput over high bandwidth-delay product links.",
+    "sourceFileName": "media_1792415803904.pdf (Word DOCX)",
+    "pageNumber": "Paragraph 24-26",
+    "extractionConfidence": 100,
+    "verificationStatus": "verified",
+    "citations": [
       {
-        title: 'RFC 793 - Section 3.7',
-        url: 'https://datatracker.ietf.org/doc/html/rfc793',
-        description: 'Pipelining and windowed data transmission mechanics.',
-        rfcOrStandard: 'RFC 793'
+        "title": "RFC 793 - Section 3.7",
+        "url": "https://datatracker.ietf.org/doc/html/rfc793",
+        "description": "Pipelining and windowed data transmission mechanics.",
+        "rfcOrStandard": "RFC 793"
       }
     ],
-    isCalculationBased: false
+    "isCalculationBased": false
   },
   {
-    id: 'orig_w7_q7',
-    courseName: 'Computer Networks',
-    week: 7,
-    assignment: 7,
-    collection: 'original',
-    questionNumber: 7,
-    questionText: 'A TCP connection has a congestion window (cwnd) of 12,000 bytes and a receiver advertised window (rwnd) of 8,000 bytes. The sender has transmitted data up to byte 15,000 and has received ACKs up to byte 9,000. How much more data can the sender transmit?',
-    options: [
+    "id": "orig_w7_q7",
+    "courseName": "Computer Networks",
+    "week": 7,
+    "assignment": 7,
+    "collection": "original",
+    "questionNumber": 7,
+    "questionText": "A TCP connection has a congestion window (cwnd) of 12,000 bytes and a receiver advertised window (rwnd) of 8,000 bytes. The sender has transmitted data up to byte 15,000 and has received ACKs up to byte 9,000. How much more data can the sender transmit?",
+    "options": [
       {
-        id: 'w7_q7_opt1',
-        text: '2000 bytes',
-        isCorrect: true,
-        isGeneratedOption: false,
-        explanation: 'Correct. Effective window = min(cwnd, rwnd) = min(12000, 8000) = 8000 bytes. Unacknowledged in flight = 15,000 - 9,000 = 6,000 bytes. Transmit allowance = 8,000 - 6,000 = 2,000 bytes.'
+        "id": "w7_q7_opt1",
+        "text": "2000 bytes",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct. Effective window = min(cwnd, rwnd) = min(12000, 8000) = 8000 bytes. Unacknowledged in flight = 15,000 - 9,000 = 6,000 bytes. Transmit allowance = 8,000 - 6,000 = 2,000 bytes."
       },
       {
-        id: 'w7_q7_opt2',
-        text: '6000 bytes',
-        isCorrect: false,
-        isGeneratedOption: true,
-        explanation: 'Incorrect. 6000 bytes is the amount of unacknowledged data in flight, not the remaining allowance.'
+        "id": "w7_q7_opt3",
+        "text": "4000 bytes",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. 4000 bytes incorrectly uses cwnd (12,000 - 6,000 = 6,000 or 12,000 - 8,000) instead of the bottleneck window."
       },
       {
-        id: 'w7_q7_opt3',
-        text: '4000 bytes',
-        isCorrect: false,
-        isGeneratedOption: true,
-        explanation: 'Incorrect. 4000 bytes incorrectly uses cwnd (12,000 - 6,000 = 6,000 or 12,000 - 8,000) instead of the bottleneck window.'
+        "id": "w7_q7_opt2",
+        "text": "6000 bytes",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. 6000 bytes is the amount of unacknowledged data in flight, not the remaining allowance."
       },
       {
-        id: 'w7_q7_opt4',
-        text: '8000 bytes',
-        isCorrect: false,
-        isGeneratedOption: true,
-        explanation: 'Incorrect. 8000 bytes is the total effective window, ignoring the 6,000 bytes already sent.'
+        "id": "w7_q7_opt4",
+        "text": "8000 bytes",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. 8000 bytes is the total effective window, ignoring the 6,000 bytes already sent."
       }
     ],
-    originalAnswer: '2000 bytes',
-    verifiedAnswer: '2000 bytes',
-    answersAgree: true,
-    originalExplanation: 'Effective window = min(cwnd, rwnd) = min(12000, 8000) = 8000 bytes. Unacknowledged data in flight = 15,000 - 9,000 = 6,000 bytes. Available transmit allowance = 8,000 - 6,000 = 2,000 bytes.',
-    detailedReasoning: "A TCP sender is constrained by BOTH network congestion and receiver buffer limits. Therefore, the sender's effective transmission window is the minimum of cwnd and rwnd: Effective Window = min(cwnd, rwnd) = min(12,000, 8,000) = 8,000 bytes. The sender has sent data up to byte 15,000, but only bytes up to 9,000 have been acknowledged. Hence, outstanding data currently in flight = 15,000 - 9,000 = 6,000 bytes. Remaining transmit allowance = Effective Window - In Flight = 8,000 - 6,000 = 2,000 bytes.",
-    stepByStepCalculation: [
-      'Step 1: Identify given parameters: cwnd = 12,000 bytes, rwnd = 8,000 bytes, LastByteSent = 15,000, LastByteAcked = 9,000.',
-      'Step 2: Compute effective window: EffectiveWindow = min(cwnd, rwnd) = min(12,000, 8,000) = 8,000 bytes (receiver buffer is the limiting bottleneck).',
-      'Step 3: Compute unacknowledged data in flight: InFlight = LastByteSent - LastByteAcked = 15,000 - 9,000 = 6,000 bytes.',
-      'Step 4: Compute remaining transmission allowance: UsableWindow = EffectiveWindow - InFlight = 8,000 - 6,000 = 2,000 bytes.'
+    "originalAnswer": "2000 bytes",
+    "verifiedAnswer": "2000 bytes",
+    "answersAgree": true,
+    "originalExplanation": "Effective window = min(cwnd, rwnd) = min(12000, 8000) = 8000 bytes. Unacknowledged data in flight = 15,000 - 9,000 = 6,000 bytes. Available transmit allowance = 8,000 - 6,000 = 2,000 bytes.",
+    "detailedReasoning": "A TCP sender is constrained by BOTH network congestion and receiver buffer limits. Therefore, the sender's effective transmission window is the minimum of cwnd and rwnd: Effective Window = min(cwnd, rwnd) = min(12,000, 8,000) = 8,000 bytes. The sender has sent data up to byte 15,000, but only bytes up to 9,000 have been acknowledged. Hence, outstanding data currently in flight = 15,000 - 9,000 = 6,000 bytes. Remaining transmit allowance = Effective Window - In Flight = 8,000 - 6,000 = 2,000 bytes.",
+    "stepByStepCalculation": [
+      "Step 1: Identify given parameters: cwnd = 12,000 bytes, rwnd = 8,000 bytes, LastByteSent = 15,000, LastByteAcked = 9,000.",
+      "Step 2: Compute effective window: EffectiveWindow = min(cwnd, rwnd) = min(12,000, 8,000) = 8,000 bytes (receiver buffer is the limiting bottleneck).",
+      "Step 3: Compute unacknowledged data in flight: InFlight = LastByteSent - LastByteAcked = 15,000 - 9,000 = 6,000 bytes.",
+      "Step 4: Compute remaining transmission allowance: UsableWindow = EffectiveWindow - InFlight = 8,000 - 6,000 = 2,000 bytes."
     ],
-    formulasUsed: [
-      'EffectiveWindow = min(cwnd, rwnd)',
-      'InFlight = LastByteSent - LastByteAcked',
-      'UsableWindow = EffectiveWindow - InFlight'
+    "formulasUsed": [
+      "EffectiveWindow = min(cwnd, rwnd)",
+      "InFlight = LastByteSent - LastByteAcked",
+      "UsableWindow = EffectiveWindow - InFlight"
     ],
-    examTakeaway: 'Always evaluate EffectiveWindow = min(cwnd, rwnd) first. The sender can never transmit more unacknowledged data than the smaller of the two windows.',
-    sourceFileName: 'media_1792415803904.pdf (Word DOCX)',
-    pageNumber: 'Paragraph 28-30',
-    extractionConfidence: 100,
-    verificationStatus: 'verified',
-    citations: [
+    "examTakeaway": "Always evaluate EffectiveWindow = min(cwnd, rwnd) first. The sender can never transmit more unacknowledged data than the smaller of the two windows.",
+    "sourceFileName": "media_1792415803904.pdf (Word DOCX)",
+    "pageNumber": "Paragraph 28-30",
+    "extractionConfidence": 100,
+    "verificationStatus": "verified",
+    "citations": [
       {
-        title: 'RFC 5681 - Section 3.1: TCP Congestion Control',
-        url: 'https://datatracker.ietf.org/doc/html/rfc5681',
-        description: 'Defines the relationship between cwnd and rwnd in determining sender transmission capacity.',
-        rfcOrStandard: 'RFC 5681'
+        "title": "RFC 5681 - Section 3.1: TCP Congestion Control",
+        "url": "https://datatracker.ietf.org/doc/html/rfc5681",
+        "description": "Defines the relationship between cwnd and rwnd in determining sender transmission capacity.",
+        "rfcOrStandard": "RFC 5681"
       }
     ],
-    isCalculationBased: true
+    "isCalculationBased": true
   },
   {
-    id: 'orig_w7_q8',
-    courseName: 'Computer Networks',
-    week: 7,
-    assignment: 7,
-    collection: 'original',
-    questionNumber: 8,
-    questionText: 'What is the primary purpose of TCP flow control?',
-    options: [
+    "id": "orig_w7_q8",
+    "courseName": "Computer Networks",
+    "week": 7,
+    "assignment": 7,
+    "collection": "original",
+    "questionNumber": 8,
+    "questionText": "What is the primary purpose of TCP flow control?",
+    "options": [
       {
-        id: 'w7_q8_opt1',
-        text: 'Prevent the sender from overwhelming the receiver',
-        isCorrect: true,
-        isGeneratedOption: false,
-        explanation: 'Correct. Flow control matches the transmission rate of a fast sender to the processing/buffer capacity of a slow receiver.'
+        "id": "w7_q8_opt4",
+        "text": "Dynamically assign IP addresses to connecting endpoints",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Dynamic address allocation is performed by DHCP at the application/network layer."
       },
       {
-        id: 'w7_q8_opt2',
-        text: 'Prevent intermediate routers from becoming congested',
-        isCorrect: false,
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Preventing intermediate router bottlenecks is the objective of Congestion Control, not Flow Control.'
+        "id": "w7_q8_opt1",
+        "text": "Prevent the sender from overwhelming the receiver",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct. Flow control matches the transmission rate of a fast sender to the processing/buffer capacity of a slow receiver."
       },
       {
-        id: 'w7_q8_opt3',
-        text: 'Prevent unauthorized hosts from injecting forged segments',
-        isCorrect: false,
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Security against forged packets is handled by cryptographic authentication (TLS, IPsec) and TCP initial sequence number randomization.'
+        "id": "w7_q8_opt2",
+        "text": "Prevent intermediate routers from becoming congested",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Preventing intermediate router bottlenecks is the objective of Congestion Control, not Flow Control."
       },
       {
-        id: 'w7_q8_opt4',
-        text: 'Dynamically assign IP addresses to connecting endpoints',
-        isCorrect: false,
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Dynamic address allocation is performed by DHCP at the application/network layer.'
+        "id": "w7_q8_opt3",
+        "text": "Prevent unauthorized hosts from injecting forged segments",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Security against forged packets is handled by cryptographic authentication (TLS, IPsec) and TCP initial sequence number randomization."
       }
     ],
-    originalAnswer: 'Prevent the sender from overwhelming the receiver',
-    verifiedAnswer: 'Prevent the sender from overwhelming the receiver',
-    answersAgree: true,
-    originalExplanation: "Flow control ensures a fast sender does not overwhelm a slow receiver by continuously adjusting the transmission rate based on the receiver's free buffer space (rwnd).",
-    detailedReasoning: "A fundamental distinction in computer networks is between Flow Control and Congestion Control: 1) Flow Control is an end-to-end mechanism between a specific sender and receiver. If the sender pushes data faster than the receiving application consumes it from the socket buffer, the receiver buffer will overflow. Flow control uses the rwnd header field to throttle the sender. 2) Congestion Control, in contrast, protects the shared subnet routers and links from overall saturation.",
-    examTakeaway: 'Flow Control = End-to-end (protects receiver buffer via rwnd). Congestion Control = Network-wide (protects intermediate routers/links via cwnd).',
-    sourceFileName: 'media_1792415803904.pdf (Word DOCX)',
-    pageNumber: 'Paragraph 32-34',
-    extractionConfidence: 100,
-    verificationStatus: 'verified',
-    citations: [
+    "originalAnswer": "Prevent the sender from overwhelming the receiver",
+    "verifiedAnswer": "Prevent the sender from overwhelming the receiver",
+    "answersAgree": true,
+    "originalExplanation": "Flow control ensures a fast sender does not overwhelm a slow receiver by continuously adjusting the transmission rate based on the receiver's free buffer space (rwnd).",
+    "detailedReasoning": "A fundamental distinction in computer networks is between Flow Control and Congestion Control: 1) Flow Control is an end-to-end mechanism between a specific sender and receiver. If the sender pushes data faster than the receiving application consumes it from the socket buffer, the receiver buffer will overflow. Flow control uses the rwnd header field to throttle the sender. 2) Congestion Control, in contrast, protects the shared subnet routers and links from overall saturation.",
+    "examTakeaway": "Flow Control = End-to-end (protects receiver buffer via rwnd). Congestion Control = Network-wide (protects intermediate routers/links via cwnd).",
+    "sourceFileName": "media_1792415803904.pdf (Word DOCX)",
+    "pageNumber": "Paragraph 32-34",
+    "extractionConfidence": 100,
+    "verificationStatus": "verified",
+    "citations": [
       {
-        title: 'Computer Networks: A Systems Approach (Peterson & Davie)',
-        description: 'Chapter 5: End-to-End Protocols, Section 5.2 on TCP Flow Control vs Congestion Control.',
-        rfcOrStandard: 'Peterson & Davie 6th Ed.'
+        "title": "Computer Networks: A Systems Approach (Peterson & Davie)",
+        "description": "Chapter 5: End-to-End Protocols, Section 5.2 on TCP Flow Control vs Congestion Control.",
+        "rfcOrStandard": "Peterson & Davie 6th Ed."
       }
     ],
-    isCalculationBased: false
+    "isCalculationBased": false
   },
   {
-    id: 'orig_w7_q9',
-    courseName: 'Computer Networks',
-    week: 7,
-    assignment: 7,
-    collection: 'original',
-    questionNumber: 9,
-    questionText: 'A TCP connection begins in the Slow Start phase with an initial congestion window (cwnd) of 1 MSS. Assuming no packet loss occurs, what will be the value of cwnd after 4 RTTs?',
-    options: [
+    "id": "orig_w7_q9",
+    "courseName": "Computer Networks",
+    "week": 7,
+    "assignment": 7,
+    "collection": "original",
+    "questionNumber": 9,
+    "questionText": "A TCP connection begins in the Slow Start phase with an initial congestion window (cwnd) of 1 MSS. Assuming no packet loss occurs, what will be the value of cwnd after 4 RTTs?",
+    "options": [
       {
-        id: 'w7_q9_opt1',
-        text: '16 MSS',
-        isCorrect: true,
-        isGeneratedOption: false,
-        explanation: 'Correct. In Slow Start, cwnd doubles every RTT (1 -> 2 -> 4 -> 8 -> 16 MSS after 4 RTTs, since cwnd = 2^4 = 16 MSS).'
+        "id": "w7_q9_opt3",
+        "text": "5 MSS",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Linear growth (+1 MSS per RTT) occurs during Congestion Avoidance, not Slow Start."
       },
       {
-        id: 'w7_q9_opt2',
-        text: '8 MSS',
-        isCorrect: false,
-        isGeneratedOption: true,
-        explanation: 'Incorrect. 8 MSS is the value after 3 RTTs.'
+        "id": "w7_q9_opt4",
+        "text": "32 MSS",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. 32 MSS is 2^5, corresponding to 5 RTTs."
       },
       {
-        id: 'w7_q9_opt3',
-        text: '5 MSS',
-        isCorrect: false,
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Linear growth (+1 MSS per RTT) occurs during Congestion Avoidance, not Slow Start.'
+        "id": "w7_q9_opt2",
+        "text": "8 MSS",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. 8 MSS is the value after 3 RTTs."
       },
       {
-        id: 'w7_q9_opt4',
-        text: '32 MSS',
-        isCorrect: false,
-        isGeneratedOption: true,
-        explanation: 'Incorrect. 32 MSS is 2^5, corresponding to 5 RTTs.'
+        "id": "w7_q9_opt1",
+        "text": "16 MSS",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct. In Slow Start, cwnd doubles every RTT (1 -> 2 -> 4 -> 8 -> 16 MSS after 4 RTTs, since cwnd = 2^4 = 16 MSS)."
       }
     ],
-    originalAnswer: '16 MSS',
-    verifiedAnswer: '16 MSS',
-    answersAgree: true,
-    originalExplanation: 'In Slow Start, cwnd doubles every RTT (1 -> 2 -> 4 -> 8 -> 16 MSS after 4 RTTs, since cwnd = 2^4 = 16 MSS).',
-    detailedReasoning: 'During the Slow Start phase, the sender increments cwnd by 1 MSS for every received acknowledgment. Because transmitting a full window of W segments produces W acknowledgments over one Round-Trip Time (RTT), cwnd increases by W MSS, effectively doubling each RTT (exponential growth: 1 -> 2 -> 4 -> 8 -> 16). Despite its name, Slow Start increases the window exponentially until either ssthresh is crossed or loss occurs.',
-    stepByStepCalculation: [
-      'Step 1: Initial state (RTT 0): cwnd = 1 MSS.',
-      'Step 2: After RTT 1: cwnd = 1 · 2^1 = 2 MSS.',
-      'Step 3: After RTT 2: cwnd = 1 · 2^2 = 4 MSS.',
-      'Step 4: After RTT 3: cwnd = 1 · 2^3 = 8 MSS.',
-      'Step 5: After RTT 4: cwnd = 1 · 2^4 = 16 MSS.'
+    "originalAnswer": "16 MSS",
+    "verifiedAnswer": "16 MSS",
+    "answersAgree": true,
+    "originalExplanation": "In Slow Start, cwnd doubles every RTT (1 -> 2 -> 4 -> 8 -> 16 MSS after 4 RTTs, since cwnd = 2^4 = 16 MSS).",
+    "detailedReasoning": "During the Slow Start phase, the sender increments cwnd by 1 MSS for every received acknowledgment. Because transmitting a full window of W segments produces W acknowledgments over one Round-Trip Time (RTT), cwnd increases by W MSS, effectively doubling each RTT (exponential growth: 1 -> 2 -> 4 -> 8 -> 16). Despite its name, Slow Start increases the window exponentially until either ssthresh is crossed or loss occurs.",
+    "stepByStepCalculation": [
+      "Step 1: Initial state (RTT 0): cwnd = 1 MSS.",
+      "Step 2: After RTT 1: cwnd = 1 · 2^1 = 2 MSS.",
+      "Step 3: After RTT 2: cwnd = 1 · 2^2 = 4 MSS.",
+      "Step 4: After RTT 3: cwnd = 1 · 2^3 = 8 MSS.",
+      "Step 5: After RTT 4: cwnd = 1 · 2^4 = 16 MSS."
     ],
-    formulasUsed: [
-      'cwnd(t) = cwnd_0 · 2^t (for t RTTs in Slow Start)'
+    "formulasUsed": [
+      "cwnd(t) = cwnd_0 · 2^t (for t RTTs in Slow Start)"
     ],
-    examTakeaway: 'In Slow Start: cwnd grows exponentially, doubling every RTT: cwnd = 2^k MSS. In Congestion Avoidance: cwnd grows linearly, adding 1 MSS per RTT.',
-    sourceFileName: 'media_1792415803904.pdf (Word DOCX)',
-    pageNumber: 'Paragraph 36-38',
-    extractionConfidence: 100,
-    verificationStatus: 'verified',
-    citations: [
+    "examTakeaway": "In Slow Start: cwnd grows exponentially, doubling every RTT: cwnd = 2^k MSS. In Congestion Avoidance: cwnd grows linearly, adding 1 MSS per RTT.",
+    "sourceFileName": "media_1792415803904.pdf (Word DOCX)",
+    "pageNumber": "Paragraph 36-38",
+    "extractionConfidence": 100,
+    "verificationStatus": "verified",
+    "citations": [
       {
-        title: 'RFC 5681 - Section 3.1: Slow Start',
-        url: 'https://datatracker.ietf.org/doc/html/rfc5681',
-        description: 'Details exponential growth of cwnd during Slow Start.',
-        rfcOrStandard: 'RFC 5681'
+        "title": "RFC 5681 - Section 3.1: Slow Start",
+        "url": "https://datatracker.ietf.org/doc/html/rfc5681",
+        "description": "Details exponential growth of cwnd during Slow Start.",
+        "rfcOrStandard": "RFC 5681"
       }
     ],
-    isCalculationBased: true
+    "isCalculationBased": true
   },
   {
-    id: 'orig_w7_q10',
-    courseName: 'Computer Networks',
-    week: 7,
-    assignment: 7,
-    collection: 'original',
-    questionNumber: 10,
-    questionText: 'In an implicit congestion notification mechanism, the sender typically detects network congestion based on:',
-    options: [
+    "id": "orig_w7_q10",
+    "courseName": "Computer Networks",
+    "week": 7,
+    "assignment": 7,
+    "collection": "original",
+    "questionNumber": 10,
+    "questionText": "In an implicit congestion notification mechanism, the sender typically detects network congestion based on:",
+    "options": [
       {
-        id: 'w7_q10_opt1',
-        text: 'Packet loss or increased round-trip delay',
-        isCorrect: true,
-        isGeneratedOption: false,
-        explanation: 'Correct. Implicit congestion control infers network bottlenecking from observable transport symptoms (packet drops, timeouts, surge in RTT) without explicit router signals.'
+        "id": "w7_q10_opt2",
+        "text": "Explicit ICMP Congestion messages sent by intermediate routers",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Router-generated messages (like ICMP Source Quench or IP ECN bits) represent explicit signaling mechanisms."
       },
       {
-        id: 'w7_q10_opt2',
-        text: 'Explicit ICMP Congestion messages sent by intermediate routers',
-        isCorrect: false,
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Router-generated messages (like ICMP Source Quench or IP ECN bits) represent explicit signaling mechanisms.'
+        "id": "w7_q10_opt3",
+        "text": "Periodic hardware broadcasts from network switches",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Switches do not broadcast hardware notifications to end-host transport entities."
       },
       {
-        id: 'w7_q10_opt3',
-        text: 'Periodic hardware broadcasts from network switches',
-        isCorrect: false,
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Switches do not broadcast hardware notifications to end-host transport entities.'
+        "id": "w7_q10_opt1",
+        "text": "Packet loss or increased round-trip delay",
+        "isCorrect": true,
+        "isGeneratedOption": false,
+        "explanation": "Correct. Implicit congestion control infers network bottlenecking from observable transport symptoms (packet drops, timeouts, surge in RTT) without explicit router signals."
       },
       {
-        id: 'w7_q10_opt4',
-        text: 'Bandwidth reports negotiated during DNS resolution',
-        isCorrect: false,
-        isGeneratedOption: true,
-        explanation: 'Incorrect. DNS does not measure or report dynamic link congestion.'
+        "id": "w7_q10_opt4",
+        "text": "Bandwidth reports negotiated during DNS resolution",
+        "isCorrect": false,
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. DNS does not measure or report dynamic link congestion."
       }
     ],
-    originalAnswer: 'Packet loss or increased round-trip delay',
-    verifiedAnswer: 'Packet loss or increased round-trip delay',
-    answersAgree: true,
-    originalExplanation: 'Implicit congestion control infers network bottlenecking from observable transport symptoms (like packet drops, retransmission timeouts, or surging RTTs) rather than explicit network signaling.',
-    detailedReasoning: 'Congestion detection methods are broadly divided into two architectures: 1) Implicit Congestion Detection: The intermediate routers provide zero direct feedback to the endpoints. End hosts infer congestion purely from observed end-to-end metrics, such as lost packets (indicated by 3 duplicate ACKs or RTO timer expiry) or delay inflation (as in TCP Vegas or BBR). 2) Explicit Congestion Notification (ECN): Routers mark specific bits in the IP header (ECN field, RFC 3168) or send control messages to notify the endpoints before packet drops occur.',
-    examTakeaway: 'Implicit = Inferred by endpoints from loss/delay symptoms (standard TCP Reno/Tahoe). Explicit = Direct marking by routers (ECN in IP header).',
-    sourceFileName: 'media_1792415803904.pdf (Word DOCX)',
-    pageNumber: 'Paragraph 40-42',
-    extractionConfidence: 100,
-    verificationStatus: 'verified',
-    citations: [
+    "originalAnswer": "Packet loss or increased round-trip delay",
+    "verifiedAnswer": "Packet loss or increased round-trip delay",
+    "answersAgree": true,
+    "originalExplanation": "Implicit congestion control infers network bottlenecking from observable transport symptoms (like packet drops, retransmission timeouts, or surging RTTs) rather than explicit network signaling.",
+    "detailedReasoning": "Congestion detection methods are broadly divided into two architectures: 1) Implicit Congestion Detection: The intermediate routers provide zero direct feedback to the endpoints. End hosts infer congestion purely from observed end-to-end metrics, such as lost packets (indicated by 3 duplicate ACKs or RTO timer expiry) or delay inflation (as in TCP Vegas or BBR). 2) Explicit Congestion Notification (ECN): Routers mark specific bits in the IP header (ECN field, RFC 3168) or send control messages to notify the endpoints before packet drops occur.",
+    "examTakeaway": "Implicit = Inferred by endpoints from loss/delay symptoms (standard TCP Reno/Tahoe). Explicit = Direct marking by routers (ECN in IP header).",
+    "sourceFileName": "media_1792415803904.pdf (Word DOCX)",
+    "pageNumber": "Paragraph 40-42",
+    "extractionConfidence": 100,
+    "verificationStatus": "verified",
+    "citations": [
       {
-        title: 'RFC 3168 - The Addition of Explicit Congestion Notification (ECN) to IP',
-        url: 'https://datatracker.ietf.org/doc/html/rfc3168',
-        description: 'Contrasts implicit loss-based congestion control with explicit network marking.',
-        rfcOrStandard: 'RFC 3168'
+        "title": "RFC 3168 - The Addition of Explicit Congestion Notification (ECN) to IP",
+        "url": "https://datatracker.ietf.org/doc/html/rfc3168",
+        "description": "Contrasts implicit loss-based congestion control with explicit network marking.",
+        "rfcOrStandard": "RFC 3168"
       }
     ],
-    isCalculationBased: false
-  },
-
-  // ==========================================
-  // WEEK 9 : ASSIGNMENT 9 (Extracted from media_1792415803922.pdf - PDF)
-  // ==========================================
-  {
-    id: 'orig_w9_q1',
-    courseName: 'Computer Networks',
-    week: 9,
-    assignment: 9,
-    collection: 'original',
-    questionNumber: 1,
-    questionText: 'Which routing algorithm requires every router to have complete knowledge of the network topology?',
-    options: [
-      {
-        id: 'w9_q1_opt1',
-        text: 'Distance vector',
-        isCorrect: false,
-        originalPosition: '1st',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Distance-vector routers only know distances to destinations reported by immediate neighbors.'
-      },
-      {
-        id: 'w9_q1_opt2',
-        text: 'Link state',
-        isCorrect: true,
-        originalPosition: '2nd',
-        isGeneratedOption: false,
-        explanation: 'Correct. In link-state routing, every router receives link-state advertisements (LSAs), constructs an identical network topology graph, and runs Dijkstra’s algorithm.'
-      },
-      {
-        id: 'w9_q1_opt3',
-        text: 'Path vector',
-        isCorrect: false,
-        originalPosition: '3rd',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Path-vector routing (e.g. BGP) tracks Autonomous System sequences, not complete internal router-level topology.'
-      },
-      {
-        id: 'w9_q1_opt4',
-        text: 'Flooding',
-        isCorrect: false,
-        originalPosition: '4th',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Flooding is a blind forwarding mechanism requiring no stored topology knowledge.'
-      }
-    ],
-    originalAnswer: 'Link state',
-    verifiedAnswer: 'Link state',
-    answersAgree: true,
-    originalExplanation: 'The question asks which routing algorithm requires every router to have complete knowledge of the network topology. The correct choice is Link state. In link-state routing, routers receive link-state information, build a topology database, and calculate shortest paths. Distance-vector routers do not need the complete topology; they learn distance information from neighbors.',
-    detailedReasoning: 'Link-state protocols (such as OSPF and IS-IS) rely on global network knowledge. Every router floods Link State Advertisements (LSAs) describing its directly connected neighbors and costs. Once flooding converges, every router possesses an identical Link State Database (LSDB) representing the complete network map. Each router then independently executes Dijkstra’s Shortest Path First (SPF) algorithm with itself as the root to compute least-cost forwarding paths. In contrast, Distance Vector protocols (RIP) rely on "routing by rumor," where routers only exchange neighbor distance vectors without knowing the true topology.',
-    examTakeaway: 'Link State = Global topology knowledge + Dijkstra SPF (OSPF). Distance Vector = Local neighbor exchanges + Bellman-Ford (RIP).',
-    sourceFileName: 'media_1792415803922.pdf',
-    pageNumber: 'Page 1, Q1',
-    extractionConfidence: 100,
-    verificationStatus: 'verified',
-    citations: [
-      {
-        title: 'RFC 2328 - OSPF Version 2',
-        url: 'https://datatracker.ietf.org/doc/html/rfc2328',
-        description: 'Section 4: Functional Summary explains link-state database construction and SPF calculation.',
-        rfcOrStandard: 'RFC 2328'
-      }
-    ],
-    isCalculationBased: false
+    "isCalculationBased": false
   },
   {
-    id: 'orig_w9_q2',
-    courseName: 'Computer Networks',
-    week: 9,
-    assignment: 9,
-    collection: 'original',
-    questionNumber: 2,
-    questionText: 'In poisoned reverse, what does router z advertise to neighbor y if z reaches x through y?',
-    options: [
+    "id": "orig_w9_q1",
+    "courseName": "Computer Networks",
+    "week": 9,
+    "assignment": 9,
+    "collection": "original",
+    "questionNumber": 1,
+    "questionText": "Which routing algorithm requires every router to have complete knowledge of the network topology?",
+    "options": [
       {
-        id: 'w9_q2_opt1',
-        text: 'Its actual lowest cost to x',
-        isCorrect: false,
-        originalPosition: '1st',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Advertising the actual cost could induce y into routing back through z if y’s direct link fails.'
+        "id": "w9_q1_opt3",
+        "text": "Path vector",
+        "isCorrect": false,
+        "originalPosition": "3rd",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Path-vector routing (e.g. BGP) tracks Autonomous System sequences, not complete internal router-level topology."
       },
       {
-        id: 'w9_q2_opt2',
-        text: 'A metric of 0 to x',
-        isCorrect: false,
-        originalPosition: '2nd',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. A metric of 0 indicates that z is directly attached to x.'
+        "id": "w9_q1_opt4",
+        "text": "Flooding",
+        "isCorrect": false,
+        "originalPosition": "4th",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Flooding is a blind forwarding mechanism requiring no stored topology knowledge."
       },
       {
-        id: 'w9_q2_opt3',
-        text: 'That its distance to x is infinity',
-        isCorrect: true,
-        originalPosition: '3rd',
-        isGeneratedOption: false,
-        explanation: 'Correct. With poisoned reverse, if z routes to x through y, z lies to y by advertising distance infinity (16 in RIP). This prevents y from ever choosing z to reach x.'
+        "id": "w9_q1_opt2",
+        "text": "Link state",
+        "isCorrect": true,
+        "originalPosition": "2nd",
+        "isGeneratedOption": false,
+        "explanation": "Correct. In link-state routing, every router receives link-state advertisements (LSAs), constructs an identical network topology graph, and runs Dijkstra’s algorithm."
       },
       {
-        id: 'w9_q2_opt4',
-        text: 'It completely suppresses the advertisement',
-        isCorrect: false,
-        originalPosition: '4th',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Complete suppression of the advertisement is Simple Split Horizon, whereas Poisoned Reverse explicitly advertises metric infinity.'
+        "id": "w9_q1_opt1",
+        "text": "Distance vector",
+        "isCorrect": false,
+        "originalPosition": "1st",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Distance-vector routers only know distances to destinations reported by immediate neighbors."
       }
     ],
-    originalAnswer: 'That its distance to x is infinity',
-    verifiedAnswer: 'That its distance to x is infinity',
-    answersAgree: true,
-    originalExplanation: 'With poisoned reverse, if router z reaches x through neighbor y, z advertises an infinite distance to x back to y. This prevents y from believing that z provides an alternate route back to x. In RIP, an infinite metric is 16.',
-    detailedReasoning: 'Poisoned reverse is an enhancement to split horizon for preventing two-node routing loops in distance vector protocols. If router z routes traffic to destination x via next-hop neighbor y, then as long as z continues to route through y, z explicitly advertises to y that its distance to destination x is infinity (cost = 16 in RIP). By explicitly poisoning the reverse route, y is immediately barred from attempting to route through z if y’s own path to x deteriorates, thereby breaking potential 2-node count-to-infinity cycles.',
-    examTakeaway: 'Split Horizon: Do not advertise route back to neighbor. Poisoned Reverse: Explicitly advertise route back to neighbor with metric = infinity (16 in RIP).',
-    sourceFileName: 'media_1792415803922.pdf',
-    pageNumber: 'Page 1, Q2',
-    extractionConfidence: 100,
-    verificationStatus: 'verified',
-    citations: [
+    "originalAnswer": "Link state",
+    "verifiedAnswer": "Link state",
+    "answersAgree": true,
+    "originalExplanation": "The question asks which routing algorithm requires every router to have complete knowledge of the network topology. The correct choice is Link state. In link-state routing, routers receive link-state information, build a topology database, and calculate shortest paths. Distance-vector routers do not need the complete topology; they learn distance information from neighbors.",
+    "detailedReasoning": "Link-state protocols (such as OSPF and IS-IS) rely on global network knowledge. Every router floods Link State Advertisements (LSAs) describing its directly connected neighbors and costs. Once flooding converges, every router possesses an identical Link State Database (LSDB) representing the complete network map. Each router then independently executes Dijkstra’s Shortest Path First (SPF) algorithm with itself as the root to compute least-cost forwarding paths. In contrast, Distance Vector protocols (RIP) rely on \"routing by rumor,\" where routers only exchange neighbor distance vectors without knowing the true topology.",
+    "examTakeaway": "Link State = Global topology knowledge + Dijkstra SPF (OSPF). Distance Vector = Local neighbor exchanges + Bellman-Ford (RIP).",
+    "sourceFileName": "media_1792415803922.pdf",
+    "pageNumber": "Page 1, Q1",
+    "extractionConfidence": 100,
+    "verificationStatus": "verified",
+    "citations": [
       {
-        title: 'RFC 2453 - RIP Version 2',
-        url: 'https://datatracker.ietf.org/doc/html/rfc2453',
-        description: 'Section 3.4.3: Split Horizon with Poisoned Reverse specification.',
-        rfcOrStandard: 'RFC 2453'
+        "title": "RFC 2328 - OSPF Version 2",
+        "url": "https://datatracker.ietf.org/doc/html/rfc2328",
+        "description": "Section 4: Functional Summary explains link-state database construction and SPF calculation.",
+        "rfcOrStandard": "RFC 2328"
       }
     ],
-    isCalculationBased: false
+    "isCalculationBased": false
   },
   {
-    id: 'orig_w9_q3',
-    courseName: 'Computer Networks',
-    week: 9,
-    assignment: 9,
-    collection: 'original',
-    questionNumber: 3,
-    questionText: 'Which technique prevents a router from advertising a route back to the same neighbor from which that route was learned?',
-    options: [
+    "id": "orig_w9_q2",
+    "courseName": "Computer Networks",
+    "week": 9,
+    "assignment": 9,
+    "collection": "original",
+    "questionNumber": 2,
+    "questionText": "In poisoned reverse, what does router z advertise to neighbor y if z reaches x through y?",
+    "options": [
       {
-        id: 'w9_q3_opt1',
-        text: 'Path vectoring',
-        isCorrect: false,
-        originalPosition: '1st',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Path vectoring prevents loops by tracking full AS paths in BGP.'
+        "id": "w9_q2_opt2",
+        "text": "A metric of 0 to x",
+        "isCorrect": false,
+        "originalPosition": "2nd",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. A metric of 0 indicates that z is directly attached to x."
       },
       {
-        id: 'w9_q3_opt2',
-        text: 'Triggered update',
-        isCorrect: false,
-        originalPosition: '2nd',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Triggered updates accelerate convergence by sending updates immediately upon link changes.'
+        "id": "w9_q2_opt3",
+        "text": "That its distance to x is infinity",
+        "isCorrect": true,
+        "originalPosition": "3rd",
+        "isGeneratedOption": false,
+        "explanation": "Correct. With poisoned reverse, if z routes to x through y, z lies to y by advertising distance infinity (16 in RIP). This prevents y from ever choosing z to reach x."
       },
       {
-        id: 'w9_q3_opt3',
-        text: 'Hold-down timer',
-        isCorrect: false,
-        originalPosition: '3rd',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Hold-down timers freeze route changes for a duration to allow bad news to propagate.'
+        "id": "w9_q2_opt1",
+        "text": "Its actual lowest cost to x",
+        "isCorrect": false,
+        "originalPosition": "1st",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Advertising the actual cost could induce y into routing back through z if y’s direct link fails."
       },
       {
-        id: 'w9_q3_opt4',
-        text: 'Split horizon',
-        isCorrect: true,
-        originalPosition: '4th',
-        isGeneratedOption: false,
-        explanation: 'Correct. The fundamental rule of Split Horizon is: never advertise a route out of the interface from which it was learned.'
+        "id": "w9_q2_opt4",
+        "text": "It completely suppresses the advertisement",
+        "isCorrect": false,
+        "originalPosition": "4th",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Complete suppression of the advertisement is Simple Split Horizon, whereas Poisoned Reverse explicitly advertises metric infinity."
       }
     ],
-    originalAnswer: 'Split horizon',
-    verifiedAnswer: 'Split horizon',
-    answersAgree: true,
-    originalExplanation: 'Split horizon prevents a router from advertising a route back to the same neighbor from which that route was learned. It is a classic loop-prevention technique used with distance-vector routing. Poisoned reverse is related but advertises the route with an infinite metric instead of simply omitting it.',
-    detailedReasoning: 'In Distance Vector routing, if Router A learns a route to subnet S from Router B, it makes no sense for Router A to advertise that route back to Router B, because Router B is already closer to S. If the link between B and S fails, B might mistakenly believe A has an independent alternate path to S, creating a ping-pong routing loop. Split Horizon enforces the rule that routing information learned on an interface must never be transmitted back out of that same interface.',
-    examTakeaway: 'Split Horizon rule: "Never tell a neighbor about a route you learned from that very neighbor."',
-    sourceFileName: 'media_1792415803922.pdf',
-    pageNumber: 'Page 1, Q3',
-    extractionConfidence: 100,
-    verificationStatus: 'verified',
-    citations: [
+    "originalAnswer": "That its distance to x is infinity",
+    "verifiedAnswer": "That its distance to x is infinity",
+    "answersAgree": true,
+    "originalExplanation": "With poisoned reverse, if router z reaches x through neighbor y, z advertises an infinite distance to x back to y. This prevents y from believing that z provides an alternate route back to x. In RIP, an infinite metric is 16.",
+    "detailedReasoning": "Poisoned reverse is an enhancement to split horizon for preventing two-node routing loops in distance vector protocols. If router z routes traffic to destination x via next-hop neighbor y, then as long as z continues to route through y, z explicitly advertises to y that its distance to destination x is infinity (cost = 16 in RIP). By explicitly poisoning the reverse route, y is immediately barred from attempting to route through z if y’s own path to x deteriorates, thereby breaking potential 2-node count-to-infinity cycles.",
+    "examTakeaway": "Split Horizon: Do not advertise route back to neighbor. Poisoned Reverse: Explicitly advertise route back to neighbor with metric = infinity (16 in RIP).",
+    "sourceFileName": "media_1792415803922.pdf",
+    "pageNumber": "Page 1, Q2",
+    "extractionConfidence": 100,
+    "verificationStatus": "verified",
+    "citations": [
       {
-        title: 'RFC 1058 - Routing Information Protocol',
-        url: 'https://datatracker.ietf.org/doc/html/rfc1058',
-        description: 'Section 2.2 defines the Split Horizon rule for distance-vector routing.',
-        rfcOrStandard: 'RFC 1058'
+        "title": "RFC 2453 - RIP Version 2",
+        "url": "https://datatracker.ietf.org/doc/html/rfc2453",
+        "description": "Section 3.4.3: Split Horizon with Poisoned Reverse specification.",
+        "rfcOrStandard": "RFC 2453"
       }
     ],
-    isCalculationBased: false
+    "isCalculationBased": false
   },
   {
-    id: 'orig_w9_q4',
-    courseName: 'Computer Networks',
-    week: 9,
-    assignment: 9,
-    collection: 'original',
-    questionNumber: 4,
-    questionText: 'The count-to-infinity problem is primarily associated with which routing approach?',
-    options: [
+    "id": "orig_w9_q3",
+    "courseName": "Computer Networks",
+    "week": 9,
+    "assignment": 9,
+    "collection": "original",
+    "questionNumber": 3,
+    "questionText": "Which technique prevents a router from advertising a route back to the same neighbor from which that route was learned?",
+    "options": [
       {
-        id: 'w9_q4_opt1',
-        text: 'Link State Routing',
-        isCorrect: false,
-        originalPosition: '1st',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Link-state routers possess full topology databases and recompute trees using Dijkstra, avoiding count-to-infinity.'
+        "id": "w9_q3_opt4",
+        "text": "Split horizon",
+        "isCorrect": true,
+        "originalPosition": "4th",
+        "isGeneratedOption": false,
+        "explanation": "Correct. The fundamental rule of Split Horizon is: never advertise a route out of the interface from which it was learned."
       },
       {
-        id: 'w9_q4_opt2',
-        text: 'Source Routing',
-        isCorrect: false,
-        originalPosition: '2nd',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. In source routing, the packet header specifies the path; loops are impossible.'
+        "id": "w9_q3_opt3",
+        "text": "Hold-down timer",
+        "isCorrect": false,
+        "originalPosition": "3rd",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Hold-down timers freeze route changes for a duration to allow bad news to propagate."
       },
       {
-        id: 'w9_q4_opt3',
-        text: 'Distance Vector Routing',
-        isCorrect: true,
-        originalPosition: '3rd',
-        isGeneratedOption: false,
-        explanation: 'Correct. Count-to-infinity occurs in distance-vector protocols because routers update distances based on neighbor estimates without knowing the full path.'
+        "id": "w9_q3_opt1",
+        "text": "Path vectoring",
+        "isCorrect": false,
+        "originalPosition": "1st",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Path vectoring prevents loops by tracking full AS paths in BGP."
       },
       {
-        id: 'w9_q4_opt4',
-        text: 'Flooding Algorithm',
-        isCorrect: false,
-        originalPosition: '4th',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Flooding handles duplicates via hop counters or packet IDs, not metric increments.'
+        "id": "w9_q3_opt2",
+        "text": "Triggered update",
+        "isCorrect": false,
+        "originalPosition": "2nd",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Triggered updates accelerate convergence by sending updates immediately upon link changes."
       }
     ],
-    originalAnswer: 'Distance Vector Routing',
-    verifiedAnswer: 'Distance Vector Routing',
-    answersAgree: true,
-    originalExplanation: 'The count-to-infinity problem is associated with distance-vector routing. Routers can repeatedly increase their advertised distance after a failure because they rely on information received from neighboring routers. RIP is a well-known example.',
-    detailedReasoning: 'Because Distance Vector algorithms are distributed and routers do not possess full topological visibility ("good news travels fast, bad news travels slowly"), when a link to a destination fails, two adjacent routers can alternate updating their routing tables by adding 1 to each other’s stale distance metric. The metric counts up incrementally (e.g. 2, 3, 4, ... 16) until reaching the protocol-defined infinity threshold (16 in RIP).',
-    examTakeaway: 'Count-to-Infinity is the signature pathology of Distance Vector routing. It is addressed by Split Horizon, Poisoned Reverse, Triggered Updates, and a small infinity cap (16).',
-    sourceFileName: 'media_1792415803922.pdf',
-    pageNumber: 'Page 1, Q4',
-    extractionConfidence: 100,
-    verificationStatus: 'verified',
-    citations: [
+    "originalAnswer": "Split horizon",
+    "verifiedAnswer": "Split horizon",
+    "answersAgree": true,
+    "originalExplanation": "Split horizon prevents a router from advertising a route back to the same neighbor from which that route was learned. It is a classic loop-prevention technique used with distance-vector routing. Poisoned reverse is related but advertises the route with an infinite metric instead of simply omitting it.",
+    "detailedReasoning": "In Distance Vector routing, if Router A learns a route to subnet S from Router B, it makes no sense for Router A to advertise that route back to Router B, because Router B is already closer to S. If the link between B and S fails, B might mistakenly believe A has an independent alternate path to S, creating a ping-pong routing loop. Split Horizon enforces the rule that routing information learned on an interface must never be transmitted back out of that same interface.",
+    "examTakeaway": "Split Horizon rule: \"Never tell a neighbor about a route you learned from that very neighbor.\"",
+    "sourceFileName": "media_1792415803922.pdf",
+    "pageNumber": "Page 1, Q3",
+    "extractionConfidence": 100,
+    "verificationStatus": "verified",
+    "citations": [
       {
-        title: 'RFC 1058 - Section 2.1: Routing by Rumor and Count-to-Infinity',
-        url: 'https://datatracker.ietf.org/doc/html/rfc1058',
-        description: 'Analysis of count-to-infinity problem in Bellman-Ford algorithms.',
-        rfcOrStandard: 'RFC 1058'
+        "title": "RFC 1058 - Routing Information Protocol",
+        "url": "https://datatracker.ietf.org/doc/html/rfc1058",
+        "description": "Section 2.2 defines the Split Horizon rule for distance-vector routing.",
+        "rfcOrStandard": "RFC 1058"
       }
     ],
-    isCalculationBased: false
+    "isCalculationBased": false
   },
   {
-    id: 'orig_w9_q5',
-    courseName: 'Computer Networks',
-    week: 9,
-    assignment: 9,
-    collection: 'original',
-    questionNumber: 5,
-    questionText: 'How often does RIP send periodic routing updates by default?',
-    options: [
+    "id": "orig_w9_q4",
+    "courseName": "Computer Networks",
+    "week": 9,
+    "assignment": 9,
+    "collection": "original",
+    "questionNumber": 4,
+    "questionText": "The count-to-infinity problem is primarily associated with which routing approach?",
+    "options": [
       {
-        id: 'w9_q5_opt1',
-        text: 'Every 10 seconds',
-        isCorrect: false,
-        originalPosition: '1st',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. 10 seconds is the default Hello interval for OSPF on broadcast multiaccess links.'
+        "id": "w9_q4_opt2",
+        "text": "Source Routing",
+        "isCorrect": false,
+        "originalPosition": "2nd",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. In source routing, the packet header specifies the path; loops are impossible."
       },
       {
-        id: 'w9_q5_opt2',
-        text: 'Every 30 seconds',
-        isCorrect: true,
-        originalPosition: '2nd',
-        isGeneratedOption: false,
-        explanation: 'Correct. The standard RIP periodic update timer is exactly 30 seconds (with a small random jitter to prevent synchronization).'
+        "id": "w9_q4_opt4",
+        "text": "Flooding Algorithm",
+        "isCorrect": false,
+        "originalPosition": "4th",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Flooding handles duplicates via hop counters or packet IDs, not metric increments."
       },
       {
-        id: 'w9_q5_opt3',
-        text: 'Every 60 seconds',
-        isCorrect: false,
-        originalPosition: '3rd',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. 60 seconds is not the RIP periodic broadcast interval.'
+        "id": "w9_q4_opt1",
+        "text": "Link State Routing",
+        "isCorrect": false,
+        "originalPosition": "1st",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Link-state routers possess full topology databases and recompute trees using Dijkstra, avoiding count-to-infinity."
       },
       {
-        id: 'w9_q5_opt4',
-        text: 'Every 90 seconds',
-        isCorrect: false,
-        originalPosition: '4th',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. 90 seconds is the dead timer in some EIGRP configurations.'
+        "id": "w9_q4_opt3",
+        "text": "Distance Vector Routing",
+        "isCorrect": true,
+        "originalPosition": "3rd",
+        "isGeneratedOption": false,
+        "explanation": "Correct. Count-to-infinity occurs in distance-vector protocols because routers update distances based on neighbor estimates without knowing the full path."
       }
     ],
-    originalAnswer: 'Every 30 seconds',
-    verifiedAnswer: 'Every 30 seconds',
-    answersAgree: true,
-    originalExplanation: 'RIP sends periodic routing updates every 30 seconds by default. This periodic update timer is different from a triggered update, which occurs when a route metric changes.',
-    detailedReasoning: 'RFC 2453 Section 3.8 specifies the primary timers used by RIP: 1) Periodic Update Timer: Every 30 seconds, the router broadcasts or multicasts its complete routing table out of all active interfaces. A small random offset (jitter between 0 and 5 seconds) is subtracted to prevent all routers on a broadcast subnet from transmitting simultaneously. 2) Route Timeout Timer: 180 seconds. 3) Garbage-Collection Timer: 120 seconds.',
-    examTakeaway: 'RIP Default Timers: Periodic Updates = 30 seconds, Route Timeout = 180 seconds (6 missed updates), Garbage-collection = 120 seconds.',
-    sourceFileName: 'media_1792415803922.pdf',
-    pageNumber: 'Page 1, Q5',
-    extractionConfidence: 100,
-    verificationStatus: 'verified',
-    citations: [
+    "originalAnswer": "Distance Vector Routing",
+    "verifiedAnswer": "Distance Vector Routing",
+    "answersAgree": true,
+    "originalExplanation": "The count-to-infinity problem is associated with distance-vector routing. Routers can repeatedly increase their advertised distance after a failure because they rely on information received from neighboring routers. RIP is a well-known example.",
+    "detailedReasoning": "Because Distance Vector algorithms are distributed and routers do not possess full topological visibility (\"good news travels fast, bad news travels slowly\"), when a link to a destination fails, two adjacent routers can alternate updating their routing tables by adding 1 to each other’s stale distance metric. The metric counts up incrementally (e.g. 2, 3, 4, ... 16) until reaching the protocol-defined infinity threshold (16 in RIP).",
+    "examTakeaway": "Count-to-Infinity is the signature pathology of Distance Vector routing. It is addressed by Split Horizon, Poisoned Reverse, Triggered Updates, and a small infinity cap (16).",
+    "sourceFileName": "media_1792415803922.pdf",
+    "pageNumber": "Page 1, Q4",
+    "extractionConfidence": 100,
+    "verificationStatus": "verified",
+    "citations": [
       {
-        title: 'RFC 2453 - RIP Version 2',
-        url: 'https://datatracker.ietf.org/doc/html/rfc2453',
-        description: 'Section 3.8: RIP Timers (Periodic 30s update timer).',
-        rfcOrStandard: 'RFC 2453'
+        "title": "RFC 1058 - Section 2.1: Routing by Rumor and Count-to-Infinity",
+        "url": "https://datatracker.ietf.org/doc/html/rfc1058",
+        "description": "Analysis of count-to-infinity problem in Bellman-Ford algorithms.",
+        "rfcOrStandard": "RFC 1058"
       }
     ],
-    isCalculationBased: false
+    "isCalculationBased": false
   },
   {
-    id: 'orig_w9_q6',
-    courseName: 'Computer Networks',
-    week: 9,
-    assignment: 9,
-    collection: 'original',
-    questionNumber: 6,
-    questionText: 'What is the primary purpose of a triggered update in routing protocols?',
-    options: [
+    "id": "orig_w9_q5",
+    "courseName": "Computer Networks",
+    "week": 9,
+    "assignment": 9,
+    "collection": "original",
+    "questionNumber": 5,
+    "questionText": "How often does RIP send periodic routing updates by default?",
+    "options": [
       {
-        id: 'w9_q6_opt1',
-        text: 'Propagating link failure information immediately',
-        isCorrect: true,
-        originalPosition: '1st',
-        isGeneratedOption: false,
-        explanation: 'Correct. Triggered updates bypass the regular 30s periodic timer to send route change / link failure notifications immediately.'
+        "id": "w9_q5_opt2",
+        "text": "Every 30 seconds",
+        "isCorrect": true,
+        "originalPosition": "2nd",
+        "isGeneratedOption": false,
+        "explanation": "Correct. The standard RIP periodic update timer is exactly 30 seconds (with a small random jitter to prevent synchronization)."
       },
       {
-        id: 'w9_q6_opt2',
-        text: 'Synchronizing router system clocks across the AS',
-        isCorrect: false,
-        originalPosition: '2nd',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Clock synchronization is performed by NTP (Network Time Protocol), not routing updates.'
+        "id": "w9_q5_opt3",
+        "text": "Every 60 seconds",
+        "isCorrect": false,
+        "originalPosition": "3rd",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. 60 seconds is not the RIP periodic broadcast interval."
       },
       {
-        id: 'w9_q6_opt3',
-        text: 'Requesting MAC address mappings from neighboring routers',
-        isCorrect: false,
-        originalPosition: '3rd',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. MAC address mapping is performed by ARP (IPv4) or NDP (IPv6).'
+        "id": "w9_q5_opt1",
+        "text": "Every 10 seconds",
+        "isCorrect": false,
+        "originalPosition": "1st",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. 10 seconds is the default Hello interval for OSPF on broadcast multiaccess links."
       },
       {
-        id: 'w9_q6_opt4',
-        text: 'Allocating dynamic transport port numbers to clients',
-        isCorrect: false,
-        originalPosition: '4th',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Ephemeral port allocation is managed by the local OS transport stack.'
+        "id": "w9_q5_opt4",
+        "text": "Every 90 seconds",
+        "isCorrect": false,
+        "originalPosition": "4th",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. 90 seconds is the dead timer in some EIGRP configurations."
       }
     ],
-    originalAnswer: 'Propagating link failure information immediately',
-    verifiedAnswer: 'Propagating link failure information immediately',
-    answersAgree: true,
-    originalExplanation: 'A triggered update is generated when routing information changes instead of waiting for the next normal periodic update. Therefore, a link failure or route-metric change can be propagated quickly through the routing system.',
-    detailedReasoning: 'Under standard periodic updates, a router would wait up to 30 seconds before notifying neighbors that a link went down or a metric changed. During this waiting period, neighboring routers would continue routing packets along stale paths, exacerbating loops. A Triggered Update (also known as Flash Update) is dispatched immediately when a metric changes or an interface fails, drastically reducing convergence time across the autonomous network.',
-    examTakeaway: 'Triggered Updates fire immediately upon route/metric change, bypassing periodic timers to accelerate network convergence.',
-    sourceFileName: 'media_1792415803922.pdf',
-    pageNumber: 'Page 1, Q6',
-    extractionConfidence: 100,
-    verificationStatus: 'verified',
-    citations: [
+    "originalAnswer": "Every 30 seconds",
+    "verifiedAnswer": "Every 30 seconds",
+    "answersAgree": true,
+    "originalExplanation": "RIP sends periodic routing updates every 30 seconds by default. This periodic update timer is different from a triggered update, which occurs when a route metric changes.",
+    "detailedReasoning": "RFC 2453 Section 3.8 specifies the primary timers used by RIP: 1) Periodic Update Timer: Every 30 seconds, the router broadcasts or multicasts its complete routing table out of all active interfaces. A small random offset (jitter between 0 and 5 seconds) is subtracted to prevent all routers on a broadcast subnet from transmitting simultaneously. 2) Route Timeout Timer: 180 seconds. 3) Garbage-Collection Timer: 120 seconds.",
+    "examTakeaway": "RIP Default Timers: Periodic Updates = 30 seconds, Route Timeout = 180 seconds (6 missed updates), Garbage-collection = 120 seconds.",
+    "sourceFileName": "media_1792415803922.pdf",
+    "pageNumber": "Page 1, Q5",
+    "extractionConfidence": 100,
+    "verificationStatus": "verified",
+    "citations": [
       {
-        title: 'RFC 2453 - Section 3.8.1: Triggered Updates',
-        url: 'https://datatracker.ietf.org/doc/html/rfc2453',
-        description: 'Explains the mechanics and rate-limiting suppression timers for triggered updates.',
-        rfcOrStandard: 'RFC 2453'
+        "title": "RFC 2453 - RIP Version 2",
+        "url": "https://datatracker.ietf.org/doc/html/rfc2453",
+        "description": "Section 3.8: RIP Timers (Periodic 30s update timer).",
+        "rfcOrStandard": "RFC 2453"
       }
     ],
-    isCalculationBased: false
+    "isCalculationBased": false
   },
   {
-    id: 'orig_w9_q7',
-    courseName: 'Computer Networks',
-    week: 9,
-    assignment: 9,
-    collection: 'original',
-    questionNumber: 7,
-    questionText: 'In OSPF, what occurs when expected Hello messages stop arriving from a neighbor and the dead interval expires?',
-    options: [
+    "id": "orig_w9_q6",
+    "courseName": "Computer Networks",
+    "week": 9,
+    "assignment": 9,
+    "collection": "original",
+    "questionNumber": 6,
+    "questionText": "What is the primary purpose of a triggered update in routing protocols?",
+    "options": [
       {
-        id: 'w9_q7_opt1',
-        text: 'The router halts all packet forwarding across the network',
-        isCorrect: false,
-        originalPosition: '1st',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. The router continues forwarding traffic over surviving valid interfaces.'
+        "id": "w9_q6_opt4",
+        "text": "Allocating dynamic transport port numbers to clients",
+        "isCorrect": false,
+        "originalPosition": "4th",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Ephemeral port allocation is managed by the local OS transport stack."
       },
       {
-        id: 'w9_q7_opt2',
-        text: 'The neighbor is considered down and routes are recalculated',
-        isCorrect: true,
-        originalPosition: '2nd',
-        isGeneratedOption: false,
-        explanation: 'Correct. When the dead interval expires, the neighbor adjacency is torn down, a new Router-LSA is flooded, and shortest paths are recalculated.'
+        "id": "w9_q6_opt2",
+        "text": "Synchronizing router system clocks across the AS",
+        "isCorrect": false,
+        "originalPosition": "2nd",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Clock synchronization is performed by NTP (Network Time Protocol), not routing updates."
       },
       {
-        id: 'w9_q7_opt3',
-        text: 'The router sends an ICMP Echo Request to test connectivity',
-        isCorrect: false,
-        originalPosition: '3rd',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. OSPF does not rely on ICMP to verify neighbor health; it uses its own Hello protocol.'
+        "id": "w9_q6_opt1",
+        "text": "Propagating link failure information immediately",
+        "isCorrect": true,
+        "originalPosition": "1st",
+        "isGeneratedOption": false,
+        "explanation": "Correct. Triggered updates bypass the regular 30s periodic timer to send route change / link failure notifications immediately."
       },
       {
-        id: 'w9_q7_opt4',
-        text: 'The router automatically halves its MTU size',
-        isCorrect: false,
-        originalPosition: '4th',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. MTU is a link-layer property unaffected by neighbor adjacency state.'
+        "id": "w9_q6_opt3",
+        "text": "Requesting MAC address mappings from neighboring routers",
+        "isCorrect": false,
+        "originalPosition": "3rd",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. MAC address mapping is performed by ARP (IPv4) or NDP (IPv6)."
       }
     ],
-    originalAnswer: 'The neighbor is considered down and routes are recalculated',
-    verifiedAnswer: 'The neighbor is considered down and routes are recalculated',
-    answersAgree: true,
-    originalExplanation: 'OSPF uses Hello messages to maintain neighbor relationships. If expected Hellos stop arriving and the dead interval expires, the neighbor is declared down. The topology information changes and the router updates its routes/shortest-path calculations.',
-    detailedReasoning: 'OSPF uses periodic Hello packets (exchanged every HelloInterval, typically 10s on broadcast links) to establish and maintain neighbor adjacencies. If a router ceases to receive Hellos from an active neighbor for the duration of the RouterDeadInterval (typically 4 × HelloInterval = 40 seconds), the router declares the neighbor dead. It updates its Link State Database (LSDB) by originating a revised Router-LSA (Type 1), floods it throughout the area, and executes Dijkstra’s SPF algorithm to recompute routing table entries.',
-    examTakeaway: 'OSPF Dead Interval expiration: Neighbor declared DOWN → Revise Router-LSA → Flood LSA across Area → Re-run Dijkstra SPF.',
-    sourceFileName: 'media_1792415803922.pdf',
-    pageNumber: 'Page 2, Q7',
-    extractionConfidence: 100,
-    verificationStatus: 'verified',
-    citations: [
+    "originalAnswer": "Propagating link failure information immediately",
+    "verifiedAnswer": "Propagating link failure information immediately",
+    "answersAgree": true,
+    "originalExplanation": "A triggered update is generated when routing information changes instead of waiting for the next normal periodic update. Therefore, a link failure or route-metric change can be propagated quickly through the routing system.",
+    "detailedReasoning": "Under standard periodic updates, a router would wait up to 30 seconds before notifying neighbors that a link went down or a metric changed. During this waiting period, neighboring routers would continue routing packets along stale paths, exacerbating loops. A Triggered Update (also known as Flash Update) is dispatched immediately when a metric changes or an interface fails, drastically reducing convergence time across the autonomous network.",
+    "examTakeaway": "Triggered Updates fire immediately upon route/metric change, bypassing periodic timers to accelerate network convergence.",
+    "sourceFileName": "media_1792415803922.pdf",
+    "pageNumber": "Page 1, Q6",
+    "extractionConfidence": 100,
+    "verificationStatus": "verified",
+    "citations": [
       {
-        title: 'RFC 2328 - OSPF Version 2',
-        url: 'https://datatracker.ietf.org/doc/html/rfc2328',
-        description: 'Section 10.5: Receiving Hello Packets and Dead Interval expiration.',
-        rfcOrStandard: 'RFC 2328'
+        "title": "RFC 2453 - Section 3.8.1: Triggered Updates",
+        "url": "https://datatracker.ietf.org/doc/html/rfc2453",
+        "description": "Explains the mechanics and rate-limiting suppression timers for triggered updates.",
+        "rfcOrStandard": "RFC 2453"
       }
     ],
-    isCalculationBased: false
+    "isCalculationBased": false
   },
   {
-    id: 'orig_w9_q8',
-    courseName: 'Computer Networks',
-    week: 9,
-    assignment: 9,
-    collection: 'original',
-    questionNumber: 8,
-    questionText: 'Which transport protocol and port does RIP for IPv4 use?',
-    options: [
+    "id": "orig_w9_q7",
+    "courseName": "Computer Networks",
+    "week": 9,
+    "assignment": 9,
+    "collection": "original",
+    "questionNumber": 7,
+    "questionText": "In OSPF, what occurs when expected Hello messages stop arriving from a neighbor and the dead interval expires?",
+    "options": [
       {
-        id: 'w9_q8_opt1',
-        text: 'TCP 179',
-        isCorrect: false,
-        originalPosition: '1st',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. TCP port 179 is used by BGP (Border Gateway Protocol).'
+        "id": "w9_q7_opt3",
+        "text": "The router sends an ICMP Echo Request to test connectivity",
+        "isCorrect": false,
+        "originalPosition": "3rd",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. OSPF does not rely on ICMP to verify neighbor health; it uses its own Hello protocol."
       },
       {
-        id: 'w9_q8_opt2',
-        text: 'UDP 53',
-        isCorrect: false,
-        originalPosition: '2nd',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. UDP port 53 is used by DNS (Domain Name System).'
+        "id": "w9_q7_opt2",
+        "text": "The neighbor is considered down and routes are recalculated",
+        "isCorrect": true,
+        "originalPosition": "2nd",
+        "isGeneratedOption": false,
+        "explanation": "Correct. When the dead interval expires, the neighbor adjacency is torn down, a new Router-LSA is flooded, and shortest paths are recalculated."
       },
       {
-        id: 'w9_q8_opt3',
-        text: 'UDP 520',
-        isCorrect: true,
-        originalPosition: '3rd',
-        isGeneratedOption: false,
-        explanation: 'Correct. RIP for IPv4 operates as an application-layer process encapsulated inside UDP datagrams on port 520.'
+        "id": "w9_q7_opt4",
+        "text": "The router automatically halves its MTU size",
+        "isCorrect": false,
+        "originalPosition": "4th",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. MTU is a link-layer property unaffected by neighbor adjacency state."
       },
       {
-        id: 'w9_q8_opt4',
-        text: 'TCP 520',
-        isCorrect: false,
-        originalPosition: '4th',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. RIP does not use TCP; it uses UDP.'
+        "id": "w9_q7_opt1",
+        "text": "The router halts all packet forwarding across the network",
+        "isCorrect": false,
+        "originalPosition": "1st",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. The router continues forwarding traffic over surviving valid interfaces."
       }
     ],
-    originalAnswer: 'UDP 520',
-    verifiedAnswer: 'UDP 520',
-    answersAgree: true,
-    originalExplanation: 'RIP for IPv4 uses UDP port 520. The other protocol/port choices are distractors: TCP 179 is associated with BGP, while UDP 53 is commonly associated with DNS.',
-    detailedReasoning: 'RIP (Routing Information Protocol) runs on top of the transport layer, utilizing UDP with port 520 for both source and destination (or ephemeral source port with destination 520). In RIPv1, messages are broadcast to 255.255.255.255. In RIPv2, messages are sent via multicast to address 224.0.0.9 on UDP port 520. (RIPng for IPv6 uses UDP port 521 and multicast FF02::9).',
-    examTakeaway: 'Routing Protocol Ports: RIPv1/v2 = UDP 520; BGP = TCP 179; OSPF = Directly over IP (Protocol 89, no transport header); ICMP = IP Protocol 1.',
-    sourceFileName: 'media_1792415803922.pdf',
-    pageNumber: 'Page 2, Q8',
-    extractionConfidence: 100,
-    verificationStatus: 'verified',
-    citations: [
+    "originalAnswer": "The neighbor is considered down and routes are recalculated",
+    "verifiedAnswer": "The neighbor is considered down and routes are recalculated",
+    "answersAgree": true,
+    "originalExplanation": "OSPF uses Hello messages to maintain neighbor relationships. If expected Hellos stop arriving and the dead interval expires, the neighbor is declared down. The topology information changes and the router updates its routes/shortest-path calculations.",
+    "detailedReasoning": "OSPF uses periodic Hello packets (exchanged every HelloInterval, typically 10s on broadcast links) to establish and maintain neighbor adjacencies. If a router ceases to receive Hellos from an active neighbor for the duration of the RouterDeadInterval (typically 4 × HelloInterval = 40 seconds), the router declares the neighbor dead. It updates its Link State Database (LSDB) by originating a revised Router-LSA (Type 1), floods it throughout the area, and executes Dijkstra’s SPF algorithm to recompute routing table entries.",
+    "examTakeaway": "OSPF Dead Interval expiration: Neighbor declared DOWN → Revise Router-LSA → Flood LSA across Area → Re-run Dijkstra SPF.",
+    "sourceFileName": "media_1792415803922.pdf",
+    "pageNumber": "Page 2, Q7",
+    "extractionConfidence": 100,
+    "verificationStatus": "verified",
+    "citations": [
       {
-        title: 'RFC 2453 - RIP Version 2',
-        url: 'https://datatracker.ietf.org/doc/html/rfc2453',
-        description: 'Section 3.9 specifies UDP port 520 and multicast group 224.0.0.9.',
-        rfcOrStandard: 'RFC 2453'
+        "title": "RFC 2328 - OSPF Version 2",
+        "url": "https://datatracker.ietf.org/doc/html/rfc2328",
+        "description": "Section 10.5: Receiving Hello Packets and Dead Interval expiration.",
+        "rfcOrStandard": "RFC 2328"
       }
     ],
-    isCalculationBased: false
+    "isCalculationBased": false
   },
   {
-    id: 'orig_w9_q9',
-    courseName: 'Computer Networks',
-    week: 9,
-    assignment: 9,
-    collection: 'original',
-    questionNumber: 9,
-    questionText: 'What is the maximum valid reachable hop count in RIP?',
-    options: [
+    "id": "orig_w9_q8",
+    "courseName": "Computer Networks",
+    "week": 9,
+    "assignment": 9,
+    "collection": "original",
+    "questionNumber": 8,
+    "questionText": "Which transport protocol and port does RIP for IPv4 use?",
+    "options": [
       {
-        id: 'w9_q9_opt1',
-        text: '16',
-        isCorrect: false,
-        originalPosition: '1st',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. In RIP, a hop count of 16 signifies infinity / unreachable.'
+        "id": "w9_q8_opt2",
+        "text": "UDP 53",
+        "isCorrect": false,
+        "originalPosition": "2nd",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. UDP port 53 is used by DNS (Domain Name System)."
       },
       {
-        id: 'w9_q9_opt2',
-        text: '15',
-        isCorrect: true,
-        originalPosition: '2nd',
-        isGeneratedOption: false,
-        explanation: 'Correct. RIP uses hop count as its metric; 15 is the maximum valid reachable hop count, and 16 defines infinity.'
+        "id": "w9_q8_opt1",
+        "text": "TCP 179",
+        "isCorrect": false,
+        "originalPosition": "1st",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. TCP port 179 is used by BGP (Border Gateway Protocol)."
       },
       {
-        id: 'w9_q9_opt3',
-        text: '255',
-        isCorrect: false,
-        originalPosition: '3rd',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. 255 is the maximum value of the IPv4 Time-To-Live (TTL) field, not the RIP metric.'
+        "id": "w9_q8_opt4",
+        "text": "TCP 520",
+        "isCorrect": false,
+        "originalPosition": "4th",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. RIP does not use TCP; it uses UDP."
       },
       {
-        id: 'w9_q9_opt4',
-        text: '10',
-        isCorrect: false,
-        originalPosition: '4th',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. 10 is arbitrary and smaller than RIP’s maximum allowance.'
+        "id": "w9_q8_opt3",
+        "text": "UDP 520",
+        "isCorrect": true,
+        "originalPosition": "3rd",
+        "isGeneratedOption": false,
+        "explanation": "Correct. RIP for IPv4 operates as an application-layer process encapsulated inside UDP datagrams on port 520."
       }
     ],
-    originalAnswer: '15',
-    verifiedAnswer: '15',
-    answersAgree: true,
-    originalExplanation: 'RIP uses hop count as its metric. A metric of 16 represents infinity/unreachable, so the maximum valid reachable hop count is 15.',
-    detailedReasoning: 'To prevent Bellman-Ford count-to-infinity loops from persisting indefinitely, RIP deliberately restricts the maximum diameter of any network running the protocol. It caps the valid reachable metric at 15 hops. If a routing update advertises a metric of 16 (or if an increment produces 16), the destination is classified as unreachable (infinity) and is subsequently purged from the forwarding table.',
-    examTakeaway: 'RIP metric: Max reachable hops = 15. Metric = 16 means Unreachable / Infinity.',
-    sourceFileName: 'media_1792415803922.pdf',
-    pageNumber: 'Page 2, Q9',
-    extractionConfidence: 100,
-    verificationStatus: 'verified',
-    citations: [
+    "originalAnswer": "UDP 520",
+    "verifiedAnswer": "UDP 520",
+    "answersAgree": true,
+    "originalExplanation": "RIP for IPv4 uses UDP port 520. The other protocol/port choices are distractors: TCP 179 is associated with BGP, while UDP 53 is commonly associated with DNS.",
+    "detailedReasoning": "RIP (Routing Information Protocol) runs on top of the transport layer, utilizing UDP with port 520 for both source and destination (or ephemeral source port with destination 520). In RIPv1, messages are broadcast to 255.255.255.255. In RIPv2, messages are sent via multicast to address 224.0.0.9 on UDP port 520. (RIPng for IPv6 uses UDP port 521 and multicast FF02::9).",
+    "examTakeaway": "Routing Protocol Ports: RIPv1/v2 = UDP 520; BGP = TCP 179; OSPF = Directly over IP (Protocol 89, no transport header); ICMP = IP Protocol 1.",
+    "sourceFileName": "media_1792415803922.pdf",
+    "pageNumber": "Page 2, Q8",
+    "extractionConfidence": 100,
+    "verificationStatus": "verified",
+    "citations": [
       {
-        title: 'RFC 1058 - Section 3.4.1: Metrics and Infinity',
-        url: 'https://datatracker.ietf.org/doc/html/rfc1058',
-        description: 'Defines metric 16 as infinity and 15 as the maximum reachable distance.',
-        rfcOrStandard: 'RFC 1058'
+        "title": "RFC 2453 - RIP Version 2",
+        "url": "https://datatracker.ietf.org/doc/html/rfc2453",
+        "description": "Section 3.9 specifies UDP port 520 and multicast group 224.0.0.9.",
+        "rfcOrStandard": "RFC 2453"
       }
     ],
-    isCalculationBased: false
+    "isCalculationBased": false
   },
   {
-    id: 'orig_w9_q10',
-    courseName: 'Computer Networks',
-    week: 9,
-    assignment: 9,
-    collection: 'original',
-    questionNumber: 10,
-    questionText: 'Which of the following is NOT a characteristic of link-state routing?',
-    options: [
+    "id": "orig_w9_q9",
+    "courseName": "Computer Networks",
+    "week": 9,
+    "assignment": 9,
+    "collection": "original",
+    "questionNumber": 9,
+    "questionText": "What is the maximum valid reachable hop count in RIP?",
+    "options": [
       {
-        id: 'w9_q10_opt1',
-        text: 'Routers share entire routing tables with neighbors',
-        isCorrect: true,
-        originalPosition: '1st',
-        isGeneratedOption: false,
-        explanation: 'Correct. Sharing entire routing tables is the defining characteristic of Distance Vector routing (e.g. RIP), NOT Link-State routing.'
+        "id": "w9_q9_opt4",
+        "text": "10",
+        "isCorrect": false,
+        "originalPosition": "4th",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. 10 is arbitrary and smaller than RIP’s maximum allowance."
       },
       {
-        id: 'w9_q10_opt2',
-        text: 'Routers exchange link-state advertisements (LSAs)',
-        isCorrect: false,
-        originalPosition: '2nd',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Exchanging LSAs is a core characteristic of link-state routing.'
+        "id": "w9_q9_opt1",
+        "text": "16",
+        "isCorrect": false,
+        "originalPosition": "1st",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. In RIP, a hop count of 16 signifies infinity / unreachable."
       },
       {
-        id: 'w9_q10_opt3',
-        text: 'Each router constructs a complete topological map of the network',
-        isCorrect: false,
-        originalPosition: '3rd',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Constructing a complete topological map (LSDB) is a fundamental feature of link-state routing.'
+        "id": "w9_q9_opt2",
+        "text": "15",
+        "isCorrect": true,
+        "originalPosition": "2nd",
+        "isGeneratedOption": false,
+        "explanation": "Correct. RIP uses hop count as its metric; 15 is the maximum valid reachable hop count, and 16 defines infinity."
       },
       {
-        id: 'w9_q10_opt4',
-        text: 'Shortest paths are computed using Dijkstra’s algorithm',
-        isCorrect: false,
-        originalPosition: '4th',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Running Dijkstra’s algorithm to generate the shortest path tree is central to link-state protocols.'
+        "id": "w9_q9_opt3",
+        "text": "255",
+        "isCorrect": false,
+        "originalPosition": "3rd",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. 255 is the maximum value of the IPv4 Time-To-Live (TTL) field, not the RIP metric."
       }
     ],
-    originalAnswer: 'Routers share entire routing tables with neighbors',
-    verifiedAnswer: 'Routers share entire routing tables with neighbors',
-    answersAgree: true,
-    originalExplanation: 'This is NOT a characteristic of link-state routing. Link-state routers exchange link-state information and build a topology database. They then run a shortest-path algorithm such as Dijkstra. Sharing routing-table distance information with neighbors is characteristic of distance-vector routing.',
-    detailedReasoning: 'In Link-State routing (OSPF, IS-IS), routers advertise only the state of their directly attached links (neighbor ID, link state, and cost). They do NOT send their routing tables. In contrast, Distance Vector protocols (RIP, IGRP) periodically send their entire routing tables (pairs of <destination, cost>) directly to immediate neighbors. Thus, sharing complete routing tables is characteristic of Distance Vector.',
-    examTakeaway: 'Distance Vector: "Tell neighbors about the entire world." Link State: "Tell the entire world about immediate neighbors."',
-    sourceFileName: 'media_1792415803922.pdf',
-    pageNumber: 'Page 2, Q10',
-    extractionConfidence: 100,
-    verificationStatus: 'verified',
-    citations: [
+    "originalAnswer": "15",
+    "verifiedAnswer": "15",
+    "answersAgree": true,
+    "originalExplanation": "RIP uses hop count as its metric. A metric of 16 represents infinity/unreachable, so the maximum valid reachable hop count is 15.",
+    "detailedReasoning": "To prevent Bellman-Ford count-to-infinity loops from persisting indefinitely, RIP deliberately restricts the maximum diameter of any network running the protocol. It caps the valid reachable metric at 15 hops. If a routing update advertises a metric of 16 (or if an increment produces 16), the destination is classified as unreachable (infinity) and is subsequently purged from the forwarding table.",
+    "examTakeaway": "RIP metric: Max reachable hops = 15. Metric = 16 means Unreachable / Infinity.",
+    "sourceFileName": "media_1792415803922.pdf",
+    "pageNumber": "Page 2, Q9",
+    "extractionConfidence": 100,
+    "verificationStatus": "verified",
+    "citations": [
       {
-        title: 'Computer Networks (Tanenbaum & Wetherall)',
-        description: 'Chapter 5: The Network Layer, Section 5.2 on Routing Algorithms (Link-State vs Distance Vector comparison).',
-        rfcOrStandard: 'Tanenbaum 5th Ed.'
+        "title": "RFC 1058 - Section 3.4.1: Metrics and Infinity",
+        "url": "https://datatracker.ietf.org/doc/html/rfc1058",
+        "description": "Defines metric 16 as infinity and 15 as the maximum reachable distance.",
+        "rfcOrStandard": "RFC 1058"
       }
     ],
-    isCalculationBased: false
-  },
-
-  // ==========================================
-  // WEEK 10 : ASSIGNMENT 10 (Extracted from media_1792415803928.pdf - PDF)
-  // ==========================================
-  {
-    id: 'orig_w10_q1',
-    courseName: 'Computer Networks',
-    week: 10,
-    assignment: 10,
-    collection: 'original',
-    questionNumber: 1,
-    questionText: 'What port does BGP use to establish TCP sessions between routers?',
-    options: [
-      {
-        id: 'w10_q1_opt1',
-        text: '22',
-        isCorrect: false,
-        originalPosition: '1st option',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Port 22 is used by SSH (Secure Shell).'
-      },
-      {
-        id: 'w10_q1_opt2',
-        text: '80',
-        isCorrect: false,
-        originalPosition: '2nd option',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Port 80 is used by HTTP.'
-      },
-      {
-        id: 'w10_q1_opt3',
-        text: '179',
-        isCorrect: true,
-        originalPosition: '3rd option',
-        isGeneratedOption: false,
-        explanation: 'Correct. BGP uses TCP port 179 to establish reliable peering sessions between Autonomous System routers.'
-      },
-      {
-        id: 'w10_q1_opt4',
-        text: '520',
-        isCorrect: false,
-        originalPosition: '4th option',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Port 520 is used by RIP (over UDP).'
-      }
-    ],
-    originalAnswer: '179',
-    verifiedAnswer: '179',
-    answersAgree: true,
-    originalExplanation: 'BGP uses TCP port 179 to establish BGP sessions between routers.',
-    detailedReasoning: 'The Border Gateway Protocol (BGP-4) is the routing protocol of the global Internet. Unlike interior gateway protocols like RIP (which uses UDP) or OSPF (which sits directly on IP), BGP relies on TCP for guaranteed reliable transport, connection orientation, and flow control. BGP listens on well-known TCP port 179.',
-    examTakeaway: 'BGP uses TCP port 179. TCP provides connection reliability, freeing BGP from implementing its own retransmission and sequencing mechanisms.',
-    sourceFileName: 'media_1792415803928.pdf',
-    pageNumber: 'Page 1, Q1',
-    extractionConfidence: 100,
-    verificationStatus: 'verified',
-    citations: [
-      {
-        title: 'RFC 4271 - A Border Gateway Protocol 4 (BGP-4)',
-        url: 'https://datatracker.ietf.org/doc/html/rfc4271',
-        description: 'Section 4: Message Formats establishes TCP port 179 as the transport endpoint.',
-        rfcOrStandard: 'RFC 4271'
-      }
-    ],
-    isCalculationBased: false
+    "isCalculationBased": false
   },
   {
-    id: 'orig_w10_q2',
-    courseName: 'Computer Networks',
-    week: 10,
-    assignment: 10,
-    collection: 'original',
-    questionNumber: 2,
-    questionText: 'What information does BGP advertise?',
-    options: [
+    "id": "orig_w9_q10",
+    "courseName": "Computer Networks",
+    "week": 9,
+    "assignment": 9,
+    "collection": "original",
+    "questionNumber": 10,
+    "questionText": "Which of the following is NOT a characteristic of link-state routing?",
+    "options": [
       {
-        id: 'w10_q2_opt1',
-        text: 'Complete router link-state databases',
-        isCorrect: false,
-        originalPosition: '1st option',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Exchanging entire link-state databases occurs inside an IGP like OSPF, not inter-domain BGP.'
+        "id": "w9_q10_opt1",
+        "text": "Routers share entire routing tables with neighbors",
+        "isCorrect": true,
+        "originalPosition": "1st",
+        "isGeneratedOption": false,
+        "explanation": "Correct. Sharing entire routing tables is the defining characteristic of Distance Vector routing (e.g. RIP), NOT Link-State routing."
       },
       {
-        id: 'w10_q2_opt2',
-        text: 'IP prefixes and path information',
-        isCorrect: true,
-        originalPosition: '2nd option',
-        isGeneratedOption: false,
-        explanation: 'Correct. BGP advertises network reachability information containing destination IP prefixes (CIDR blocks) and associated path attributes (such as AS-Path and Next-Hop).'
+        "id": "w9_q10_opt4",
+        "text": "Shortest paths are computed using Dijkstra’s algorithm",
+        "isCorrect": false,
+        "originalPosition": "4th",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Running Dijkstra’s algorithm to generate the shortest path tree is central to link-state protocols."
       },
       {
-        id: 'w10_q2_opt3',
-        text: 'MAC address tables and VLAN mappings',
-        isCorrect: false,
-        originalPosition: '3rd option',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. MAC tables operate at Layer 2 Ethernet, completely decoupled from inter-domain routing.'
+        "id": "w9_q10_opt3",
+        "text": "Each router constructs a complete topological map of the network",
+        "isCorrect": false,
+        "originalPosition": "3rd",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Constructing a complete topological map (LSDB) is a fundamental feature of link-state routing."
       },
       {
-        id: 'w10_q2_opt4',
-        text: 'Bandwidth utilization and link latency metrics',
-        isCorrect: false,
-        originalPosition: '4th option',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. BGP is a policy-based path-vector protocol, not a metric-driven QoS protocol.'
+        "id": "w9_q10_opt2",
+        "text": "Routers exchange link-state advertisements (LSAs)",
+        "isCorrect": false,
+        "originalPosition": "2nd",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Exchanging LSAs is a core characteristic of link-state routing."
       }
     ],
-    originalAnswer: 'IP prefixes and path information',
-    verifiedAnswer: 'IP prefixes and path information',
-    answersAgree: true,
-    originalExplanation: 'BGP advertises network reachability information, including IP prefixes and path information such as AS-path information.',
-    detailedReasoning: 'BGP is a Path Vector protocol. In BGP UPDATE messages, reachability is expressed as Network Layer Reachability Information (NLRI), consisting of destination IP prefixes (e.g. 198.51.100.0/24) paired with Path Attributes. Essential path attributes include: 1) AS_PATH (the exact ordered sequence of Autonomous Systems crossed), which guarantees loop prevention; 2) NEXT_HOP (the IP address of the gateway router); 3) LOCAL_PREF; and 4) MULTI_EXIT_DISC (MED).',
-    examTakeaway: 'BGP advertises IP Prefixes + Path Attributes (AS-Path, Next-Hop). The AS-Path attribute prevents routing loops between Autonomous Systems.',
-    sourceFileName: 'media_1792415803928.pdf',
-    pageNumber: 'Page 1, Q2',
-    extractionConfidence: 100,
-    verificationStatus: 'verified',
-    citations: [
+    "originalAnswer": "Routers share entire routing tables with neighbors",
+    "verifiedAnswer": "Routers share entire routing tables with neighbors",
+    "answersAgree": true,
+    "originalExplanation": "This is NOT a characteristic of link-state routing. Link-state routers exchange link-state information and build a topology database. They then run a shortest-path algorithm such as Dijkstra. Sharing routing-table distance information with neighbors is characteristic of distance-vector routing.",
+    "detailedReasoning": "In Link-State routing (OSPF, IS-IS), routers advertise only the state of their directly attached links (neighbor ID, link state, and cost). They do NOT send their routing tables. In contrast, Distance Vector protocols (RIP, IGRP) periodically send their entire routing tables (pairs of <destination, cost>) directly to immediate neighbors. Thus, sharing complete routing tables is characteristic of Distance Vector.",
+    "examTakeaway": "Distance Vector: \"Tell neighbors about the entire world.\" Link State: \"Tell the entire world about immediate neighbors.\"",
+    "sourceFileName": "media_1792415803922.pdf",
+    "pageNumber": "Page 2, Q10",
+    "extractionConfidence": 100,
+    "verificationStatus": "verified",
+    "citations": [
       {
-        title: 'RFC 4271 - Section 4.3: UPDATE Message Format',
-        url: 'https://datatracker.ietf.org/doc/html/rfc4271',
-        description: 'Details Path Attributes and NLRI (Network Layer Reachability Information).',
-        rfcOrStandard: 'RFC 4271'
+        "title": "Computer Networks (Tanenbaum & Wetherall)",
+        "description": "Chapter 5: The Network Layer, Section 5.2 on Routing Algorithms (Link-State vs Distance Vector comparison).",
+        "rfcOrStandard": "Tanenbaum 5th Ed."
       }
     ],
-    isCalculationBased: false
+    "isCalculationBased": false
   },
   {
-    id: 'orig_w10_q3',
-    courseName: 'Computer Networks',
-    week: 10,
-    assignment: 10,
-    collection: 'original',
-    questionNumber: 3,
-    questionText: 'Which ICMPv6 protocol replaces ARP in IPv6 networks?',
-    options: [
+    "id": "orig_w10_q1",
+    "courseName": "Computer Networks",
+    "week": 10,
+    "assignment": 10,
+    "collection": "original",
+    "questionNumber": 1,
+    "questionText": "What port does BGP use to establish TCP sessions between routers?",
+    "options": [
       {
-        id: 'w10_q3_opt1',
-        text: 'DHCPv6',
-        isCorrect: false,
-        originalPosition: '1st option',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. DHCPv6 assigns network configurations and stateful/stateless IPv6 addresses.'
+        "id": "w10_q1_opt2",
+        "text": "80",
+        "isCorrect": false,
+        "originalPosition": "2nd option",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Port 80 is used by HTTP."
       },
       {
-        id: 'w10_q3_opt2',
-        text: 'RARP',
-        isCorrect: false,
-        originalPosition: '2nd option',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. RARP is a legacy IPv4 protocol used for diskless workstations to discover their IP address.'
+        "id": "w10_q1_opt3",
+        "text": "179",
+        "isCorrect": true,
+        "originalPosition": "3rd option",
+        "isGeneratedOption": false,
+        "explanation": "Correct. BGP uses TCP port 179 to establish reliable peering sessions between Autonomous System routers."
       },
       {
-        id: 'w10_q3_opt3',
-        text: 'IGMP',
-        isCorrect: false,
-        originalPosition: '3rd option',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. IGMP is used for IPv4 multicast group management (replaced by MLD in IPv6).'
+        "id": "w10_q1_opt1",
+        "text": "22",
+        "isCorrect": false,
+        "originalPosition": "1st option",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Port 22 is used by SSH (Secure Shell)."
       },
       {
-        id: 'w10_q3_opt4',
-        text: 'NDP',
-        isCorrect: true,
-        originalPosition: '4th option',
-        isGeneratedOption: false,
-        explanation: 'Correct. Neighbor Discovery Protocol (NDP), built on ICMPv6, replaces ARP for IP-to-MAC resolution using multicast Neighbor Solicitation and Advertisement.'
+        "id": "w10_q1_opt4",
+        "text": "520",
+        "isCorrect": false,
+        "originalPosition": "4th option",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Port 520 is used by RIP (over UDP)."
       }
     ],
-    originalAnswer: 'NDP',
-    verifiedAnswer: 'NDP',
-    answersAgree: true,
-    originalExplanation: 'NDP (Neighbor Discovery Protocol) provides the IPv6 neighbor-discovery functions that replace the ARP function used in IPv4.',
-    detailedReasoning: 'In IPv4, the Address Resolution Protocol (ARP) uses broadcast frames to map IPv4 addresses to Ethernet MAC addresses. In IPv6, broadcast has been eliminated. The Neighbor Discovery Protocol (NDP), specified in RFC 4861, operates as part of ICMPv6. NDP uses Neighbor Solicitation (ICMPv6 Type 135) sent to the solicited-node multicast address, and Neighbor Advertisement (ICMPv6 Type 136) to resolve layer-3 IPv6 addresses to layer-2 MAC addresses without broadcasting.',
-    examTakeaway: 'IPv6 has NO ARP and NO broadcast! Address resolution is performed by NDP (Neighbor Discovery Protocol) via ICMPv6 multicast.',
-    sourceFileName: 'media_1792415803928.pdf',
-    pageNumber: 'Page 1, Q3',
-    extractionConfidence: 100,
-    verificationStatus: 'verified',
-    citations: [
+    "originalAnswer": "179",
+    "verifiedAnswer": "179",
+    "answersAgree": true,
+    "originalExplanation": "BGP uses TCP port 179 to establish BGP sessions between routers.",
+    "detailedReasoning": "The Border Gateway Protocol (BGP-4) is the routing protocol of the global Internet. Unlike interior gateway protocols like RIP (which uses UDP) or OSPF (which sits directly on IP), BGP relies on TCP for guaranteed reliable transport, connection orientation, and flow control. BGP listens on well-known TCP port 179.",
+    "examTakeaway": "BGP uses TCP port 179. TCP provides connection reliability, freeing BGP from implementing its own retransmission and sequencing mechanisms.",
+    "sourceFileName": "media_1792415803928.pdf",
+    "pageNumber": "Page 1, Q1",
+    "extractionConfidence": 100,
+    "verificationStatus": "verified",
+    "citations": [
       {
-        title: 'RFC 4861 - Neighbor Discovery for IP version 6 (IPv6)',
-        url: 'https://datatracker.ietf.org/doc/html/rfc4861',
-        description: 'Defines NDP mechanisms replacing ARP and ICMP router discovery in IPv6.',
-        rfcOrStandard: 'RFC 4861'
+        "title": "RFC 4271 - A Border Gateway Protocol 4 (BGP-4)",
+        "url": "https://datatracker.ietf.org/doc/html/rfc4271",
+        "description": "Section 4: Message Formats establishes TCP port 179 as the transport endpoint.",
+        "rfcOrStandard": "RFC 4271"
       }
     ],
-    isCalculationBased: false
+    "isCalculationBased": false
   },
   {
-    id: 'orig_w10_q4',
-    courseName: 'Computer Networks',
-    week: 10,
-    assignment: 10,
-    collection: 'original',
-    questionNumber: 4,
-    questionText: 'Which BGP message is exchanged first after a TCP connection is established?',
-    options: [
+    "id": "orig_w10_q2",
+    "courseName": "Computer Networks",
+    "week": 10,
+    "assignment": 10,
+    "collection": "original",
+    "questionNumber": 2,
+    "questionText": "What information does BGP advertise?",
+    "options": [
       {
-        id: 'w10_q4_opt1',
-        text: 'UPDATE',
-        isCorrect: false,
-        originalPosition: '1st option',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. UPDATE messages advertise or withdraw routes and can only be sent after the session is negotiated.'
+        "id": "w10_q2_opt4",
+        "text": "Bandwidth utilization and link latency metrics",
+        "isCorrect": false,
+        "originalPosition": "4th option",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. BGP is a policy-based path-vector protocol, not a metric-driven QoS protocol."
       },
       {
-        id: 'w10_q4_opt2',
-        text: 'KEEPALIVE',
-        isCorrect: false,
-        originalPosition: '2nd option',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. KEEPALIVE messages maintain an established session and confirm receipt of OPEN.'
+        "id": "w10_q2_opt1",
+        "text": "Complete router link-state databases",
+        "isCorrect": false,
+        "originalPosition": "1st option",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Exchanging entire link-state databases occurs inside an IGP like OSPF, not inter-domain BGP."
       },
       {
-        id: 'w10_q4_opt3',
-        text: 'OPEN',
-        isCorrect: true,
-        originalPosition: '3rd option',
-        isGeneratedOption: false,
-        explanation: 'Correct. Once TCP 3-way handshake completes on port 179, both BGP peers immediately send an OPEN message to negotiate session parameters.'
+        "id": "w10_q2_opt2",
+        "text": "IP prefixes and path information",
+        "isCorrect": true,
+        "originalPosition": "2nd option",
+        "isGeneratedOption": false,
+        "explanation": "Correct. BGP advertises network reachability information containing destination IP prefixes (CIDR blocks) and associated path attributes (such as AS-Path and Next-Hop)."
       },
       {
-        id: 'w10_q4_opt4',
-        text: 'NOTIFICATION',
-        isCorrect: false,
-        originalPosition: '4th option',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. NOTIFICATION messages are sent when an error occurs, resulting in immediate session termination.'
+        "id": "w10_q2_opt3",
+        "text": "MAC address tables and VLAN mappings",
+        "isCorrect": false,
+        "originalPosition": "3rd option",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. MAC tables operate at Layer 2 Ethernet, completely decoupled from inter-domain routing."
       }
     ],
-    originalAnswer: 'OPEN',
-    verifiedAnswer: 'OPEN',
-    answersAgree: true,
-    originalExplanation: 'After TCP is established, BGP peers exchange OPEN messages to establish and negotiate the BGP session.',
-    detailedReasoning: 'The BGP Finite State Machine (FSM) establishes peering through several states: Idle → Connect → Active → OpenSent → OpenConfirm → Established. Once the TCP connection is established on port 179, the router transitions to OpenSent by sending an OPEN message. The OPEN message contains: BGP Version (Version 4), My Autonomous System number, Hold Time (recommended 90s), BGP Identifier (Router ID), and Optional Parameters (such as multi-protocol BGP capabilities).',
-    examTakeaway: 'The 4 BGP Message Types: 1) OPEN (negotiates session), 2) UPDATE (advertises/withdraws routes), 3) KEEPALIVE (heartbeat), 4) NOTIFICATION (error & teardown).',
-    sourceFileName: 'media_1792415803928.pdf',
-    pageNumber: 'Page 1, Q4',
-    extractionConfidence: 100,
-    verificationStatus: 'verified',
-    citations: [
+    "originalAnswer": "IP prefixes and path information",
+    "verifiedAnswer": "IP prefixes and path information",
+    "answersAgree": true,
+    "originalExplanation": "BGP advertises network reachability information, including IP prefixes and path information such as AS-path information.",
+    "detailedReasoning": "BGP is a Path Vector protocol. In BGP UPDATE messages, reachability is expressed as Network Layer Reachability Information (NLRI), consisting of destination IP prefixes (e.g. 198.51.100.0/24) paired with Path Attributes. Essential path attributes include: 1) AS_PATH (the exact ordered sequence of Autonomous Systems crossed), which guarantees loop prevention; 2) NEXT_HOP (the IP address of the gateway router); 3) LOCAL_PREF; and 4) MULTI_EXIT_DISC (MED).",
+    "examTakeaway": "BGP advertises IP Prefixes + Path Attributes (AS-Path, Next-Hop). The AS-Path attribute prevents routing loops between Autonomous Systems.",
+    "sourceFileName": "media_1792415803928.pdf",
+    "pageNumber": "Page 1, Q2",
+    "extractionConfidence": 100,
+    "verificationStatus": "verified",
+    "citations": [
       {
-        title: 'RFC 4271 - Section 4.1: OPEN Message Format',
-        url: 'https://datatracker.ietf.org/doc/html/rfc4271',
-        description: 'Specifies the initial OPEN handshake after TCP connection establishment.',
-        rfcOrStandard: 'RFC 4271'
+        "title": "RFC 4271 - Section 4.3: UPDATE Message Format",
+        "url": "https://datatracker.ietf.org/doc/html/rfc4271",
+        "description": "Details Path Attributes and NLRI (Network Layer Reachability Information).",
+        "rfcOrStandard": "RFC 4271"
       }
     ],
-    isCalculationBased: false
+    "isCalculationBased": false
   },
   {
-    id: 'orig_w10_q5',
-    courseName: 'Computer Networks',
-    week: 10,
-    assignment: 10,
-    collection: 'original',
-    questionNumber: 5,
-    questionText: 'Which BGP message is used to maintain an established session?',
-    options: [
+    "id": "orig_w10_q3",
+    "courseName": "Computer Networks",
+    "week": 10,
+    "assignment": 10,
+    "collection": "original",
+    "questionNumber": 3,
+    "questionText": "Which ICMPv6 protocol replaces ARP in IPv6 networks?",
+    "options": [
       {
-        id: 'w10_q5_opt1',
-        text: 'HELLO',
-        isCorrect: false,
-        originalPosition: '1st option',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. HELLO packets are used in OSPF, not BGP.'
+        "id": "w10_q3_opt2",
+        "text": "RARP",
+        "isCorrect": false,
+        "originalPosition": "2nd option",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. RARP is a legacy IPv4 protocol used for diskless workstations to discover their IP address."
       },
       {
-        id: 'w10_q5_opt2',
-        text: 'HEARTBEAT',
-        isCorrect: false,
-        originalPosition: '2nd option',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. HEARTBEAT is used in SCTP, not BGP.'
+        "id": "w10_q3_opt3",
+        "text": "IGMP",
+        "isCorrect": false,
+        "originalPosition": "3rd option",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. IGMP is used for IPv4 multicast group management (replaced by MLD in IPv6)."
       },
       {
-        id: 'w10_q5_opt3',
-        text: 'POLL',
-        isCorrect: false,
-        originalPosition: '3rd option',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. POLL is not a BGP message.'
+        "id": "w10_q3_opt1",
+        "text": "DHCPv6",
+        "isCorrect": false,
+        "originalPosition": "1st option",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. DHCPv6 assigns network configurations and stateful/stateless IPv6 addresses."
       },
       {
-        id: 'w10_q5_opt4',
-        text: 'KEEPALIVE',
-        isCorrect: true,
-        originalPosition: '4th option',
-        isGeneratedOption: false,
-        explanation: 'Correct. BGP routers exchange periodic KEEPALIVE messages (header only, 19 bytes) to ensure the peer is alive and prevent Hold Timer expiration.'
+        "id": "w10_q3_opt4",
+        "text": "NDP",
+        "isCorrect": true,
+        "originalPosition": "4th option",
+        "isGeneratedOption": false,
+        "explanation": "Correct. Neighbor Discovery Protocol (NDP), built on ICMPv6, replaces ARP for IP-to-MAC resolution using multicast Neighbor Solicitation and Advertisement."
       }
     ],
-    originalAnswer: 'KEEPALIVE',
-    verifiedAnswer: 'KEEPALIVE',
-    answersAgree: true,
-    originalExplanation: 'KEEPALIVE messages maintain an established BGP session and prevent the Hold Timer from expiring.',
-    detailedReasoning: 'BGP peers periodically exchange KEEPALIVE messages to ensure that the transport connection remains functional and the remote router is active. A KEEPALIVE consists solely of the 19-byte BGP message header. By default, KEEPALIVEs are sent every one-third of the negotiated Hold Time (e.g. sent every 30 seconds for a 90-second Hold Time). If the Hold Timer expires without receiving either an UPDATE or a KEEPALIVE, the peer is declared dead and a NOTIFICATION message is sent.',
-    examTakeaway: 'BGP KEEPALIVE: 19-byte message sent at 1/3 Hold Time (typically 30s) to keep BGP peering session alive.',
-    sourceFileName: 'media_1792415803928.pdf',
-    pageNumber: 'Page 1-2, Q5',
-    extractionConfidence: 100,
-    verificationStatus: 'verified',
-    citations: [
+    "originalAnswer": "NDP",
+    "verifiedAnswer": "NDP",
+    "answersAgree": true,
+    "originalExplanation": "NDP (Neighbor Discovery Protocol) provides the IPv6 neighbor-discovery functions that replace the ARP function used in IPv4.",
+    "detailedReasoning": "In IPv4, the Address Resolution Protocol (ARP) uses broadcast frames to map IPv4 addresses to Ethernet MAC addresses. In IPv6, broadcast has been eliminated. The Neighbor Discovery Protocol (NDP), specified in RFC 4861, operates as part of ICMPv6. NDP uses Neighbor Solicitation (ICMPv6 Type 135) sent to the solicited-node multicast address, and Neighbor Advertisement (ICMPv6 Type 136) to resolve layer-3 IPv6 addresses to layer-2 MAC addresses without broadcasting.",
+    "examTakeaway": "IPv6 has NO ARP and NO broadcast! Address resolution is performed by NDP (Neighbor Discovery Protocol) via ICMPv6 multicast.",
+    "sourceFileName": "media_1792415803928.pdf",
+    "pageNumber": "Page 1, Q3",
+    "extractionConfidence": 100,
+    "verificationStatus": "verified",
+    "citations": [
       {
-        title: 'RFC 4271 - Section 4.4: KEEPALIVE Message Format',
-        url: 'https://datatracker.ietf.org/doc/html/rfc4271',
-        description: 'Details KEEPALIVE frequency and interaction with BGP Hold Timer.',
-        rfcOrStandard: 'RFC 4271'
+        "title": "RFC 4861 - Neighbor Discovery for IP version 6 (IPv6)",
+        "url": "https://datatracker.ietf.org/doc/html/rfc4861",
+        "description": "Defines NDP mechanisms replacing ARP and ICMP router discovery in IPv6.",
+        "rfcOrStandard": "RFC 4861"
       }
     ],
-    isCalculationBased: false
+    "isCalculationBased": false
   },
   {
-    id: 'orig_w10_q6',
-    courseName: 'Computer Networks',
-    week: 10,
-    assignment: 10,
-    collection: 'original',
-    questionNumber: 6,
-    questionText: 'Hot Potato Routing selects the:',
-    options: [
+    "id": "orig_w10_q4",
+    "courseName": "Computer Networks",
+    "week": 10,
+    "assignment": 10,
+    "collection": "original",
+    "questionNumber": 4,
+    "questionText": "Which BGP message is exchanged first after a TCP connection is established?",
+    "options": [
       {
-        id: 'w10_q6_opt1',
-        text: 'Closest NEXT-HOP router',
-        isCorrect: true,
-        originalPosition: '1st option',
-        isGeneratedOption: false,
-        explanation: 'Correct. Hot-potato routing sheds transit packets out of the local Autonomous System as quickly as possible by choosing the egress router with the lowest internal IGP cost.'
+        "id": "w10_q4_opt3",
+        "text": "OPEN",
+        "isCorrect": true,
+        "originalPosition": "3rd option",
+        "isGeneratedOption": false,
+        "explanation": "Correct. Once TCP 3-way handshake completes on port 179, both BGP peers immediately send an OPEN message to negotiate session parameters."
       },
       {
-        id: 'w10_q6_opt2',
-        text: 'Path with the longest AS-Path',
-        isCorrect: false,
-        originalPosition: '2nd option',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. BGP path selection prefers shorter AS-Paths, never longest.'
+        "id": "w10_q4_opt2",
+        "text": "KEEPALIVE",
+        "isCorrect": false,
+        "originalPosition": "2nd option",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. KEEPALIVE messages maintain an established session and confirm receipt of OPEN."
       },
       {
-        id: 'w10_q6_opt3',
-        text: 'Egress router with the highest Multi-Exit Discriminator (MED)',
-        isCorrect: false,
-        originalPosition: '3rd option',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. BGP prefers lower MED values, not highest, and MED represents cold potato routing from the neighbor’s perspective.'
+        "id": "w10_q4_opt1",
+        "text": "UPDATE",
+        "isCorrect": false,
+        "originalPosition": "1st option",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. UPDATE messages advertise or withdraw routes and can only be sent after the session is negotiated."
       },
       {
-        id: 'w10_q6_opt4',
-        text: 'Router with the largest receive buffer',
-        isCorrect: false,
-        originalPosition: '4th option',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Egress selection is based on internal path cost, not buffer dimensions.'
+        "id": "w10_q4_opt4",
+        "text": "NOTIFICATION",
+        "isCorrect": false,
+        "originalPosition": "4th option",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. NOTIFICATION messages are sent when an error occurs, resulting in immediate session termination."
       }
     ],
-    originalAnswer: 'Closest NEXT-HOP router',
-    verifiedAnswer: 'Closest NEXT-HOP router',
-    answersAgree: true,
-    originalExplanation: 'Hot-potato routing sends traffic toward the closest exit point, normally based on internal routing/IGP cost.',
-    detailedReasoning: 'Hot-potato routing is a selfish inter-domain routing heuristic where an Autonomous System seeks to minimize its own resource consumption by getting a packet out of its network as quickly and cheaply as possible (like dropping a hot potato). When multiple egress gateways can reach the destination with equal BGP attributes (same Local Pref, AS-Path length, and origin), hot-potato routing selects the egress border router that has the lowest internal Interior Gateway Protocol (IGP) metric from the ingress router.',
-    examTakeaway: 'Hot Potato Routing = Egress selection based on lowest internal IGP cost (expel packets from AS with minimal internal transit cost).',
-    sourceFileName: 'media_1792415803928.pdf',
-    pageNumber: 'Page 2, Q6',
-    extractionConfidence: 100,
-    verificationStatus: 'verified',
-    citations: [
+    "originalAnswer": "OPEN",
+    "verifiedAnswer": "OPEN",
+    "answersAgree": true,
+    "originalExplanation": "After TCP is established, BGP peers exchange OPEN messages to establish and negotiate the BGP session.",
+    "detailedReasoning": "The BGP Finite State Machine (FSM) establishes peering through several states: Idle → Connect → Active → OpenSent → OpenConfirm → Established. Once the TCP connection is established on port 179, the router transitions to OpenSent by sending an OPEN message. The OPEN message contains: BGP Version (Version 4), My Autonomous System number, Hold Time (recommended 90s), BGP Identifier (Router ID), and Optional Parameters (such as multi-protocol BGP capabilities).",
+    "examTakeaway": "The 4 BGP Message Types: 1) OPEN (negotiates session), 2) UPDATE (advertises/withdraws routes), 3) KEEPALIVE (heartbeat), 4) NOTIFICATION (error & teardown).",
+    "sourceFileName": "media_1792415803928.pdf",
+    "pageNumber": "Page 1, Q4",
+    "extractionConfidence": 100,
+    "verificationStatus": "verified",
+    "citations": [
       {
-        title: 'Computer Networking: A Top-Down Approach (Kurose & Ross)',
-        description: 'Chapter 5: Network Layer Control Plane, Section on Hot Potato Routing.',
-        rfcOrStandard: 'Kurose & Ross 8th Ed.'
+        "title": "RFC 4271 - Section 4.1: OPEN Message Format",
+        "url": "https://datatracker.ietf.org/doc/html/rfc4271",
+        "description": "Specifies the initial OPEN handshake after TCP connection establishment.",
+        "rfcOrStandard": "RFC 4271"
       }
     ],
-    isCalculationBased: false
+    "isCalculationBased": false
   },
   {
-    id: 'orig_w10_q7',
-    courseName: 'Computer Networks',
-    week: 10,
-    assignment: 10,
-    collection: 'original',
-    questionNumber: 7,
-    questionText: 'ICMP messages are encapsulated inside:',
-    options: [
+    "id": "orig_w10_q5",
+    "courseName": "Computer Networks",
+    "week": 10,
+    "assignment": 10,
+    "collection": "original",
+    "questionNumber": 5,
+    "questionText": "Which BGP message is used to maintain an established session?",
+    "options": [
       {
-        id: 'w10_q7_opt1',
-        text: 'TCP segments',
-        isCorrect: false,
-        originalPosition: '1st option',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. ICMP is a network-layer protocol; it does not use TCP.'
+        "id": "w10_q5_opt3",
+        "text": "POLL",
+        "isCorrect": false,
+        "originalPosition": "3rd option",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. POLL is not a BGP message."
       },
       {
-        id: 'w10_q7_opt2',
-        text: 'IP packets',
-        isCorrect: true,
-        originalPosition: '2nd option',
-        isGeneratedOption: false,
-        explanation: 'Correct. ICMP messages are carried directly inside IPv4 datagrams with IP protocol field set to 1 (or IPv6 with Next Header 58 for ICMPv6).'
+        "id": "w10_q5_opt1",
+        "text": "HELLO",
+        "isCorrect": false,
+        "originalPosition": "1st option",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. HELLO packets are used in OSPF, not BGP."
       },
       {
-        id: 'w10_q7_opt3',
-        text: 'UDP datagrams',
-        isCorrect: false,
-        originalPosition: '3rd option',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. ICMP is not encapsulated in UDP.'
+        "id": "w10_q5_opt2",
+        "text": "HEARTBEAT",
+        "isCorrect": false,
+        "originalPosition": "2nd option",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. HEARTBEAT is used in SCTP, not BGP."
       },
       {
-        id: 'w10_q7_opt4',
-        text: 'Ethernet frames directly (skipping IP)',
-        isCorrect: false,
-        originalPosition: '4th option',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. ICMP requires the IP header for routing across intermediate hops.'
+        "id": "w10_q5_opt4",
+        "text": "KEEPALIVE",
+        "isCorrect": true,
+        "originalPosition": "4th option",
+        "isGeneratedOption": false,
+        "explanation": "Correct. BGP routers exchange periodic KEEPALIVE messages (header only, 19 bytes) to ensure the peer is alive and prevent Hold Timer expiration."
       }
     ],
-    originalAnswer: 'IP packets',
-    verifiedAnswer: 'IP packets',
-    answersAgree: true,
-    originalExplanation: 'ICMP is carried directly by IP rather than by TCP or UDP.',
-    detailedReasoning: 'The Internet Control Message Protocol (ICMP) is an integral part of the IP protocol suite. Although ICMP functions at the network layer to handle diagnostic, error reporting, and query services, ICMP messages are encapsulated directly inside standard IP datagrams. The IPv4 header Protocol field contains the value 1 to designate ICMP. For IPv6, ICMPv6 messages are encapsulated with Next Header value 58.',
-    examTakeaway: 'ICMP is encapsulated directly inside IP packets (Protocol field = 1). It does not use TCP or UDP.',
-    sourceFileName: 'media_1792415803928.pdf',
-    pageNumber: 'Page 2, Q7',
-    extractionConfidence: 100,
-    verificationStatus: 'verified',
-    citations: [
+    "originalAnswer": "KEEPALIVE",
+    "verifiedAnswer": "KEEPALIVE",
+    "answersAgree": true,
+    "originalExplanation": "KEEPALIVE messages maintain an established BGP session and prevent the Hold Timer from expiring.",
+    "detailedReasoning": "BGP peers periodically exchange KEEPALIVE messages to ensure that the transport connection remains functional and the remote router is active. A KEEPALIVE consists solely of the 19-byte BGP message header. By default, KEEPALIVEs are sent every one-third of the negotiated Hold Time (e.g. sent every 30 seconds for a 90-second Hold Time). If the Hold Timer expires without receiving either an UPDATE or a KEEPALIVE, the peer is declared dead and a NOTIFICATION message is sent.",
+    "examTakeaway": "BGP KEEPALIVE: 19-byte message sent at 1/3 Hold Time (typically 30s) to keep BGP peering session alive.",
+    "sourceFileName": "media_1792415803928.pdf",
+    "pageNumber": "Page 1-2, Q5",
+    "extractionConfidence": 100,
+    "verificationStatus": "verified",
+    "citations": [
       {
-        title: 'RFC 792 - Internet Control Message Protocol',
-        url: 'https://datatracker.ietf.org/doc/html/rfc792',
-        description: 'Specifies ICMP message encapsulation in IP datagrams and Protocol ID 1.',
-        rfcOrStandard: 'RFC 792'
+        "title": "RFC 4271 - Section 4.4: KEEPALIVE Message Format",
+        "url": "https://datatracker.ietf.org/doc/html/rfc4271",
+        "description": "Details KEEPALIVE frequency and interaction with BGP Hold Timer.",
+        "rfcOrStandard": "RFC 4271"
       }
     ],
-    isCalculationBased: false
+    "isCalculationBased": false
   },
   {
-    id: 'orig_w10_q8',
-    courseName: 'Computer Networks',
-    week: 10,
-    assignment: 10,
-    collection: 'original',
-    questionNumber: 8,
-    questionText: 'Which network utility uses ICMP Echo Request and Echo Reply messages?',
-    options: [
+    "id": "orig_w10_q6",
+    "courseName": "Computer Networks",
+    "week": 10,
+    "assignment": 10,
+    "collection": "original",
+    "questionNumber": 6,
+    "questionText": "Hot Potato Routing selects the:",
+    "options": [
       {
-        id: 'w10_q8_opt1',
-        text: 'Traceroute',
-        isCorrect: false,
-        originalPosition: '1st option',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Traceroute primarily relies on ICMP Time Exceeded (TTL expired) messages.'
+        "id": "w10_q6_opt3",
+        "text": "Egress router with the highest Multi-Exit Discriminator (MED)",
+        "isCorrect": false,
+        "originalPosition": "3rd option",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. BGP prefers lower MED values, not highest, and MED represents cold potato routing from the neighbor’s perspective."
       },
       {
-        id: 'w10_q8_opt2',
-        text: 'Netstat',
-        isCorrect: false,
-        originalPosition: '2nd option',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Netstat inspects local socket tables and interface statistics, not network probes.'
+        "id": "w10_q6_opt1",
+        "text": "Closest NEXT-HOP router",
+        "isCorrect": true,
+        "originalPosition": "1st option",
+        "isGeneratedOption": false,
+        "explanation": "Correct. Hot-potato routing sheds transit packets out of the local Autonomous System as quickly as possible by choosing the egress router with the lowest internal IGP cost."
       },
       {
-        id: 'w10_q8_opt3',
-        text: 'Nslookup',
-        isCorrect: false,
-        originalPosition: '3rd option',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Nslookup sends DNS queries on UDP/TCP port 53.'
+        "id": "w10_q6_opt4",
+        "text": "Router with the largest receive buffer",
+        "isCorrect": false,
+        "originalPosition": "4th option",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Egress selection is based on internal path cost, not buffer dimensions."
       },
       {
-        id: 'w10_q8_opt4',
-        text: 'Ping',
-        isCorrect: true,
-        originalPosition: '4th option',
-        isGeneratedOption: false,
-        explanation: 'Correct. Ping generates ICMP Echo Request messages (Type 8) and listens for matching ICMP Echo Reply messages (Type 0) to verify host reachability and round-trip time.'
+        "id": "w10_q6_opt2",
+        "text": "Path with the longest AS-Path",
+        "isCorrect": false,
+        "originalPosition": "2nd option",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. BGP path selection prefers shorter AS-Paths, never longest."
       }
     ],
-    originalAnswer: 'Ping',
-    verifiedAnswer: 'Ping',
-    answersAgree: true,
-    originalExplanation: 'Ping uses ICMP Echo Request and Echo Reply messages to test reachability and measure round-trip communication.',
-    detailedReasoning: 'The ping utility (named after the sonar echo sound) tests end-to-end IP reachability. The sending host transmits an ICMP Echo Request (Type 8, Code 0) containing an identifier, sequence number, and timestamp payload. When the destination host receives the request, its IP stack automatically formats and returns an ICMP Echo Reply (Type 0, Code 0) copying the original payload. This enables the sender to calculate round-trip time (RTT) and packet loss percentage.',
-    examTakeaway: 'Ping uses ICMP Echo Request (Type 8) and Echo Reply (Type 0). Traceroute relies on ICMP Time Exceeded (Type 11).',
-    sourceFileName: 'media_1792415803928.pdf',
-    pageNumber: 'Page 2, Q8',
-    extractionConfidence: 100,
-    verificationStatus: 'verified',
-    citations: [
+    "originalAnswer": "Closest NEXT-HOP router",
+    "verifiedAnswer": "Closest NEXT-HOP router",
+    "answersAgree": true,
+    "originalExplanation": "Hot-potato routing sends traffic toward the closest exit point, normally based on internal routing/IGP cost.",
+    "detailedReasoning": "Hot-potato routing is a selfish inter-domain routing heuristic where an Autonomous System seeks to minimize its own resource consumption by getting a packet out of its network as quickly and cheaply as possible (like dropping a hot potato). When multiple egress gateways can reach the destination with equal BGP attributes (same Local Pref, AS-Path length, and origin), hot-potato routing selects the egress border router that has the lowest internal Interior Gateway Protocol (IGP) metric from the ingress router.",
+    "examTakeaway": "Hot Potato Routing = Egress selection based on lowest internal IGP cost (expel packets from AS with minimal internal transit cost).",
+    "sourceFileName": "media_1792415803928.pdf",
+    "pageNumber": "Page 2, Q6",
+    "extractionConfidence": 100,
+    "verificationStatus": "verified",
+    "citations": [
       {
-        title: 'RFC 792 - Echo and Echo Reply Message Specification',
-        url: 'https://datatracker.ietf.org/doc/html/rfc792',
-        description: 'Details Type 8 (Request) and Type 0 (Reply) formats and validation rules.',
-        rfcOrStandard: 'RFC 792'
+        "title": "Computer Networking: A Top-Down Approach (Kurose & Ross)",
+        "description": "Chapter 5: Network Layer Control Plane, Section on Hot Potato Routing.",
+        "rfcOrStandard": "Kurose & Ross 8th Ed."
       }
     ],
-    isCalculationBased: false
+    "isCalculationBased": false
   },
   {
-    id: 'orig_w10_q9',
-    courseName: 'Computer Networks',
-    week: 10,
-    assignment: 10,
-    collection: 'original',
-    questionNumber: 9,
-    questionText: 'Which ICMP message informs a host about a better route to a destination?',
-    options: [
+    "id": "orig_w10_q7",
+    "courseName": "Computer Networks",
+    "week": 10,
+    "assignment": 10,
+    "collection": "original",
+    "questionNumber": 7,
+    "questionText": "ICMP messages are encapsulated inside:",
+    "options": [
       {
-        id: 'w10_q9_opt1',
-        text: 'Source Quench',
-        isCorrect: false,
-        originalPosition: '1st option',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Source Quench (deprecated) was used for rudimentary congestion signaling.'
+        "id": "w10_q7_opt3",
+        "text": "UDP datagrams",
+        "isCorrect": false,
+        "originalPosition": "3rd option",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. ICMP is not encapsulated in UDP."
       },
       {
-        id: 'w10_q9_opt2',
-        text: 'Destination Unreachable',
-        isCorrect: false,
-        originalPosition: '2nd option',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Destination Unreachable notifies a host that a network, host, port, or protocol is unavailable.'
+        "id": "w10_q7_opt1",
+        "text": "TCP segments",
+        "isCorrect": false,
+        "originalPosition": "1st option",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. ICMP is a network-layer protocol; it does not use TCP."
       },
       {
-        id: 'w10_q9_opt3',
-        text: 'Redirect',
-        isCorrect: true,
-        originalPosition: '3rd option',
-        isGeneratedOption: false,
-        explanation: 'Correct. An ICMP Redirect (Type 5) is sent by a default gateway router to inform a host that another router on the local subnet is a better next-hop for that specific destination.'
+        "id": "w10_q7_opt2",
+        "text": "IP packets",
+        "isCorrect": true,
+        "originalPosition": "2nd option",
+        "isGeneratedOption": false,
+        "explanation": "Correct. ICMP messages are carried directly inside IPv4 datagrams with IP protocol field set to 1 (or IPv6 with Next Header 58 for ICMPv6)."
       },
       {
-        id: 'w10_q9_opt4',
-        text: 'Parameter Problem',
-        isCorrect: false,
-        originalPosition: '4th option',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Parameter Problem indicates a syntax or header option error in an IP header.'
+        "id": "w10_q7_opt4",
+        "text": "Ethernet frames directly (skipping IP)",
+        "isCorrect": false,
+        "originalPosition": "4th option",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. ICMP requires the IP header for routing across intermediate hops."
       }
     ],
-    originalAnswer: 'Redirect',
-    verifiedAnswer: 'Redirect',
-    answersAgree: true,
-    originalExplanation: 'An ICMP Redirect informs a host that a different gateway can provide a better route for the destination.',
-    detailedReasoning: 'When a host sends a packet to its default gateway R1, but R1 determines from its routing table that the packet should be forwarded to another router R2 on the same local subnet as the source host, R1 forwards the packet to R2 and simultaneously transmits an ICMP Redirect (Type 5) back to the sender. The message includes the IP address of R2, prompting the host to update its local routing cache and bypass R1 for future packets to that destination.',
-    examTakeaway: 'ICMP Redirect (Type 5): Gateway advises host to send traffic directly to another local router on the same network segment.',
-    sourceFileName: 'media_1792415803928.pdf',
-    pageNumber: 'Page 2, Q9',
-    extractionConfidence: 100,
-    verificationStatus: 'verified',
-    citations: [
+    "originalAnswer": "IP packets",
+    "verifiedAnswer": "IP packets",
+    "answersAgree": true,
+    "originalExplanation": "ICMP is carried directly by IP rather than by TCP or UDP.",
+    "detailedReasoning": "The Internet Control Message Protocol (ICMP) is an integral part of the IP protocol suite. Although ICMP functions at the network layer to handle diagnostic, error reporting, and query services, ICMP messages are encapsulated directly inside standard IP datagrams. The IPv4 header Protocol field contains the value 1 to designate ICMP. For IPv6, ICMPv6 messages are encapsulated with Next Header value 58.",
+    "examTakeaway": "ICMP is encapsulated directly inside IP packets (Protocol field = 1). It does not use TCP or UDP.",
+    "sourceFileName": "media_1792415803928.pdf",
+    "pageNumber": "Page 2, Q7",
+    "extractionConfidence": 100,
+    "verificationStatus": "verified",
+    "citations": [
       {
-        title: 'RFC 792 - Redirect Message Specification',
-        url: 'https://datatracker.ietf.org/doc/html/rfc792',
-        description: 'Type 5 message format and conditions under which a gateway may generate a redirect.',
-        rfcOrStandard: 'RFC 792'
+        "title": "RFC 792 - Internet Control Message Protocol",
+        "url": "https://datatracker.ietf.org/doc/html/rfc792",
+        "description": "Specifies ICMP message encapsulation in IP datagrams and Protocol ID 1.",
+        "rfcOrStandard": "RFC 792"
       }
     ],
-    isCalculationBased: false
+    "isCalculationBased": false
   },
   {
-    id: 'orig_w10_q10',
-    courseName: 'Computer Networks',
-    week: 10,
-    assignment: 10,
-    collection: 'original',
-    questionNumber: 10,
-    questionText: "Which ICMP message is generated when a packet's TTL expires?",
-    options: [
+    "id": "orig_w10_q8",
+    "courseName": "Computer Networks",
+    "week": 10,
+    "assignment": 10,
+    "collection": "original",
+    "questionNumber": 8,
+    "questionText": "Which network utility uses ICMP Echo Request and Echo Reply messages?",
+    "options": [
       {
-        id: 'w10_q10_opt1',
-        text: 'Destination Unreachable',
-        isCorrect: false,
-        originalPosition: '1st option',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Destination Unreachable is Type 3, generated when no route or port exists.'
+        "id": "w10_q8_opt4",
+        "text": "Ping",
+        "isCorrect": true,
+        "originalPosition": "4th option",
+        "isGeneratedOption": false,
+        "explanation": "Correct. Ping generates ICMP Echo Request messages (Type 8) and listens for matching ICMP Echo Reply messages (Type 0) to verify host reachability and round-trip time."
       },
       {
-        id: 'w10_q10_opt2',
-        text: 'Time Exceeded',
-        isCorrect: true,
-        originalPosition: '2nd option',
-        isGeneratedOption: false,
-        explanation: 'Correct. When a router decrements an IPv4 packet’s TTL (or IPv6 Hop Limit) to zero, it discards the packet and sends an ICMP Time Exceeded (Type 11, Code 0) message.'
+        "id": "w10_q8_opt3",
+        "text": "Nslookup",
+        "isCorrect": false,
+        "originalPosition": "3rd option",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Nslookup sends DNS queries on UDP/TCP port 53."
       },
       {
-        id: 'w10_q10_opt3',
-        text: 'Redirect',
-        isCorrect: false,
-        originalPosition: '3rd option',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Redirect is Type 5, used for route optimization.'
+        "id": "w10_q8_opt1",
+        "text": "Traceroute",
+        "isCorrect": false,
+        "originalPosition": "1st option",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Traceroute primarily relies on ICMP Time Exceeded (TTL expired) messages."
       },
       {
-        id: 'w10_q10_opt4',
-        text: 'Echo Reply',
-        isCorrect: false,
-        originalPosition: '4th option',
-        isGeneratedOption: true,
-        explanation: 'Incorrect. Echo Reply is Type 0, returning ping responses.'
+        "id": "w10_q8_opt2",
+        "text": "Netstat",
+        "isCorrect": false,
+        "originalPosition": "2nd option",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Netstat inspects local socket tables and interface statistics, not network probes."
       }
     ],
-    originalAnswer: 'Time Exceeded',
-    verifiedAnswer: 'Time Exceeded',
-    answersAgree: true,
-    originalExplanation: "When an IPv4 packet's TTL reaches zero, a router discards it and can generate an ICMP Time Exceeded message.",
-    detailedReasoning: "The Time-To-Live (TTL) field in the IPv4 header prevents packets from circulating endlessly in routing loops. Every router that forwards a datagram decrements its TTL by at least 1. If the TTL reaches zero before reaching the destination, the router drops the packet and transmits an ICMP Time Exceeded message (Type 11, Code 0: Time to Live exceeded in Transit) back to the source IP address. The traceroute utility exploits this behavior by sending packets with incrementing TTLs (1, 2, 3...) to discover each hop along the path.",
-    examTakeaway: 'When TTL drops to 0: Packet is discarded, router transmits ICMP Type 11 (Time Exceeded). Traceroute uses this to map hops.',
-    sourceFileName: 'media_1792415803928.pdf',
-    pageNumber: 'Page 2, Q10',
-    extractionConfidence: 100,
-    verificationStatus: 'verified',
-    citations: [
+    "originalAnswer": "Ping",
+    "verifiedAnswer": "Ping",
+    "answersAgree": true,
+    "originalExplanation": "Ping uses ICMP Echo Request and Echo Reply messages to test reachability and measure round-trip communication.",
+    "detailedReasoning": "The ping utility (named after the sonar echo sound) tests end-to-end IP reachability. The sending host transmits an ICMP Echo Request (Type 8, Code 0) containing an identifier, sequence number, and timestamp payload. When the destination host receives the request, its IP stack automatically formats and returns an ICMP Echo Reply (Type 0, Code 0) copying the original payload. This enables the sender to calculate round-trip time (RTT) and packet loss percentage.",
+    "examTakeaway": "Ping uses ICMP Echo Request (Type 8) and Echo Reply (Type 0). Traceroute relies on ICMP Time Exceeded (Type 11).",
+    "sourceFileName": "media_1792415803928.pdf",
+    "pageNumber": "Page 2, Q8",
+    "extractionConfidence": 100,
+    "verificationStatus": "verified",
+    "citations": [
       {
-        title: 'RFC 792 - Time Exceeded Message Specification',
-        url: 'https://datatracker.ietf.org/doc/html/rfc792',
-        description: 'Defines Type 11 Code 0 (TTL exceeded in transit) and Code 1 (fragment reassembly time exceeded).',
-        rfcOrStandard: 'RFC 792'
+        "title": "RFC 792 - Echo and Echo Reply Message Specification",
+        "url": "https://datatracker.ietf.org/doc/html/rfc792",
+        "description": "Details Type 8 (Request) and Type 0 (Reply) formats and validation rules.",
+        "rfcOrStandard": "RFC 792"
       }
     ],
-    isCalculationBased: false
+    "isCalculationBased": false
+  },
+  {
+    "id": "orig_w10_q9",
+    "courseName": "Computer Networks",
+    "week": 10,
+    "assignment": 10,
+    "collection": "original",
+    "questionNumber": 9,
+    "questionText": "Which ICMP message informs a host about a better route to a destination?",
+    "options": [
+      {
+        "id": "w10_q9_opt2",
+        "text": "Destination Unreachable",
+        "isCorrect": false,
+        "originalPosition": "2nd option",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Destination Unreachable notifies a host that a network, host, port, or protocol is unavailable."
+      },
+      {
+        "id": "w10_q9_opt3",
+        "text": "Redirect",
+        "isCorrect": true,
+        "originalPosition": "3rd option",
+        "isGeneratedOption": false,
+        "explanation": "Correct. An ICMP Redirect (Type 5) is sent by a default gateway router to inform a host that another router on the local subnet is a better next-hop for that specific destination."
+      },
+      {
+        "id": "w10_q9_opt4",
+        "text": "Parameter Problem",
+        "isCorrect": false,
+        "originalPosition": "4th option",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Parameter Problem indicates a syntax or header option error in an IP header."
+      },
+      {
+        "id": "w10_q9_opt1",
+        "text": "Source Quench",
+        "isCorrect": false,
+        "originalPosition": "1st option",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Source Quench (deprecated) was used for rudimentary congestion signaling."
+      }
+    ],
+    "originalAnswer": "Redirect",
+    "verifiedAnswer": "Redirect",
+    "answersAgree": true,
+    "originalExplanation": "An ICMP Redirect informs a host that a different gateway can provide a better route for the destination.",
+    "detailedReasoning": "When a host sends a packet to its default gateway R1, but R1 determines from its routing table that the packet should be forwarded to another router R2 on the same local subnet as the source host, R1 forwards the packet to R2 and simultaneously transmits an ICMP Redirect (Type 5) back to the sender. The message includes the IP address of R2, prompting the host to update its local routing cache and bypass R1 for future packets to that destination.",
+    "examTakeaway": "ICMP Redirect (Type 5): Gateway advises host to send traffic directly to another local router on the same network segment.",
+    "sourceFileName": "media_1792415803928.pdf",
+    "pageNumber": "Page 2, Q9",
+    "extractionConfidence": 100,
+    "verificationStatus": "verified",
+    "citations": [
+      {
+        "title": "RFC 792 - Redirect Message Specification",
+        "url": "https://datatracker.ietf.org/doc/html/rfc792",
+        "description": "Type 5 message format and conditions under which a gateway may generate a redirect.",
+        "rfcOrStandard": "RFC 792"
+      }
+    ],
+    "isCalculationBased": false
+  },
+  {
+    "id": "orig_w10_q10",
+    "courseName": "Computer Networks",
+    "week": 10,
+    "assignment": 10,
+    "collection": "original",
+    "questionNumber": 10,
+    "questionText": "Which ICMP message is generated when a packet's TTL expires?",
+    "options": [
+      {
+        "id": "w10_q10_opt1",
+        "text": "Destination Unreachable",
+        "isCorrect": false,
+        "originalPosition": "1st option",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Destination Unreachable is Type 3, generated when no route or port exists."
+      },
+      {
+        "id": "w10_q10_opt3",
+        "text": "Redirect",
+        "isCorrect": false,
+        "originalPosition": "3rd option",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Redirect is Type 5, used for route optimization."
+      },
+      {
+        "id": "w10_q10_opt4",
+        "text": "Echo Reply",
+        "isCorrect": false,
+        "originalPosition": "4th option",
+        "isGeneratedOption": true,
+        "explanation": "Incorrect. Echo Reply is Type 0, returning ping responses."
+      },
+      {
+        "id": "w10_q10_opt2",
+        "text": "Time Exceeded",
+        "isCorrect": true,
+        "originalPosition": "2nd option",
+        "isGeneratedOption": false,
+        "explanation": "Correct. When a router decrements an IPv4 packet’s TTL (or IPv6 Hop Limit) to zero, it discards the packet and sends an ICMP Time Exceeded (Type 11, Code 0) message."
+      }
+    ],
+    "originalAnswer": "Time Exceeded",
+    "verifiedAnswer": "Time Exceeded",
+    "answersAgree": true,
+    "originalExplanation": "When an IPv4 packet's TTL reaches zero, a router discards it and can generate an ICMP Time Exceeded message.",
+    "detailedReasoning": "The Time-To-Live (TTL) field in the IPv4 header prevents packets from circulating endlessly in routing loops. Every router that forwards a datagram decrements its TTL by at least 1. If the TTL reaches zero before reaching the destination, the router drops the packet and transmits an ICMP Time Exceeded message (Type 11, Code 0: Time to Live exceeded in Transit) back to the source IP address. The traceroute utility exploits this behavior by sending packets with incrementing TTLs (1, 2, 3...) to discover each hop along the path.",
+    "examTakeaway": "When TTL drops to 0: Packet is discarded, router transmits ICMP Type 11 (Time Exceeded). Traceroute uses this to map hops.",
+    "sourceFileName": "media_1792415803928.pdf",
+    "pageNumber": "Page 2, Q10",
+    "extractionConfidence": 100,
+    "verificationStatus": "verified",
+    "citations": [
+      {
+        "title": "RFC 792 - Time Exceeded Message Specification",
+        "url": "https://datatracker.ietf.org/doc/html/rfc792",
+        "description": "Defines Type 11 Code 0 (TTL exceeded in transit) and Code 1 (fragment reassembly time exceeded).",
+        "rfcOrStandard": "RFC 792"
+      }
+    ],
+    "isCalculationBased": false
   }
 ];
