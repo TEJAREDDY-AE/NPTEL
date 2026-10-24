@@ -126,6 +126,21 @@ export const MockExamView: React.FC<Props> = ({ onReviewIncorrect }) => {
     };
   }, [activeSession?.id]);
 
+  // Ensure active mock exam session has a fine-grained option jumble map
+  useEffect(() => {
+    if (activeSession && activeSession.isOptionsJumbled && (!activeSession.jumbledOptionsMap || Object.keys(activeSession.jumbledOptionsMap).length === 0)) {
+      const allQs = activeSession.questionIds.map(id => getQuestionById(id)).filter(Boolean) as Question[];
+      const map = buildJumbledOptionsMap(allQs);
+      const updated: TestSession = {
+        ...activeSession,
+        isOptionsJumbled: true,
+        jumbledOptionsMap: map
+      };
+      StorageService.saveActiveTestSession(updated);
+      setActiveSession(updated);
+    }
+  }, [activeSession]);
+
   // Submit and grade the exam
   const handleSubmitExam = (sessionToSubmit?: TestSession) => {
     const session = sessionToSubmit || activeSession;
@@ -640,9 +655,12 @@ export const MockExamView: React.FC<Props> = ({ onReviewIncorrect }) => {
 
             {/* Options */}
             <div className="space-y-3">
-              {orderQuestionOptionsByIds(
-                currentQ?.options || [],
-                activeSession?.isOptionsJumbled ? activeSession?.jumbledOptionsMap?.[currentQ?.id || ''] : undefined
+              {(
+                activeSession?.isOptionsJumbled
+                  ? (activeSession?.jumbledOptionsMap?.[currentQ?.id || '']
+                      ? orderQuestionOptionsByIds(currentQ?.options || [], activeSession.jumbledOptionsMap[currentQ?.id || ''])
+                      : shuffleArray(currentQ?.options || []))
+                  : (currentQ?.options || [])
               ).map((opt, oIdx) => {
                 const letter = String.fromCharCode(65 + oIdx);
                 const isSelected = selectedOptions.includes(opt.id);

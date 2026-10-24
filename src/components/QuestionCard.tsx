@@ -33,27 +33,29 @@ export const QuestionCard: React.FC<Props> = ({
   showAnswerByDefault = false,
   onBookmarkToggle,
   className = '',
-  isJumbled = false
+  isJumbled
 }) => {
   const [isExpanded, setIsExpanded] = useState(showAnswerByDefault);
   const [isBookmarked, setIsBookmarked] = useState(() => StorageService.isBookmarked(question.id));
   
-  // Option Jumbling & Interactive "Choose the Correct" State
+  // Option Jumbling & Interactive "Choose the Correct" State (NPTEL Real Exam Mode)
+  const globalJumblePref = StorageService.getOptionsJumbled();
+  const effectiveJumble = isJumbled !== undefined ? isJumbled : globalJumblePref;
   const [isLocallyJumbled, setIsLocallyJumbled] = useState<boolean>(false);
-  const isJumbledMode = isJumbled || isLocallyJumbled;
+  const isJumbledMode = effectiveJumble || isLocallyJumbled;
   const [jumbledOptions, setJumbledOptions] = useState<Question['options']>(() => {
-    return isJumbled ? shuffleArray(question.options) : question.options;
+    return isJumbledMode ? shuffleArray(question.options) : question.options;
   });
   const [userSelectedOptId, setUserSelectedOptId] = useState<string | null>(null);
 
   useEffect(() => {
-    if (isJumbled) {
+    if (effectiveJumble) {
       setJumbledOptions(shuffleArray(question.options));
     } else if (!isLocallyJumbled) {
       setJumbledOptions(question.options);
     }
     setUserSelectedOptId(null);
-  }, [isJumbled, question]);
+  }, [effectiveJumble, question]);
 
   const handleJumbleChoices = (e: React.MouseEvent) => {
     e.stopPropagation();

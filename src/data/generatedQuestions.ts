@@ -17,12 +17,6 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "explanation": "Incorrect. Calculation error in signal velocity and bit conversion."
       },
       {
-        "id": "gen_w1_q1_opt3",
-        "text": "d_trans = 10.0 ms, d_prop = 1.0 ms",
-        "isCorrect": false,
-        "explanation": "Incorrect. Reverses transmission delay and propagation delay."
-      },
-      {
         "id": "gen_w1_q1_opt1",
         "text": "d_trans = 1.0 ms, d_prop = 10.0 ms",
         "isCorrect": true,
@@ -33,6 +27,12 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "text": "d_trans = 0.1 ms, d_prop = 1.0 ms",
         "isCorrect": false,
         "explanation": "Incorrect. Forgets to convert bytes to bits (1250 bytes = 10,000 bits)."
+      },
+      {
+        "id": "gen_w1_q1_opt3",
+        "text": "d_trans = 10.0 ms, d_prop = 1.0 ms",
+        "isCorrect": false,
+        "explanation": "Incorrect. Reverses transmission delay and propagation delay."
       }
     ],
     "originalAnswer": "d_trans = 1.0 ms, d_prop = 10.0 ms",
@@ -76,28 +76,28 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "Which layer of the OSI model is responsible for dialog control, token management, and synchronization checkpoints between end applications?",
     "options": [
       {
-        "id": "gen_w1_q2_opt1",
-        "text": "Session Layer (Layer 5)",
-        "isCorrect": true,
-        "explanation": "Correct. The Session Layer establishes, manages, synchronizes, and terminates dialogues between interacting applications."
-      },
-      {
-        "id": "gen_w1_q2_opt2",
-        "text": "Transport Layer (Layer 4)",
-        "isCorrect": false,
-        "explanation": "Incorrect. Transport Layer provides end-to-end process-to-process delivery, flow control, and error recovery."
-      },
-      {
         "id": "gen_w1_q2_opt3",
         "text": "Presentation Layer (Layer 6)",
         "isCorrect": false,
         "explanation": "Incorrect. Presentation Layer handles syntax, data representation, encryption, and compression."
       },
       {
+        "id": "gen_w1_q2_opt1",
+        "text": "Session Layer (Layer 5)",
+        "isCorrect": true,
+        "explanation": "Correct. The Session Layer establishes, manages, synchronizes, and terminates dialogues between interacting applications."
+      },
+      {
         "id": "gen_w1_q2_opt4",
         "text": "Application Layer (Layer 7)",
         "isCorrect": false,
         "explanation": "Incorrect. Application Layer provides protocols directly for user services (HTTP, FTP, SMTP)."
+      },
+      {
+        "id": "gen_w1_q2_opt2",
+        "text": "Transport Layer (Layer 4)",
+        "isCorrect": false,
+        "explanation": "Incorrect. Transport Layer provides end-to-end process-to-process delivery, flow control, and error recovery."
       }
     ],
     "originalAnswer": "Session Layer (Layer 5)",
@@ -129,28 +129,28 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "A bit stream 1101011011 is to be transmitted using CRC with generator polynomial G(x) = x^4 + x + 1. What is the transmitted codeword?",
     "options": [
       {
-        "id": "gen_w2_q1_opt3",
-        "text": "11010110110011",
-        "isCorrect": false,
-        "explanation": "Incorrect. Appends the divisor instead of the remainder."
-      },
-      {
-        "id": "gen_w2_q1_opt1",
-        "text": "11010110111110",
-        "isCorrect": true,
-        "explanation": "Correct. G(x) = x^4 + x^1 + x^0 corresponds to divisor 10011 (degree 4). Appending 4 zeros to M gives 11010110110000. Binary modulo-2 division yields remainder R = 1110. Codeword = 11010110111110."
-      },
-      {
         "id": "gen_w2_q1_opt2",
         "text": "11010110110101",
         "isCorrect": false,
         "explanation": "Incorrect. Arithmetic error during modulo-2 XOR division."
       },
       {
+        "id": "gen_w2_q1_opt3",
+        "text": "11010110110011",
+        "isCorrect": false,
+        "explanation": "Incorrect. Appends the divisor instead of the remainder."
+      },
+      {
         "id": "gen_w2_q1_opt4",
         "text": "11010110111001",
         "isCorrect": false,
         "explanation": "Incorrect. Incorrect degree subtraction in CRC remainder computation."
+      },
+      {
+        "id": "gen_w2_q1_opt1",
+        "text": "11010110111110",
+        "isCorrect": true,
+        "explanation": "Correct. G(x) = x^4 + x^1 + x^0 corresponds to divisor 10011 (degree 4). Appending 4 zeros to M gives 11010110110000. Binary modulo-2 division yields remainder R = 1110. Codeword = 11010110111110."
       }
     ],
     "originalAnswer": "11010110111110",
@@ -195,28 +195,28 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "In High-Level Data Link Control (HDLC) bit-oriented framing, the flag pattern is 01111110. If the sender wishes to transmit the data sequence 0111111011111001, what bit pattern is actually transmitted over the physical medium after bit stuffing?",
     "options": [
       {
-        "id": "gen_w2_q2_opt4",
-        "text": "011111110111111001",
-        "isCorrect": false,
-        "explanation": "Incorrect. Stuffs a 1 instead of a 0."
-      },
-      {
         "id": "gen_w2_q2_opt2",
         "text": "0111111011111001",
         "isCorrect": false,
         "explanation": "Incorrect. This transmits the raw data without bit stuffing, causing premature frame termination by the receiver."
       },
       {
-        "id": "gen_w2_q2_opt3",
-        "text": "01111100111110001",
+        "id": "gen_w2_q2_opt4",
+        "text": "011111110111111001",
         "isCorrect": false,
-        "explanation": "Incorrect. Stuffs two zeros instead of one."
+        "explanation": "Incorrect. Stuffs a 1 instead of a 0."
       },
       {
         "id": "gen_w2_q2_opt1",
         "text": "011111010111110001",
         "isCorrect": true,
         "explanation": "Correct. In HDLC bit stuffing, whenever the sender detects five consecutive 1s in the data stream, it unconditionally inserts a 0 bit."
+      },
+      {
+        "id": "gen_w2_q2_opt3",
+        "text": "01111100111110001",
+        "isCorrect": false,
+        "explanation": "Incorrect. Stuffs two zeros instead of one."
       }
     ],
     "originalAnswer": "011111010111110001",
@@ -259,16 +259,10 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "In a Stop-and-Wait ARQ protocol, the transmission delay of a frame is 1 ms, and the one-way propagation delay is 49.5 ms. The acknowledgment frame transmission time and processing delays are negligible. What is the link utilization (efficiency η)?",
     "options": [
       {
-        "id": "gen_w3_q1_opt2",
-        "text": "2.0%",
-        "isCorrect": false,
-        "explanation": "Incorrect. Forgets that round-trip propagation includes both forward data and reverse ACK (2 × T_prop)."
-      },
-      {
-        "id": "gen_w3_q1_opt4",
-        "text": "10.0%",
-        "isCorrect": false,
-        "explanation": "Incorrect. Arithmetic mistake."
+        "id": "gen_w3_q1_opt1",
+        "text": "1.0%",
+        "isCorrect": true,
+        "explanation": "Correct. Total cycle time T = T_trans + 2 × T_prop = 1 ms + 2 × 49.5 ms = 100 ms. Efficiency η = T_trans / T = 1 ms / 100 ms = 0.01 = 1.0%."
       },
       {
         "id": "gen_w3_q1_opt3",
@@ -277,10 +271,16 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "explanation": "Incorrect. Calculation error in parameter a."
       },
       {
-        "id": "gen_w3_q1_opt1",
-        "text": "1.0%",
-        "isCorrect": true,
-        "explanation": "Correct. Total cycle time T = T_trans + 2 × T_prop = 1 ms + 2 × 49.5 ms = 100 ms. Efficiency η = T_trans / T = 1 ms / 100 ms = 0.01 = 1.0%."
+        "id": "gen_w3_q1_opt4",
+        "text": "10.0%",
+        "isCorrect": false,
+        "explanation": "Incorrect. Arithmetic mistake."
+      },
+      {
+        "id": "gen_w3_q1_opt2",
+        "text": "2.0%",
+        "isCorrect": false,
+        "explanation": "Incorrect. Forgets that round-trip propagation includes both forward data and reverse ACK (2 × T_prop)."
       }
     ],
     "originalAnswer": "1.0%",
@@ -321,28 +321,28 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "A 1 Gbps CSMA/CD network has a cable length of 1 km. The propagation velocity of signals is 2 × 10^8 m/s. What is the minimum frame size required for reliable collision detection?",
     "options": [
       {
-        "id": "gen_w3_q2_opt4",
-        "text": "1500 bytes",
-        "isCorrect": false,
-        "explanation": "Incorrect. 1500 bytes is standard Ethernet MTU, not the calculated minimum frame constraint."
-      },
-      {
         "id": "gen_w3_q2_opt3",
         "text": "625 bytes (5000 bits)",
         "isCorrect": false,
         "explanation": "Incorrect. Fails to account for round-trip propagation (uses 1 × T_prop instead of 2 × T_prop)."
       },
       {
-        "id": "gen_w3_q2_opt1",
-        "text": "1250 bytes (10,000 bits)",
-        "isCorrect": true,
-        "explanation": "Correct. Minimum transmission time must be at least 2 × T_prop. T_prop = 1000 m / (2 × 10^8 m/s) = 5 μs. Round-trip slot time = 2 × 5 μs = 10 μs. Min bits = 10 μs × 10^9 bps = 10,000 bits = 1250 bytes."
-      },
-      {
         "id": "gen_w3_q2_opt2",
         "text": "64 bytes (512 bits)",
         "isCorrect": false,
         "explanation": "Incorrect. 64 bytes is the standard Ethernet slot size at 10 Mbps over 2.5 km, but at 1 Gbps with these parameters, 1250 bytes is required."
+      },
+      {
+        "id": "gen_w3_q2_opt4",
+        "text": "1500 bytes",
+        "isCorrect": false,
+        "explanation": "Incorrect. 1500 bytes is standard Ethernet MTU, not the calculated minimum frame constraint."
+      },
+      {
+        "id": "gen_w3_q2_opt1",
+        "text": "1250 bytes (10,000 bits)",
+        "isCorrect": true,
+        "explanation": "Correct. Minimum transmission time must be at least 2 × T_prop. T_prop = 1000 m / (2 × 10^8 m/s) = 5 μs. Round-trip slot time = 2 × 5 μs = 10 μs. Min bits = 10 μs × 10^9 bps = 10,000 bits = 1250 bytes."
       }
     ],
     "originalAnswer": "1250 bytes (10,000 bits)",
@@ -385,6 +385,12 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "In the IEEE 802.1D Spanning Tree Protocol (STP), which bridge is elected as the Root Bridge?",
     "options": [
       {
+        "id": "gen_w4_q1_opt2",
+        "text": "The bridge with the highest number of active ports",
+        "isCorrect": false,
+        "explanation": "Incorrect. Port count has no bearing on STP Root Bridge election."
+      },
+      {
         "id": "gen_w4_q1_opt1",
         "text": "The bridge with the lowest Bridge ID (Priority + MAC address)",
         "isCorrect": true,
@@ -401,12 +407,6 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "text": "The bridge closest to the Internet gateway",
         "isCorrect": false,
         "explanation": "Incorrect. STP operates strictly within the Layer 2 broadcast domain independent of Layer 3 IP gateways."
-      },
-      {
-        "id": "gen_w4_q1_opt2",
-        "text": "The bridge with the highest number of active ports",
-        "isCorrect": false,
-        "explanation": "Incorrect. Port count has no bearing on STP Root Bridge election."
       }
     ],
     "originalAnswer": "The bridge with the lowest Bridge ID (Priority + MAC address)",
@@ -438,18 +438,6 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "An organization is allocated the IP network block 192.168.10.0/26. What are the total number of usable host IP addresses, the subnet mask, and the directed broadcast address for this subnet?",
     "options": [
       {
-        "id": "gen_w5_q1_opt2",
-        "text": "64 usable hosts, Subnet Mask: 255.255.255.128, Broadcast: 192.168.10.64",
-        "isCorrect": false,
-        "explanation": "Incorrect. Fails to subtract network ID and broadcast address for usable host calculation."
-      },
-      {
-        "id": "gen_w5_q1_opt3",
-        "text": "30 usable hosts, Subnet Mask: 255.255.255.224, Broadcast: 192.168.10.31",
-        "isCorrect": false,
-        "explanation": "Incorrect. /27 corresponds to 30 hosts, not /26."
-      },
-      {
         "id": "gen_w5_q1_opt1",
         "text": "62 usable hosts, Subnet Mask: 255.255.255.192, Broadcast: 192.168.10.63",
         "isCorrect": true,
@@ -460,6 +448,18 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "text": "126 usable hosts, Subnet Mask: 255.255.255.192, Broadcast: 192.168.10.127",
         "isCorrect": false,
         "explanation": "Incorrect. 126 usable hosts corresponds to /25 prefix."
+      },
+      {
+        "id": "gen_w5_q1_opt3",
+        "text": "30 usable hosts, Subnet Mask: 255.255.255.224, Broadcast: 192.168.10.31",
+        "isCorrect": false,
+        "explanation": "Incorrect. /27 corresponds to 30 hosts, not /26."
+      },
+      {
+        "id": "gen_w5_q1_opt2",
+        "text": "64 usable hosts, Subnet Mask: 255.255.255.128, Broadcast: 192.168.10.64",
+        "isCorrect": false,
+        "explanation": "Incorrect. Fails to subtract network ID and broadcast address for usable host calculation."
       }
     ],
     "originalAnswer": "62 usable hosts, Subnet Mask: 255.255.255.192, Broadcast: 192.168.10.63",
@@ -517,16 +517,16 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "explanation": "Correct. Data payload = 4000 - 20 = 3980 bytes. Frag 1: 1480 bytes data, Offset 0, MF=1. Frag 2: 1480 bytes data, Offset 185, MF=1. Frag 3: Remaining 3980 - 2960 = 1020 bytes data. Total length = 1020 + 20 = 1040 bytes, MF=0, Offset = 2960 / 8 = 370."
       },
       {
-        "id": "gen_w6_q1_opt2",
-        "text": "Total Length = 1060 bytes, MF = 1, Fragment Offset = 370",
-        "isCorrect": false,
-        "explanation": "Incorrect. Calculation error in payload division and the final fragment must have MF = 0."
-      },
-      {
         "id": "gen_w6_q1_opt3",
         "text": "Total Length = 1000 bytes, MF = 1, Fragment Offset = 2960",
         "isCorrect": false,
         "explanation": "Incorrect. Offset is measured in 8-byte blocks, not raw bytes, and the last fragment has MF = 0."
+      },
+      {
+        "id": "gen_w6_q1_opt2",
+        "text": "Total Length = 1060 bytes, MF = 1, Fragment Offset = 370",
+        "isCorrect": false,
+        "explanation": "Incorrect. Calculation error in payload division and the final fragment must have MF = 0."
       }
     ],
     "originalAnswer": "Total Length = 1040 bytes, MF = 0, Fragment Offset = 370",
@@ -571,28 +571,28 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "The 4-bit Internet Header Length (IHL) field in the IPv4 header specifies the length of the IP header in units of:",
     "options": [
       {
-        "id": "gen_w6_q2_opt1",
-        "text": "32-bit (4-byte) words",
-        "isCorrect": true,
-        "explanation": "Correct. The 4-bit IHL field counts the number of 32-bit (4-byte) words. Minimum value is 5 (5 × 4 = 20 bytes) and maximum is 15 (15 × 4 = 60 bytes)."
-      },
-      {
         "id": "gen_w6_q2_opt3",
         "text": "16-bit words",
         "isCorrect": false,
         "explanation": "Incorrect. IPv4 header length is measured in 32-bit words, not 16-bit words."
       },
       {
-        "id": "gen_w6_q2_opt4",
-        "text": "64-bit words",
-        "isCorrect": false,
-        "explanation": "Incorrect. 64-bit word units are not used for IPv4 header sizing."
+        "id": "gen_w6_q2_opt1",
+        "text": "32-bit (4-byte) words",
+        "isCorrect": true,
+        "explanation": "Correct. The 4-bit IHL field counts the number of 32-bit (4-byte) words. Minimum value is 5 (5 × 4 = 20 bytes) and maximum is 15 (15 × 4 = 60 bytes)."
       },
       {
         "id": "gen_w6_q2_opt2",
         "text": "Bytes (octets)",
         "isCorrect": false,
         "explanation": "Incorrect. If it counted single bytes, a 4-bit field could only count up to 15 bytes, which is insufficient for the minimum 20-byte IPv4 header."
+      },
+      {
+        "id": "gen_w6_q2_opt4",
+        "text": "64-bit words",
+        "isCorrect": false,
+        "explanation": "Incorrect. 64-bit word units are not used for IPv4 header sizing."
       }
     ],
     "originalAnswer": "32-bit (4-byte) words",
@@ -677,28 +677,28 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "An IPv4 datagram has the Don't Fragment (DF) flag set to 1. If this datagram encounters an outgoing link whose MTU is strictly smaller than the datagram length, what will occur?",
     "options": [
       {
-        "id": "gen_w6_q4_opt4",
-        "text": "The router queues the datagram until the link MTU expands",
-        "isCorrect": false,
-        "explanation": "Incorrect. Link MTU is a fixed hardware/datalink property."
-      },
-      {
-        "id": "gen_w6_q4_opt2",
-        "text": "The router overrides the DF flag, fragments the packet anyway, and forwards the fragments",
-        "isCorrect": false,
-        "explanation": "Incorrect. Routers are strictly forbidden from overriding the DF flag."
-      },
-      {
         "id": "gen_w6_q4_opt1",
         "text": "The router drops the datagram and returns an ICMP Destination Unreachable (Type 3, Code 4: Fragmentation Needed and DF Set) message",
         "isCorrect": true,
         "explanation": "Correct. When DF=1, fragmentation is explicitly prohibited. If the packet exceeds MTU, the router must drop it and send ICMP Type 3, Code 4."
       },
       {
+        "id": "gen_w6_q4_opt4",
+        "text": "The router queues the datagram until the link MTU expands",
+        "isCorrect": false,
+        "explanation": "Incorrect. Link MTU is a fixed hardware/datalink property."
+      },
+      {
         "id": "gen_w6_q4_opt3",
         "text": "The router compresses the payload without loss and transmits it within the MTU",
         "isCorrect": false,
         "explanation": "Incorrect. IP routers do not perform application-layer payload compression on transit packets."
+      },
+      {
+        "id": "gen_w6_q4_opt2",
+        "text": "The router overrides the DF flag, fragments the packet anyway, and forwards the fragments",
+        "isCorrect": false,
+        "explanation": "Incorrect. Routers are strictly forbidden from overriding the DF flag."
       }
     ],
     "originalAnswer": "The router drops the datagram and returns an ICMP Destination Unreachable (Type 3, Code 4: Fragmentation Needed and DF Set) message",
@@ -783,16 +783,10 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "What is the fixed size of the IPv6 base header, and why did the designers of IPv6 eliminate the header checksum field?",
     "options": [
       {
-        "id": "gen_w6_q6_opt3",
-        "text": "Fixed size: 64 bytes; checksum was replaced by hardware encryption",
+        "id": "gen_w6_q6_opt4",
+        "text": "Fixed size: 32 bytes; checksum was removed because modern fiber optic links are 100% error-free",
         "isCorrect": false,
-        "explanation": "Incorrect. IPv6 base header is 40 bytes, not 64 bytes."
-      },
-      {
-        "id": "gen_w6_q6_opt1",
-        "text": "Fixed size: 40 bytes; checksum was removed to accelerate router forwarding performance, relying on Layer 2 and Layer 4 checksums",
-        "isCorrect": true,
-        "explanation": "Correct. IPv6 base header is exactly 40 bytes. Removing the header checksum avoids per-hop checksum recalculation at routers."
+        "explanation": "Incorrect. Fiber links can still experience bit errors; integrity is enforced by Layer 2 CRC and mandatory Layer 4 checksums."
       },
       {
         "id": "gen_w6_q6_opt2",
@@ -801,10 +795,16 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "explanation": "Incorrect. IPv4 standard header is 20 bytes, but IPv6 is 40 bytes due to two 128-bit (16-byte) addresses."
       },
       {
-        "id": "gen_w6_q6_opt4",
-        "text": "Fixed size: 32 bytes; checksum was removed because modern fiber optic links are 100% error-free",
+        "id": "gen_w6_q6_opt1",
+        "text": "Fixed size: 40 bytes; checksum was removed to accelerate router forwarding performance, relying on Layer 2 and Layer 4 checksums",
+        "isCorrect": true,
+        "explanation": "Correct. IPv6 base header is exactly 40 bytes. Removing the header checksum avoids per-hop checksum recalculation at routers."
+      },
+      {
+        "id": "gen_w6_q6_opt3",
+        "text": "Fixed size: 64 bytes; checksum was replaced by hardware encryption",
         "isCorrect": false,
-        "explanation": "Incorrect. Fiber links can still experience bit errors; integrity is enforced by Layer 2 CRC and mandatory Layer 4 checksums."
+        "explanation": "Incorrect. IPv6 base header is 40 bytes, not 64 bytes."
       }
     ],
     "originalAnswer": "Fixed size: 40 bytes; checksum was removed to accelerate router forwarding performance, relying on Layer 2 and Layer 4 checksums",
@@ -836,10 +836,10 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "In IPv6, optional control information is provided through Extension Headers chained via the \"Next Header\" field. Which IPv6 extension header must be inspected and processed by every router along the delivery path?",
     "options": [
       {
-        "id": "gen_w6_q7_opt4",
-        "text": "Encapsulating Security Payload Header (Next Header value 50)",
+        "id": "gen_w6_q7_opt3",
+        "text": "Fragment Header (Next Header value 44)",
         "isCorrect": false,
-        "explanation": "Incorrect. ESP is inspected only by the IPsec decrypting endpoint or security gateway."
+        "explanation": "Incorrect. Fragmentation and reassembly in IPv6 is performed exclusively by the source and destination endpoints, never intermediate routers."
       },
       {
         "id": "gen_w6_q7_opt2",
@@ -848,16 +848,16 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "explanation": "Incorrect. Routing headers are only processed by nodes listed in the routing header address list."
       },
       {
-        "id": "gen_w6_q7_opt3",
-        "text": "Fragment Header (Next Header value 44)",
-        "isCorrect": false,
-        "explanation": "Incorrect. Fragmentation and reassembly in IPv6 is performed exclusively by the source and destination endpoints, never intermediate routers."
-      },
-      {
         "id": "gen_w6_q7_opt1",
         "text": "Hop-by-Hop Options Header (Next Header value 0)",
         "isCorrect": true,
         "explanation": "Correct. As specified in RFC 8200, the Hop-by-Hop Options header is the only extension header that must be examined by intermediate routers."
+      },
+      {
+        "id": "gen_w6_q7_opt4",
+        "text": "Encapsulating Security Payload Header (Next Header value 50)",
+        "isCorrect": false,
+        "explanation": "Incorrect. ESP is inspected only by the IPsec decrypting endpoint or security gateway."
       }
     ],
     "originalAnswer": "Hop-by-Hop Options Header (Next Header value 0)",
@@ -889,10 +889,10 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "Which IPv4-to-IPv6 transition mechanism encapsulates complete IPv6 packets as payload inside standard IPv4 datagrams to traverse an IPv4-only intermediate network?",
     "options": [
       {
-        "id": "gen_w6_q8_opt3",
-        "text": "NAT64 / DNS64",
+        "id": "gen_w6_q8_opt2",
+        "text": "Dual-Stack",
         "isCorrect": false,
-        "explanation": "Incorrect. NAT64 translates IPv6 packet headers directly into IPv4 packet headers for IPv6-only clients communicating with IPv4-only servers."
+        "explanation": "Incorrect. Dual-stack enables nodes to run both IPv4 and IPv6 protocol stacks simultaneously on the same physical interface."
       },
       {
         "id": "gen_w6_q8_opt4",
@@ -901,16 +901,16 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "explanation": "Incorrect. Subnetting is an address partition method, not a transition tunneling protocol."
       },
       {
+        "id": "gen_w6_q8_opt3",
+        "text": "NAT64 / DNS64",
+        "isCorrect": false,
+        "explanation": "Incorrect. NAT64 translates IPv6 packet headers directly into IPv4 packet headers for IPv6-only clients communicating with IPv4-only servers."
+      },
+      {
         "id": "gen_w6_q8_opt1",
         "text": "Tunneling (e.g., 6to4, Teredo, GRE)",
         "isCorrect": true,
         "explanation": "Correct. Tunneling encapsulates IPv6 packets within IPv4 headers (IP protocol 41) so they can traverse legacy IPv4 routing infrastructure."
-      },
-      {
-        "id": "gen_w6_q8_opt2",
-        "text": "Dual-Stack",
-        "isCorrect": false,
-        "explanation": "Incorrect. Dual-stack enables nodes to run both IPv4 and IPv6 protocol stacks simultaneously on the same physical interface."
       }
     ],
     "originalAnswer": "Tunneling (e.g., 6to4, Teredo, GRE)",
@@ -948,16 +948,16 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "explanation": "Incorrect. ARP is strictly a local Layer 2 broadcast protocol that does not cross router boundaries."
       },
       {
-        "id": "gen_w6_q9_opt1",
-        "text": "It transmits datagrams with the DF (Don't Fragment) flag set to 1 and reduces the packet size whenever an ICMP \"Fragmentation Needed and DF Set\" message is returned",
-        "isCorrect": true,
-        "explanation": "Correct. PMTUD sets DF=1. If any link has a smaller MTU, the router drops the packet and reports the link MTU via ICMP Type 3 Code 4."
-      },
-      {
         "id": "gen_w6_q9_opt2",
         "text": "It queries intermediate routers via SNMP before opening a TCP connection",
         "isCorrect": false,
         "explanation": "Incorrect. SNMP is a network management protocol, not an in-band path MTU discovery mechanism."
+      },
+      {
+        "id": "gen_w6_q9_opt1",
+        "text": "It transmits datagrams with the DF (Don't Fragment) flag set to 1 and reduces the packet size whenever an ICMP \"Fragmentation Needed and DF Set\" message is returned",
+        "isCorrect": true,
+        "explanation": "Correct. PMTUD sets DF=1. If any link has a smaller MTU, the router drops the packet and reports the link MTU via ICMP Type 3 Code 4."
       },
       {
         "id": "gen_w6_q9_opt4",
@@ -995,6 +995,12 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "An IP datagram has Total Length = 1200 bytes and Header Length (IHL) = 5. How many bytes of data payload are carried by this datagram?",
     "options": [
       {
+        "id": "gen_w6_q10_opt3",
+        "text": "1160 bytes",
+        "isCorrect": false,
+        "explanation": "Incorrect. Assumes a 40-byte header, which is standard for IPv6, not IPv4 with IHL = 5."
+      },
+      {
         "id": "gen_w6_q10_opt2",
         "text": "1195 bytes",
         "isCorrect": false,
@@ -1005,12 +1011,6 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "text": "1200 bytes",
         "isCorrect": false,
         "explanation": "Incorrect. Fails to subtract the header size from Total Length."
-      },
-      {
-        "id": "gen_w6_q10_opt3",
-        "text": "1160 bytes",
-        "isCorrect": false,
-        "explanation": "Incorrect. Assumes a 40-byte header, which is standard for IPv6, not IPv4 with IHL = 5."
       },
       {
         "id": "gen_w6_q10_opt1",
@@ -1058,28 +1058,28 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "What is Karn’s algorithm used for in TCP timer management?",
     "options": [
       {
-        "id": "gen_w8_q1_opt1",
-        "text": "Ignoring RTT samples from retransmitted segments to prevent sample ambiguity and backing off RTO exponentially",
-        "isCorrect": true,
-        "explanation": "Correct. When a packet is retransmitted and an ACK arrives, the sender cannot tell whether the ACK acknowledges the original or the retransmitted packet. Karn’s algorithm ignores RTT samples for retransmitted segments and applies exponential timer backoff."
-      },
-      {
         "id": "gen_w8_q1_opt3",
         "text": "Estimating receiver buffer occupancy during Slow Start",
         "isCorrect": false,
         "explanation": "Incorrect. Receiver buffer occupancy is communicated explicitly by the receiver via rwnd."
       },
       {
-        "id": "gen_w8_q1_opt2",
-        "text": "Calculating the TCP pseudo-header checksum in hardware",
-        "isCorrect": false,
-        "explanation": "Incorrect. Karn’s algorithm deals with RTT estimation, not checksum arithmetic."
-      },
-      {
         "id": "gen_w8_q1_opt4",
         "text": "Allocating dynamic UDP socket ports",
         "isCorrect": false,
         "explanation": "Incorrect. Port allocation is an operating system kernel function."
+      },
+      {
+        "id": "gen_w8_q1_opt1",
+        "text": "Ignoring RTT samples from retransmitted segments to prevent sample ambiguity and backing off RTO exponentially",
+        "isCorrect": true,
+        "explanation": "Correct. When a packet is retransmitted and an ACK arrives, the sender cannot tell whether the ACK acknowledges the original or the retransmitted packet. Karn’s algorithm ignores RTT samples for retransmitted segments and applies exponential timer backoff."
+      },
+      {
+        "id": "gen_w8_q1_opt2",
+        "text": "Calculating the TCP pseudo-header checksum in hardware",
+        "isCorrect": false,
+        "explanation": "Incorrect. Karn’s algorithm deals with RTT estimation, not checksum arithmetic."
       }
     ],
     "originalAnswer": "Ignoring RTT samples from retransmitted segments to prevent sample ambiguity and backing off RTO exponentially",
@@ -1112,6 +1112,18 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "What is the total length of the standard User Datagram Protocol (UDP) header, and what fields does it contain?",
     "options": [
       {
+        "id": "gen_w8_q2_opt3",
+        "text": "12 bytes total: Source Port, Destination Port, Window Size, and Checksum",
+        "isCorrect": false,
+        "explanation": "Incorrect. UDP has no Window Size field (it does not perform flow control)."
+      },
+      {
+        "id": "gen_w8_q2_opt1",
+        "text": "8 bytes total: Source Port (16 bits), Destination Port (16 bits), Length (16 bits), and Checksum (16 bits)",
+        "isCorrect": true,
+        "explanation": "Correct. The UDP header is fixed at exactly 8 bytes (64 bits), containing exactly four 16-bit fields."
+      },
+      {
         "id": "gen_w8_q2_opt4",
         "text": "16 bytes total: Source Port, Destination Port, Offset, Length, and Flags",
         "isCorrect": false,
@@ -1122,18 +1134,6 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "text": "20 bytes total: Source Port, Destination Port, Sequence Number, and Acknowledgment Number",
         "isCorrect": false,
         "explanation": "Incorrect. Sequence and ACK numbers belong to the 20-byte TCP header, not UDP."
-      },
-      {
-        "id": "gen_w8_q2_opt1",
-        "text": "8 bytes total: Source Port (16 bits), Destination Port (16 bits), Length (16 bits), and Checksum (16 bits)",
-        "isCorrect": true,
-        "explanation": "Correct. The UDP header is fixed at exactly 8 bytes (64 bits), containing exactly four 16-bit fields."
-      },
-      {
-        "id": "gen_w8_q2_opt3",
-        "text": "12 bytes total: Source Port, Destination Port, Window Size, and Checksum",
-        "isCorrect": false,
-        "explanation": "Incorrect. UDP has no Window Size field (it does not perform flow control)."
       }
     ],
     "originalAnswer": "8 bytes total: Source Port (16 bits), Destination Port (16 bits), Length (16 bits), and Checksum (16 bits)",
@@ -1165,10 +1165,10 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "Which fields are included in the 12-byte UDP Pseudo-Header during checksum computation to guard against misdelivered datagrams?",
     "options": [
       {
-        "id": "gen_w8_q3_opt3",
-        "text": "48-bit Source MAC, 48-bit Destination MAC, and 16-bit EtherType",
+        "id": "gen_w8_q3_opt2",
+        "text": "32-bit Source IP, 32-bit Destination IP, 16-bit Sequence Number, and 16-bit Window",
         "isCorrect": false,
-        "explanation": "Incorrect. Layer 2 Ethernet MAC addresses are never included in the Layer 4 transport pseudo-header."
+        "explanation": "Incorrect. Sequence numbers and windows are TCP-specific fields."
       },
       {
         "id": "gen_w8_q3_opt1",
@@ -1177,16 +1177,16 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "explanation": "Correct. The pseudo-header is 12 bytes long: Source IP (4B) + Destination IP (4B) + Zero (1B) + Protocol 17 (1B) + UDP Length (2B)."
       },
       {
+        "id": "gen_w8_q3_opt3",
+        "text": "48-bit Source MAC, 48-bit Destination MAC, and 16-bit EtherType",
+        "isCorrect": false,
+        "explanation": "Incorrect. Layer 2 Ethernet MAC addresses are never included in the Layer 4 transport pseudo-header."
+      },
+      {
         "id": "gen_w8_q3_opt4",
         "text": "32-bit Source IP, 32-bit Destination IP, and 32-bit Timestamp",
         "isCorrect": false,
         "explanation": "Incorrect. Timestamps are not part of the standard UDP pseudo-header."
-      },
-      {
-        "id": "gen_w8_q3_opt2",
-        "text": "32-bit Source IP, 32-bit Destination IP, 16-bit Sequence Number, and 16-bit Window",
-        "isCorrect": false,
-        "explanation": "Incorrect. Sequence numbers and windows are TCP-specific fields."
       }
     ],
     "originalAnswer": "32-bit Source IP, 32-bit Destination IP, 8-bit Zero byte, 8-bit Protocol (value 17), and 16-bit UDP Length",
@@ -1218,16 +1218,16 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "A TCP connection has a current Smoothed Round-Trip Time (SRTT) of 80 ms. A new non-retransmitted segment is acknowledged with a SampleRTT of 120 ms. Using Jacobson’s algorithm with smoothing factor α = 0.125 (1/8), what is the new SRTT value?",
     "options": [
       {
+        "id": "gen_w8_q4_opt1",
+        "text": "85 ms",
+        "isCorrect": true,
+        "explanation": "Correct. SRTT_new = (1 - α) × SRTT_old + α × SampleRTT = (1 - 0.125) × 80 + 0.125 × 120 = 0.875 × 80 + 15 = 70 + 15 = 85 ms."
+      },
+      {
         "id": "gen_w8_q4_opt3",
         "text": "95 ms",
         "isCorrect": false,
         "explanation": "Incorrect. Calculation error in weighting."
-      },
-      {
-        "id": "gen_w8_q4_opt2",
-        "text": "100 ms",
-        "isCorrect": false,
-        "explanation": "Incorrect. Arithmetic mean (80 + 120)/2 = 100 ms, which ignores the exponential smoothing factor α = 0.125."
       },
       {
         "id": "gen_w8_q4_opt4",
@@ -1236,10 +1236,10 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "explanation": "Incorrect. Uses α = 0.0625 instead of α = 0.125."
       },
       {
-        "id": "gen_w8_q4_opt1",
-        "text": "85 ms",
-        "isCorrect": true,
-        "explanation": "Correct. SRTT_new = (1 - α) × SRTT_old + α × SampleRTT = (1 - 0.125) × 80 + 0.125 × 120 = 0.875 × 80 + 15 = 70 + 15 = 85 ms."
+        "id": "gen_w8_q4_opt2",
+        "text": "100 ms",
+        "isCorrect": false,
+        "explanation": "Incorrect. Arithmetic mean (80 + 120)/2 = 100 ms, which ignores the exponential smoothing factor α = 0.125."
       }
     ],
     "originalAnswer": "85 ms",
@@ -1281,10 +1281,10 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "According to RFC 6298, if a TCP connection has a Smoothed RTT (SRTT) of 100 ms and an RTT Variation (RTTVAR) of 25 ms, what is the computed Retransmission Timeout (RTO)?",
     "options": [
       {
-        "id": "gen_w8_q5_opt4",
-        "text": "400 ms",
+        "id": "gen_w8_q5_opt2",
+        "text": "125 ms",
         "isCorrect": false,
-        "explanation": "Incorrect. Computes 4 × (SRTT + RTTVAR)."
+        "explanation": "Incorrect. Computes SRTT + RTTVAR, omitting the factor of 4."
       },
       {
         "id": "gen_w8_q5_opt1",
@@ -1293,10 +1293,10 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "explanation": "Correct. RTO = SRTT + 4 × RTTVAR = 100 ms + 4 × (25 ms) = 100 + 100 = 200 ms."
       },
       {
-        "id": "gen_w8_q5_opt2",
-        "text": "125 ms",
+        "id": "gen_w8_q5_opt4",
+        "text": "400 ms",
         "isCorrect": false,
-        "explanation": "Incorrect. Computes SRTT + RTTVAR, omitting the factor of 4."
+        "explanation": "Incorrect. Computes 4 × (SRTT + RTTVAR)."
       },
       {
         "id": "gen_w8_q5_opt3",
@@ -1343,10 +1343,10 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "In the Berkeley Sockets API, what is the correct chronological sequence of system calls executed by a connection-oriented TCP server to establish a connection and accept incoming client requests?",
     "options": [
       {
-        "id": "gen_w8_q6_opt1",
-        "text": "socket() → bind() → listen() → accept() → recv() / send() → close()",
-        "isCorrect": true,
-        "explanation": "Correct. A TCP server creates an endpoint with socket(), binds to a port with bind(), enters passive mode with listen(), and blocks on accept() to return a new connected socket."
+        "id": "gen_w8_q6_opt2",
+        "text": "socket() → connect() → bind() → listen() → accept()",
+        "isCorrect": false,
+        "explanation": "Incorrect. connect() is called by the TCP client, not the server."
       },
       {
         "id": "gen_w8_q6_opt3",
@@ -1355,16 +1355,16 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "explanation": "Incorrect. bind() must precede listen() so the socket is bound to an address before entering listening state."
       },
       {
+        "id": "gen_w8_q6_opt1",
+        "text": "socket() → bind() → listen() → accept() → recv() / send() → close()",
+        "isCorrect": true,
+        "explanation": "Correct. A TCP server creates an endpoint with socket(), binds to a port with bind(), enters passive mode with listen(), and blocks on accept() to return a new connected socket."
+      },
+      {
         "id": "gen_w8_q6_opt4",
         "text": "bind() → socket() → accept() → listen() → close()",
         "isCorrect": false,
         "explanation": "Incorrect. socket() must be created first before bind() can attach an address to it."
-      },
-      {
-        "id": "gen_w8_q6_opt2",
-        "text": "socket() → connect() → bind() → listen() → accept()",
-        "isCorrect": false,
-        "explanation": "Incorrect. connect() is called by the TCP client, not the server."
       }
     ],
     "originalAnswer": "socket() → bind() → listen() → accept() → recv() / send() → close()",
@@ -1396,16 +1396,16 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "How does transport-layer socket demultiplexing differ between UDP and TCP?",
     "options": [
       {
-        "id": "gen_w8_q7_opt3",
-        "text": "Both TCP and UDP demultiplex exclusively using the 16-bit Destination Port number",
-        "isCorrect": false,
-        "explanation": "Incorrect. TCP requires Source IP and Source Port to distinguish different concurrent client connections on the same listening port (e.g. port 80)."
-      },
-      {
         "id": "gen_w8_q7_opt2",
         "text": "UDP demultiplexing uses MAC addresses, whereas TCP demultiplexing uses IP addresses",
         "isCorrect": false,
         "explanation": "Incorrect. MAC addressing is performed at Layer 2 (Data Link Layer), not the transport layer."
+      },
+      {
+        "id": "gen_w8_q7_opt4",
+        "text": "UDP requires a 5-tuple demultiplexing key including IP Protocol number",
+        "isCorrect": false,
+        "explanation": "Incorrect. Within the UDP protocol handler, the 2-tuple (Dest IP, Dest Port) identifies the receiving socket."
       },
       {
         "id": "gen_w8_q7_opt1",
@@ -1414,10 +1414,10 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "explanation": "Correct. Two UDP packets from different sources arriving at the same destination port are delivered to the same socket; TCP directs them to distinct connected sockets based on the complete 4-tuple."
       },
       {
-        "id": "gen_w8_q7_opt4",
-        "text": "UDP requires a 5-tuple demultiplexing key including IP Protocol number",
+        "id": "gen_w8_q7_opt3",
+        "text": "Both TCP and UDP demultiplex exclusively using the 16-bit Destination Port number",
         "isCorrect": false,
-        "explanation": "Incorrect. Within the UDP protocol handler, the 2-tuple (Dest IP, Dest Port) identifies the receiving socket."
+        "explanation": "Incorrect. TCP requires Source IP and Source Port to distinguish different concurrent client connections on the same listening port (e.g. port 80)."
       }
     ],
     "originalAnswer": "UDP demultiplexing uses a 2-tuple (Destination IP, Destination Port), whereas TCP demultiplexing requires a 4-tuple (Source IP, Source Port, Destination IP, Destination Port)",
@@ -1449,16 +1449,16 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "According to IANA port number assignments, what is the designated port range for \"Well-Known Ports\" (system ports reserved for standard privileged services like HTTP, DNS, and SSH)?",
     "options": [
       {
-        "id": "gen_w8_q8_opt4",
-        "text": "0 to 255",
-        "isCorrect": false,
-        "explanation": "Incorrect. 256 ports is too small; well-known range extends through port 1023."
-      },
-      {
         "id": "gen_w8_q8_opt2",
         "text": "1024 to 49151",
         "isCorrect": false,
         "explanation": "Incorrect. 1024 to 49151 represents Registered Ports."
+      },
+      {
+        "id": "gen_w8_q8_opt1",
+        "text": "0 to 1023",
+        "isCorrect": true,
+        "explanation": "Correct. Ports 0 to 1023 are Well-Known ports assigned by IANA for core Internet services."
       },
       {
         "id": "gen_w8_q8_opt3",
@@ -1467,10 +1467,10 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "explanation": "Incorrect. 49152 to 65535 represents Dynamic, Private, or Ephemeral Ports."
       },
       {
-        "id": "gen_w8_q8_opt1",
-        "text": "0 to 1023",
-        "isCorrect": true,
-        "explanation": "Correct. Ports 0 to 1023 are Well-Known ports assigned by IANA for core Internet services."
+        "id": "gen_w8_q8_opt4",
+        "text": "0 to 255",
+        "isCorrect": false,
+        "explanation": "Incorrect. 256 ports is too small; well-known range extends through port 1023."
       }
     ],
     "originalAnswer": "0 to 1023",
@@ -1502,16 +1502,16 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "In TCP connection termination, why must the endpoint that initiates the active close enter the TIME-WAIT state and remain there for 2MSL (Maximum Segment Lifetime)?",
     "options": [
       {
-        "id": "gen_w8_q9_opt1",
-        "text": "To ensure the final ACK is received by the passive closer (retransmitting it if lost) and to allow lingering duplicate packets from this connection to expire in the network",
-        "isCorrect": true,
-        "explanation": "Correct. TIME-WAIT (typically 2 minutes = 2 × 60s) ensures reliable teardown and prevents old duplicate packets from corrupting subsequent connections using the same port pair."
-      },
-      {
         "id": "gen_w8_q9_opt3",
         "text": "To allow the sender to transmit remaining queued payload data",
         "isCorrect": false,
         "explanation": "Incorrect. In TIME-WAIT, all user data has already been sent and acknowledged."
+      },
+      {
+        "id": "gen_w8_q9_opt2",
+        "text": "To flush the receiving application's disk cache before exiting",
+        "isCorrect": false,
+        "explanation": "Incorrect. Operating system disk caching is unrelated to TCP transport timers."
       },
       {
         "id": "gen_w8_q9_opt4",
@@ -1520,10 +1520,10 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "explanation": "Incorrect. TCP options are negotiated only during the initial SYN 3-way handshake."
       },
       {
-        "id": "gen_w8_q9_opt2",
-        "text": "To flush the receiving application's disk cache before exiting",
-        "isCorrect": false,
-        "explanation": "Incorrect. Operating system disk caching is unrelated to TCP transport timers."
+        "id": "gen_w8_q9_opt1",
+        "text": "To ensure the final ACK is received by the passive closer (retransmitting it if lost) and to allow lingering duplicate packets from this connection to expire in the network",
+        "isCorrect": true,
+        "explanation": "Correct. TIME-WAIT (typically 2 minutes = 2 × 60s) ensures reliable teardown and prevents old duplicate packets from corrupting subsequent connections using the same port pair."
       }
     ],
     "originalAnswer": "To ensure the final ACK is received by the passive closer (retransmitting it if lost) and to allow lingering duplicate packets from this connection to expire in the network",
@@ -1567,16 +1567,16 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "explanation": "Correct. Nagle’s algorithm batches small writes into full Maximum Segment Size (MSS) packets, reducing packet header overhead."
       },
       {
-        "id": "gen_w8_q10_opt3",
-        "text": "Halve the congestion window when three duplicate ACKs arrive",
-        "isCorrect": false,
-        "explanation": "Incorrect. Halving cwnd on duplicate ACKs is TCP Fast Retransmit / Fast Recovery."
-      },
-      {
         "id": "gen_w8_q10_opt4",
         "text": "Compute smoothed round trip times using exponential moving averages",
         "isCorrect": false,
         "explanation": "Incorrect. Smoothed RTT is Jacobson’s algorithm."
+      },
+      {
+        "id": "gen_w8_q10_opt3",
+        "text": "Halve the congestion window when three duplicate ACKs arrive",
+        "isCorrect": false,
+        "explanation": "Incorrect. Halving cwnd on duplicate ACKs is TCP Fast Retransmit / Fast Recovery."
       }
     ],
     "originalAnswer": "Prevent the transmission of tiny TCP packets (Silly Window Syndrome) by withholding small segments until an ACK arrives or enough data accumulates to fill a full MSS",
@@ -1608,28 +1608,28 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "A client requests a base HTML file that references 10 embedded JPEG images located on the same server. Assuming RTT = 20 ms and transmission time is negligible, what is the total time required to retrieve the HTML file and all 10 images using HTTP/1.1 with persistent connections and pipelining enabled?",
     "options": [
       {
-        "id": "gen_w11_q1_opt3",
-        "text": "440 ms (22 RTTs)",
-        "isCorrect": false,
-        "explanation": "Incorrect. 440 ms corresponds to non-persistent HTTP/1.0 with single connection (2 RTTs per object × 11 objects = 22 RTTs)."
-      },
-      {
-        "id": "gen_w11_q1_opt2",
-        "text": "240 ms (12 RTTs)",
-        "isCorrect": false,
-        "explanation": "Incorrect. 240 ms corresponds to HTTP/1.1 persistent WITHOUT pipelining (1 TCP + 1 HTML + 10 individual object RTTs = 12 RTTs)."
-      },
-      {
         "id": "gen_w11_q1_opt1",
         "text": "60 ms (3 RTTs)",
         "isCorrect": true,
         "explanation": "Correct. 1 RTT for TCP 3-way handshake + 1 RTT for base HTML request/response + 1 RTT to request and receive all 10 pipelined images back-to-back = 3 RTTs = 60 ms."
       },
       {
+        "id": "gen_w11_q1_opt3",
+        "text": "440 ms (22 RTTs)",
+        "isCorrect": false,
+        "explanation": "Incorrect. 440 ms corresponds to non-persistent HTTP/1.0 with single connection (2 RTTs per object × 11 objects = 22 RTTs)."
+      },
+      {
         "id": "gen_w11_q1_opt4",
         "text": "40 ms (2 RTTs)",
         "isCorrect": false,
         "explanation": "Incorrect. Fails to account for either the TCP handshake or the image fetch phase."
+      },
+      {
+        "id": "gen_w11_q1_opt2",
+        "text": "240 ms (12 RTTs)",
+        "isCorrect": false,
+        "explanation": "Incorrect. 240 ms corresponds to HTTP/1.1 persistent WITHOUT pipelining (1 TCP + 1 HTML + 10 individual object RTTs = 12 RTTs)."
       }
     ],
     "originalAnswer": "60 ms (3 RTTs)",
@@ -1672,16 +1672,10 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "What is the fundamental difference between a recursive DNS query and an iterative DNS query?",
     "options": [
       {
-        "id": "gen_w11_q2_opt1",
-        "text": "In a recursive query, the queried DNS server assumes full responsibility to resolve the complete IP address on the client's behalf; in an iterative query, the queried server returns the best referral (IP of the next-level DNS server) to the requester",
-        "isCorrect": true,
-        "explanation": "Correct. Clients typically make recursive queries to their local ISP resolver; the local resolver then conducts iterative queries to Root, TLD, and Authoritative servers."
-      },
-      {
-        "id": "gen_w11_q2_opt4",
-        "text": "Iterative queries cache results permanently, whereas recursive queries never cache results",
+        "id": "gen_w11_q2_opt3",
+        "text": "Recursive queries only return IPv4 addresses (Type A), whereas iterative queries only return IPv6 addresses (Type AAAA)",
         "isCorrect": false,
-        "explanation": "Incorrect. DNS caching is performed regardless of query style based on the TTL in the Resource Record."
+        "explanation": "Incorrect. Query resolution style is independent of Resource Record types."
       },
       {
         "id": "gen_w11_q2_opt2",
@@ -1690,10 +1684,16 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "explanation": "Incorrect. Both iterative and recursive DNS queries standardly run over UDP port 53 (TCP is used for zone transfers or large >512B replies)."
       },
       {
-        "id": "gen_w11_q2_opt3",
-        "text": "Recursive queries only return IPv4 addresses (Type A), whereas iterative queries only return IPv6 addresses (Type AAAA)",
+        "id": "gen_w11_q2_opt4",
+        "text": "Iterative queries cache results permanently, whereas recursive queries never cache results",
         "isCorrect": false,
-        "explanation": "Incorrect. Query resolution style is independent of Resource Record types."
+        "explanation": "Incorrect. DNS caching is performed regardless of query style based on the TTL in the Resource Record."
+      },
+      {
+        "id": "gen_w11_q2_opt1",
+        "text": "In a recursive query, the queried DNS server assumes full responsibility to resolve the complete IP address on the client's behalf; in an iterative query, the queried server returns the best referral (IP of the next-level DNS server) to the requester",
+        "isCorrect": true,
+        "explanation": "Correct. Clients typically make recursive queries to their local ISP resolver; the local resolver then conducts iterative queries to Root, TLD, and Authoritative servers."
       }
     ],
     "originalAnswer": "In a recursive query, the queried DNS server assumes full responsibility to resolve the complete IP address on the client's behalf; in an iterative query, the queried server returns the best referral (IP of the next-level DNS server) to the requester",
@@ -1725,12 +1725,6 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "Match the standard DNS Resource Record (RR) types with their primary functions: 1) Type A, 2) Type AAAA, 3) Type CNAME, 4) Type MX",
     "options": [
       {
-        "id": "gen_w11_q3_opt3",
-        "text": "1-IPv6 Address, 2-IPv4 Address, 3-Mail Exchange, 4-Canonical Alias",
-        "isCorrect": false,
-        "explanation": "Incorrect. Reverses Type A and Type AAAA."
-      },
-      {
         "id": "gen_w11_q3_opt4",
         "text": "1-Canonical Name, 2-Mail Server, 3-IPv4 Address, 4-IPv6 Address",
         "isCorrect": false,
@@ -1747,6 +1741,12 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "text": "1-IPv4 Address, 2-IPv6 Address, 3-Canonical Name (Alias), 4-Mail Exchange Server",
         "isCorrect": true,
         "explanation": "Correct. Type A maps host to 32-bit IPv4; Type AAAA maps host to 128-bit IPv6; Type CNAME maps an alias to canonical hostname; Type MX maps domain to mail server."
+      },
+      {
+        "id": "gen_w11_q3_opt3",
+        "text": "1-IPv6 Address, 2-IPv4 Address, 3-Mail Exchange, 4-Canonical Alias",
+        "isCorrect": false,
+        "explanation": "Incorrect. Reverses Type A and Type AAAA."
       }
     ],
     "originalAnswer": "1-IPv4 Address, 2-IPv6 Address, 3-Canonical Name (Alias), 4-Mail Exchange Server",
@@ -1831,10 +1831,10 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "In Internet Electronic Mail architecture, which protocol is used by a sender’s user agent to push email to the mail server, and which protocol is used by the recipient’s user agent to pull/synchronize emails while maintaining folder state on the server?",
     "options": [
       {
-        "id": "gen_w11_q5_opt4",
-        "text": "Push: IMAP; Pull & Sync: POP3",
+        "id": "gen_w11_q5_opt3",
+        "text": "Push: HTTP; Pull & Sync: FTP",
         "isCorrect": false,
-        "explanation": "Incorrect. Neither IMAP nor POP3 is used for pushing outgoing email from the sender's machine."
+        "explanation": "Incorrect. FTP is file transfer, not mail access."
       },
       {
         "id": "gen_w11_q5_opt2",
@@ -1843,16 +1843,16 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "explanation": "Incorrect. POP3 is a mail retrieval (pull) protocol, not a push protocol."
       },
       {
-        "id": "gen_w11_q5_opt3",
-        "text": "Push: HTTP; Pull & Sync: FTP",
-        "isCorrect": false,
-        "explanation": "Incorrect. FTP is file transfer, not mail access."
-      },
-      {
         "id": "gen_w11_q5_opt1",
         "text": "Push: SMTP (Port 25/587); Pull & Sync: IMAP (Port 143/993)",
         "isCorrect": true,
         "explanation": "Correct. SMTP pushes email from client to server and server to server. IMAP pulls and maintains server-side mailbox state (unlike POP3 which downloads and deletes by default)."
+      },
+      {
+        "id": "gen_w11_q5_opt4",
+        "text": "Push: IMAP; Pull & Sync: POP3",
+        "isCorrect": false,
+        "explanation": "Incorrect. Neither IMAP nor POP3 is used for pushing outgoing email from the sender's machine."
       }
     ],
     "originalAnswer": "Push: SMTP (Port 25/587); Pull & Sync: IMAP (Port 143/993)",
@@ -1889,28 +1889,28 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "What key architectural advancement in HTTP/2 directly resolves application-layer Head-of-Line (HoL) blocking that afflicted HTTP/1.1 pipelining?",
     "options": [
       {
-        "id": "gen_w11_q6_opt1",
-        "text": "Binary framing and stream multiplexing over a single TCP connection, allowing interleaved independent request/response frames",
-        "isCorrect": true,
-        "explanation": "Correct. HTTP/2 divides messages into independent binary frames and multiplexes them over interleaved bidirectional streams, eliminating application-layer HoL blocking."
-      },
-      {
         "id": "gen_w11_q6_opt3",
         "text": "Opening 64 separate parallel TCP connections per host",
         "isCorrect": false,
         "explanation": "Incorrect. HTTP/2 specifically avoids opening multiple parallel TCP connections by multiplexing everything over one single connection."
       },
       {
-        "id": "gen_w11_q6_opt4",
-        "text": "Eliminating all HTTP headers completely",
-        "isCorrect": false,
-        "explanation": "Incorrect. HTTP/2 retains HTTP headers and compresses them using HPACK algorithm."
+        "id": "gen_w11_q6_opt1",
+        "text": "Binary framing and stream multiplexing over a single TCP connection, allowing interleaved independent request/response frames",
+        "isCorrect": true,
+        "explanation": "Correct. HTTP/2 divides messages into independent binary frames and multiplexes them over interleaved bidirectional streams, eliminating application-layer HoL blocking."
       },
       {
         "id": "gen_w11_q6_opt2",
         "text": "Switching from TCP to raw UDP sockets with no flow control",
         "isCorrect": false,
         "explanation": "Incorrect. HTTP/2 still operates over standard TCP; HTTP/3 introduces QUIC over UDP."
+      },
+      {
+        "id": "gen_w11_q6_opt4",
+        "text": "Eliminating all HTTP headers completely",
+        "isCorrect": false,
+        "explanation": "Incorrect. HTTP/2 retains HTTP headers and compresses them using HPACK algorithm."
       }
     ],
     "originalAnswer": "Binary framing and stream multiplexing over a single TCP connection, allowing interleaved independent request/response frames",
@@ -1948,12 +1948,6 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "explanation": "Incorrect. 301 is a URL redirection code, not a cache validation code."
       },
       {
-        "id": "gen_w11_q7_opt2",
-        "text": "200 OK",
-        "isCorrect": false,
-        "explanation": "Incorrect. 200 OK retransmits the full resource body across the network."
-      },
-      {
         "id": "gen_w11_q7_opt1",
         "text": "304 Not Modified",
         "isCorrect": true,
@@ -1964,6 +1958,12 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "text": "204 No Content",
         "isCorrect": false,
         "explanation": "Incorrect. 204 indicates an intentional action completed with no response payload (e.g. DELETE or form submit), not cache validation."
+      },
+      {
+        "id": "gen_w11_q7_opt2",
+        "text": "200 OK",
+        "isCorrect": false,
+        "explanation": "Incorrect. 200 OK retransmits the full resource body across the network."
       }
     ],
     "originalAnswer": "304 Not Modified",
@@ -1995,16 +1995,16 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "HTTP is fundamentally a stateless protocol. Which header pair is defined by RFC 6265 to enable servers to track user sessions and state across multiple independent HTTP requests?",
     "options": [
       {
+        "id": "gen_w11_q8_opt3",
+        "text": "Server sends \"Session-ID\" header; Client includes \"Acknowledge-Session\" header",
+        "isCorrect": false,
+        "explanation": "Incorrect. These are non-standard header names."
+      },
+      {
         "id": "gen_w11_q8_opt4",
         "text": "Server sends \"Location\" header; Client includes \"Referer\" header",
         "isCorrect": false,
         "explanation": "Incorrect. Location is for redirects; Referer indicates linking page."
-      },
-      {
-        "id": "gen_w11_q8_opt1",
-        "text": "Server sends \"Set-Cookie\" header; Client includes \"Cookie\" header in subsequent requests",
-        "isCorrect": true,
-        "explanation": "Correct. The server issues \"Set-Cookie: name=val\", which the browser saves and automatically transmits back in \"Cookie: name=val\"."
       },
       {
         "id": "gen_w11_q8_opt2",
@@ -2013,10 +2013,10 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "explanation": "Incorrect. WWW-Authenticate is sent by server and Authorization by client for HTTP basic auth."
       },
       {
-        "id": "gen_w11_q8_opt3",
-        "text": "Server sends \"Session-ID\" header; Client includes \"Acknowledge-Session\" header",
-        "isCorrect": false,
-        "explanation": "Incorrect. These are non-standard header names."
+        "id": "gen_w11_q8_opt1",
+        "text": "Server sends \"Set-Cookie\" header; Client includes \"Cookie\" header in subsequent requests",
+        "isCorrect": true,
+        "explanation": "Correct. The server issues \"Set-Cookie: name=val\", which the browser saves and automatically transmits back in \"Cookie: name=val\"."
       }
     ],
     "originalAnswer": "Server sends \"Set-Cookie\" header; Client includes \"Cookie\" header in subsequent requests",
@@ -2048,12 +2048,6 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "Which HTTP response status code indicates that the requested resource has been assigned a new permanent URI and all future references should use this new URI?",
     "options": [
       {
-        "id": "gen_w11_q9_opt1",
-        "text": "301 Moved Permanently",
-        "isCorrect": true,
-        "explanation": "Correct. 301 designates a permanent redirection, prompting search engines and browsers to update their cached bookmarks and links."
-      },
-      {
         "id": "gen_w11_q9_opt3",
         "text": "403 Forbidden",
         "isCorrect": false,
@@ -2064,6 +2058,12 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "text": "502 Bad Gateway",
         "isCorrect": false,
         "explanation": "Incorrect. 502 indicates proxy/gateway communication failure."
+      },
+      {
+        "id": "gen_w11_q9_opt1",
+        "text": "301 Moved Permanently",
+        "isCorrect": true,
+        "explanation": "Correct. 301 designates a permanent redirection, prompting search engines and browsers to update their cached bookmarks and links."
       },
       {
         "id": "gen_w11_q9_opt2",
@@ -2107,6 +2107,12 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "explanation": "Incorrect. That would create a catastrophic single point of failure and extreme global latency."
       },
       {
+        "id": "gen_w11_q10_opt4",
+        "text": "By using pure peer-to-peer BitTorrent networks among clients",
+        "isCorrect": false,
+        "explanation": "Incorrect. DNS is a hierarchical client-server tree architecture."
+      },
+      {
         "id": "gen_w11_q10_opt3",
         "text": "By utilizing satellite broadcast to push all DNS records to every router nightly",
         "isCorrect": false,
@@ -2117,12 +2123,6 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "text": "By using IP Anycast, allowing hundreds of physical server nodes across the world to advertise the exact same IP address via BGP",
         "isCorrect": true,
         "explanation": "Correct. BGP Anycast routes client queries to the topologically nearest physical instance of that root server letter."
-      },
-      {
-        "id": "gen_w11_q10_opt4",
-        "text": "By using pure peer-to-peer BitTorrent networks among clients",
-        "isCorrect": false,
-        "explanation": "Incorrect. DNS is a hierarchical client-server tree architecture."
       }
     ],
     "originalAnswer": "By using IP Anycast, allowing hundreds of physical server nodes across the world to advertise the exact same IP address via BGP",
@@ -2154,10 +2154,10 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "In the RSA public-key cryptosystem, two prime numbers are chosen as p = 3 and q = 11. If the public encryption key is chosen as e = 7, what is the private decryption key d?",
     "options": [
       {
-        "id": "gen_w12_q1_opt2",
-        "text": "d = 7",
+        "id": "gen_w12_q1_opt4",
+        "text": "d = 17",
         "isCorrect": false,
-        "explanation": "Incorrect. 7 × 7 = 49 ≡ 9 (mod 20) ≠ 1."
+        "explanation": "Incorrect. 7 × 17 = 119 ≡ 19 (mod 20) ≠ 1."
       },
       {
         "id": "gen_w12_q1_opt1",
@@ -2166,16 +2166,16 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "explanation": "Correct. Modulus n = 3 × 11 = 33. Euler totient ϕ(n) = (3 - 1)(11 - 1) = 2 × 10 = 20. We require (e × d) ≡ 1 (mod 20). With e = 7: (7 × 3) = 21 ≡ 1 (mod 20). Therefore, d = 3."
       },
       {
-        "id": "gen_w12_q1_opt4",
-        "text": "d = 17",
-        "isCorrect": false,
-        "explanation": "Incorrect. 7 × 17 = 119 ≡ 19 (mod 20) ≠ 1."
-      },
-      {
         "id": "gen_w12_q1_opt3",
         "text": "d = 13",
         "isCorrect": false,
         "explanation": "Incorrect. 7 × 13 = 91 ≡ 11 (mod 20) ≠ 1."
+      },
+      {
+        "id": "gen_w12_q1_opt2",
+        "text": "d = 7",
+        "isCorrect": false,
+        "explanation": "Incorrect. 7 × 7 = 49 ≡ 9 (mod 20) ≠ 1."
       }
     ],
     "originalAnswer": "d = 3",
@@ -2221,12 +2221,6 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "In the Diffie-Hellman Key Exchange algorithm, Alice and Bob agree on prime modulus q = 23 and primitive root α = 5. Alice selects private key X_A = 6, and Bob selects private key X_B = 15. What is the shared symmetric secret key K generated by both parties?",
     "options": [
       {
-        "id": "gen_w12_q2_opt4",
-        "text": "K = 15",
-        "isCorrect": false,
-        "explanation": "Incorrect. 15 is Bob’s private key, not the computed shared secret."
-      },
-      {
         "id": "gen_w12_q2_opt3",
         "text": "K = 11",
         "isCorrect": false,
@@ -2243,6 +2237,12 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "text": "K = 2",
         "isCorrect": true,
         "explanation": "Correct. Alice public Y_A = 5^6 mod 23 = 15625 mod 23 = 8. Bob public Y_B = 5^15 mod 23 = 19. Shared key K = (Y_B)^X_A mod 23 = 19^6 mod 23 = 2 (or 8^15 mod 23 = 2)."
+      },
+      {
+        "id": "gen_w12_q2_opt4",
+        "text": "K = 15",
+        "isCorrect": false,
+        "explanation": "Incorrect. 15 is Bob’s private key, not the computed shared secret."
       }
     ],
     "originalAnswer": "K = 2",
@@ -2287,16 +2287,16 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "In RSA public-key encryption, given modulus n = 33 and public encryption key e = 3. If a sender encrypts plaintext message M = 4, what is the resulting ciphertext C?",
     "options": [
       {
-        "id": "gen_w12_q3_opt1",
-        "text": "C = 31",
-        "isCorrect": true,
-        "explanation": "Correct. Encryption formula C = M^e mod n = 4^3 mod 33 = 64 mod 33 = 31."
-      },
-      {
         "id": "gen_w12_q3_opt2",
         "text": "C = 12",
         "isCorrect": false,
         "explanation": "Incorrect. Computes M × e = 4 × 3 = 12 instead of modular exponentiation."
+      },
+      {
+        "id": "gen_w12_q3_opt4",
+        "text": "C = 4",
+        "isCorrect": false,
+        "explanation": "Incorrect. Output cannot equal plaintext for non-trivial exponentiation."
       },
       {
         "id": "gen_w12_q3_opt3",
@@ -2305,10 +2305,10 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "explanation": "Incorrect. Forgets to perform the modulo n reduction."
       },
       {
-        "id": "gen_w12_q3_opt4",
-        "text": "C = 4",
-        "isCorrect": false,
-        "explanation": "Incorrect. Output cannot equal plaintext for non-trivial exponentiation."
+        "id": "gen_w12_q3_opt1",
+        "text": "C = 31",
+        "isCorrect": true,
+        "explanation": "Correct. Encryption formula C = M^e mod n = 4^3 mod 33 = 64 mod 33 = 31."
       }
     ],
     "originalAnswer": "C = 31",
@@ -2357,12 +2357,6 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "explanation": "Incorrect. Hash functions must be strictly irreversible (non-invertible) and non-linear."
       },
       {
-        "id": "gen_w12_q4_opt4",
-        "text": "Compression, Encryption, and Decryption",
-        "isCorrect": false,
-        "explanation": "Incorrect. Hash functions do not perform encryption or decryption."
-      },
-      {
         "id": "gen_w12_q4_opt1",
         "text": "Pre-image resistance (one-way), Second pre-image resistance (weak collision resistance), and Collision resistance (strong collision resistance)",
         "isCorrect": true,
@@ -2373,6 +2367,12 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "text": "Symmetry, Asymmetry, and Key Length scalability",
         "isCorrect": false,
         "explanation": "Incorrect. Cryptographic hashes are unkeyed algorithms (unlike HMAC or ciphers)."
+      },
+      {
+        "id": "gen_w12_q4_opt4",
+        "text": "Compression, Encryption, and Decryption",
+        "isCorrect": false,
+        "explanation": "Incorrect. Hash functions do not perform encryption or decryption."
       }
     ],
     "originalAnswer": "Pre-image resistance (one-way), Second pre-image resistance (weak collision resistance), and Collision resistance (strong collision resistance)",
@@ -2404,10 +2404,10 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "In digital signature generation and verification, which keys are used by the sender to create the signature and by the recipient to verify the signature?",
     "options": [
       {
-        "id": "gen_w12_q5_opt1",
-        "text": "Sender signs using Sender’s Private Key; Recipient verifies using Sender’s Public Key",
-        "isCorrect": true,
-        "explanation": "Correct. Signing with the sender's private key guarantees non-repudiation and authentication, while anyone with the public key can verify integrity."
+        "id": "gen_w12_q5_opt3",
+        "text": "Sender signs using Sender’s Public Key; Recipient verifies using Sender’s Private Key",
+        "isCorrect": false,
+        "explanation": "Incorrect. Private keys must never be distributed or used by the recipient."
       },
       {
         "id": "gen_w12_q5_opt4",
@@ -2416,10 +2416,10 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "explanation": "Incorrect. Shared symmetric keys provide MACs, not digital signatures (cannot provide non-repudiation)."
       },
       {
-        "id": "gen_w12_q5_opt3",
-        "text": "Sender signs using Sender’s Public Key; Recipient verifies using Sender’s Private Key",
-        "isCorrect": false,
-        "explanation": "Incorrect. Private keys must never be distributed or used by the recipient."
+        "id": "gen_w12_q5_opt1",
+        "text": "Sender signs using Sender’s Private Key; Recipient verifies using Sender’s Public Key",
+        "isCorrect": true,
+        "explanation": "Correct. Signing with the sender's private key guarantees non-repudiation and authentication, while anyone with the public key can verify integrity."
       },
       {
         "id": "gen_w12_q5_opt2",
@@ -2457,6 +2457,12 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "What is the structure of a Hash-based Message Authentication Code (HMAC, RFC 2104) constructed from a cryptographic hash function H and shared secret key K?",
     "options": [
       {
+        "id": "gen_w12_q6_opt1",
+        "text": "HMAC(K, M) = H((K ⊕ opad) || H((K ⊕ ipad) || M))",
+        "isCorrect": true,
+        "explanation": "Correct. RFC 2104 defines HMAC using inner padding ipad (0x36) and outer padding opad (0x5c) to prevent length extension attacks."
+      },
+      {
         "id": "gen_w12_q6_opt2",
         "text": "HMAC(K, M) = H(K || M)",
         "isCorrect": false,
@@ -2473,12 +2479,6 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "text": "HMAC(K, M) = E(K, H(M))",
         "isCorrect": false,
         "explanation": "Incorrect. This describes a symmetric block cipher MAC (CBC-MAC), not HMAC."
-      },
-      {
-        "id": "gen_w12_q6_opt1",
-        "text": "HMAC(K, M) = H((K ⊕ opad) || H((K ⊕ ipad) || M))",
-        "isCorrect": true,
-        "explanation": "Correct. RFC 2104 defines HMAC using inner padding ipad (0x36) and outer padding opad (0x5c) to prevent length extension attacks."
       }
     ],
     "originalAnswer": "HMAC(K, M) = H((K ⊕ opad) || H((K ⊕ ipad) || M))",
@@ -2516,12 +2516,6 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "explanation": "Incorrect. The server's private key is never transmitted under any circumstance."
       },
       {
-        "id": "gen_w12_q7_opt1",
-        "text": "The server provides an X.509 Digital Certificate containing its public key and domain, cryptographically signed by a trusted Certificate Authority (CA) in the client's root store",
-        "isCorrect": true,
-        "explanation": "Correct. The client verifies the signature chain of the server's X.509 certificate up to a pre-installed trusted root CA and confirms the domain matches."
-      },
-      {
         "id": "gen_w12_q7_opt4",
         "text": "The server provides its DNS root zone password",
         "isCorrect": false,
@@ -2532,6 +2526,12 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "text": "The client sends an ICMP Echo request to the server's IP address",
         "isCorrect": false,
         "explanation": "Incorrect. ICMP ping does not provide cryptographic identity verification."
+      },
+      {
+        "id": "gen_w12_q7_opt1",
+        "text": "The server provides an X.509 Digital Certificate containing its public key and domain, cryptographically signed by a trusted Certificate Authority (CA) in the client's root store",
+        "isCorrect": true,
+        "explanation": "Correct. The client verifies the signature chain of the server's X.509 certificate up to a pre-installed trusted root CA and confirms the domain matches."
       }
     ],
     "originalAnswer": "The server provides an X.509 Digital Certificate containing its public key and domain, cryptographically signed by a trusted Certificate Authority (CA) in the client's root store",
@@ -2575,16 +2575,16 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "explanation": "Incorrect. Physical medium routing is unrelated to stateful packet inspection."
       },
       {
-        "id": "gen_w12_q8_opt1",
-        "text": "It maintains a dynamic state table tracking active TCP connections (SYN, ACK, FIN) and automatically allows return traffic for established outbound sessions without opening static high ports",
-        "isCorrect": true,
-        "explanation": "Correct. Stateful firewalls track connection state; return packets matching an active outbound connection entry in the state table are permitted automatically."
-      },
-      {
         "id": "gen_w12_q8_opt2",
         "text": "It completely encrypts all transit traffic using RSA 4096-bit keys",
         "isCorrect": false,
         "explanation": "Incorrect. Firewalls filter traffic; they do not universally encrypt payload traffic unless configured as a VPN gateway."
+      },
+      {
+        "id": "gen_w12_q8_opt1",
+        "text": "It maintains a dynamic state table tracking active TCP connections (SYN, ACK, FIN) and automatically allows return traffic for established outbound sessions without opening static high ports",
+        "isCorrect": true,
+        "explanation": "Correct. Stateful firewalls track connection state; return packets matching an active outbound connection entry in the state table are permitted automatically."
       }
     ],
     "originalAnswer": "It maintains a dynamic state table tracking active TCP connections (SYN, ACK, FIN) and automatically allows return traffic for established outbound sessions without opening static high ports",
@@ -2616,6 +2616,18 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "In IPsec architecture, what is the key operational distinction between Authentication Header (AH, IP Protocol 51) and Encapsulating Security Payload (ESP, IP Protocol 50)?",
     "options": [
       {
+        "id": "gen_w12_q9_opt1",
+        "text": "AH provides connectionless data integrity and origin authentication without encryption, whereas ESP provides confidentiality (encryption) along with optional authentication and integrity",
+        "isCorrect": true,
+        "explanation": "Correct. AH guarantees authenticity and integrity but leaves payload in plaintext. ESP provides encryption to ensure privacy/confidentiality."
+      },
+      {
+        "id": "gen_w12_q9_opt4",
+        "text": "AH operates over UDP port 500, while ESP operates over TCP port 443",
+        "isCorrect": false,
+        "explanation": "Incorrect. AH and ESP are native Layer 3 IP protocols (Protocols 51 and 50), not Layer 4 TCP/UDP ports (IKE uses UDP 500)."
+      },
+      {
         "id": "gen_w12_q9_opt2",
         "text": "AH encrypts the data payload, while ESP only signs the header",
         "isCorrect": false,
@@ -2626,18 +2638,6 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "text": "AH is designed exclusively for IPv6, while ESP is designed exclusively for IPv4",
         "isCorrect": false,
         "explanation": "Incorrect. Both AH and ESP are defined identically for both IPv4 and IPv6."
-      },
-      {
-        "id": "gen_w12_q9_opt4",
-        "text": "AH operates over UDP port 500, while ESP operates over TCP port 443",
-        "isCorrect": false,
-        "explanation": "Incorrect. AH and ESP are native Layer 3 IP protocols (Protocols 51 and 50), not Layer 4 TCP/UDP ports (IKE uses UDP 500)."
-      },
-      {
-        "id": "gen_w12_q9_opt1",
-        "text": "AH provides connectionless data integrity and origin authentication without encryption, whereas ESP provides confidentiality (encryption) along with optional authentication and integrity",
-        "isCorrect": true,
-        "explanation": "Correct. AH guarantees authenticity and integrity but leaves payload in plaintext. ESP provides encryption to ensure privacy/confidentiality."
       }
     ],
     "originalAnswer": "AH provides connectionless data integrity and origin authentication without encryption, whereas ESP provides confidentiality (encryption) along with optional authentication and integrity",
@@ -2669,10 +2669,10 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
     "questionText": "In IPsec, what is the architectural difference between Transport Mode and Tunnel Mode?",
     "options": [
       {
-        "id": "gen_w12_q10_opt4",
-        "text": "Transport Mode is only for UDP traffic, while Tunnel Mode is only for TCP traffic",
+        "id": "gen_w12_q10_opt2",
+        "text": "Transport Mode encrypts the link layer frames, while Tunnel Mode encrypts application layer cookies",
         "isCorrect": false,
-        "explanation": "Incorrect. Both modes encapsulate any Layer 4 IP traffic."
+        "explanation": "Incorrect. IPsec operates exclusively at Layer 3 (Network Layer)."
       },
       {
         "id": "gen_w12_q10_opt1",
@@ -2681,10 +2681,10 @@ export const GENERATED_PRACTICE_QUESTIONS: Question[] = [
         "explanation": "Correct. Transport mode is typically used for end-to-end host-to-host communication; Tunnel mode is used for site-to-site VPN gateways where the original internal addresses are concealed."
       },
       {
-        "id": "gen_w12_q10_opt2",
-        "text": "Transport Mode encrypts the link layer frames, while Tunnel Mode encrypts application layer cookies",
+        "id": "gen_w12_q10_opt4",
+        "text": "Transport Mode is only for UDP traffic, while Tunnel Mode is only for TCP traffic",
         "isCorrect": false,
-        "explanation": "Incorrect. IPsec operates exclusively at Layer 3 (Network Layer)."
+        "explanation": "Incorrect. Both modes encapsulate any Layer 4 IP traffic."
       },
       {
         "id": "gen_w12_q10_opt3",

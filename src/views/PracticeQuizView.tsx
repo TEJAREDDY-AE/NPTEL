@@ -114,14 +114,24 @@ export const PracticeQuizView: React.FC<Props> = ({
   useEffect(() => {
     if (!activeSession) {
       startNewPractice(selectedWeek, !isOrderedMode);
+    } else if (isOptionsJumbled && (!activeSession.jumbledOptionsMap || Object.keys(activeSession.jumbledOptionsMap).length === 0)) {
+      const allQs = activeSession.questionIds.map(id => getQuestionById(id)).filter(Boolean) as Question[];
+      const map = buildJumbledOptionsMap(allQs);
+      const updated: TestSession = {
+        ...activeSession,
+        isOptionsJumbled: true,
+        jumbledOptionsMap: map
+      };
+      StorageService.saveActiveTestSession(updated);
+      setActiveSession(updated);
     }
-  }, [selectedWeek]);
+  }, [selectedWeek, activeSession, isOptionsJumbled]);
 
   // Current Question
   const currentQId = activeSession ? activeSession.questionIds[activeSession.currentQuestionIndex] : null;
   const currentQuestion = currentQId ? getQuestionById(currentQId) : null;
 
-  // Determine displayed options (either jumbled from session map or original)
+  // Determine displayed options (either jumbled from session map or fine runtime shuffle)
   const displayOptions = React.useMemo(() => {
     if (!currentQuestion) return [];
     if (!isOptionsJumbled) return currentQuestion.options;
@@ -129,7 +139,7 @@ export const PracticeQuizView: React.FC<Props> = ({
     if (orderedIds && orderedIds.length > 0) {
       return orderQuestionOptionsByIds(currentQuestion.options, orderedIds);
     }
-    return currentQuestion.options;
+    return shuffleArray(currentQuestion.options);
   }, [currentQuestion, isOptionsJumbled, activeSession?.jumbledOptionsMap]);
 
   const handleToggleOptionJumble = () => {
