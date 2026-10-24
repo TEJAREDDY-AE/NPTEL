@@ -15,7 +15,8 @@ import {
   Check, 
   BookOpen,
   Calendar,
-  Layers
+  Layers,
+  Shuffle
 } from 'lucide-react';
 
 interface Props {
@@ -31,6 +32,7 @@ export const SettingsExportView: React.FC<Props> = ({
 }) => {
   const [resetConfirmation, setResetConfirmation] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [optionsJumbled, setOptionsJumbled] = useState<boolean>(() => StorageService.getOptionsJumbled());
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -230,6 +232,34 @@ export const SettingsExportView: React.FC<Props> = ({
             className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 transition-colors"
           >
             {darkMode ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5" />}
+          </button>
+        </div>
+
+        {/* Option Jumbling Preference */}
+        <div className="flex items-center justify-between py-3 border-b border-slate-100 dark:border-slate-800">
+          <div>
+            <span className="text-sm font-semibold text-slate-800 dark:text-slate-200 block">
+              Default Option Jumbling System
+            </span>
+            <span className="text-xs text-slate-400">
+              Randomize choices (A, B, C, D) for choose-the-correct questions across quizzes and mock exams.
+            </span>
+          </div>
+          <button
+            onClick={() => {
+              const nextVal = !optionsJumbled;
+              setOptionsJumbled(nextVal);
+              StorageService.setOptionsJumbled(nextVal);
+              showToast(nextVal ? 'Option jumbling enabled by default.' : 'Option jumbling disabled.');
+            }}
+            className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+              optionsJumbled
+                ? 'bg-purple-100 dark:bg-purple-950 text-purple-800 dark:text-purple-200 border border-purple-300 dark:border-purple-700 shadow-sm'
+                : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
+            }`}
+          >
+            <Shuffle className="w-3.5 h-3.5" />
+            <span>{optionsJumbled ? 'Enabled' : 'Disabled'}</span>
           </button>
         </div>
 

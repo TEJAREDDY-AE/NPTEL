@@ -87,6 +87,8 @@ export interface TestSession {
   isSubmitted: boolean;
   score?: number;
   totalQuestions?: number;
+  isOptionsJumbled?: boolean;
+  jumbledOptionsMap?: Record<string, string[]>; // questionId -> optionIds in jumbled display order
 }
 
 export interface TestResult {

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StorageService } from '../utils/storage';
 import { getQuestionById } from '../utils/questionStore';
 import { QuestionCard } from '../components/QuestionCard';
-import { AlertTriangle, CheckCircle2, RotateCcw, Play, BookOpen } from 'lucide-react';
+import { AlertTriangle, CheckCircle2, RotateCcw, Play, BookOpen, Shuffle } from 'lucide-react';
 import { Question } from '../types';
 
 interface Props {
@@ -19,6 +19,7 @@ export const IncorrectReviewView: React.FC<Props> = ({ onStartRetest }) => {
     .filter(Boolean) as Question[];
 
   const [selectedWeek, setSelectedWeek] = useState<number | 'all'>('all');
+  const [isOptionsJumbled, setIsOptionsJumbled] = useState<boolean>(() => StorageService.getOptionsJumbled());
 
   const filtered = incorrectQuestions.filter(q => {
     if (selectedWeek !== 'all' && q.week !== selectedWeek) return false;
@@ -74,6 +75,23 @@ export const IncorrectReviewView: React.FC<Props> = ({ onStartRetest }) => {
                 );
               })}
             </select>
+
+            <button
+              onClick={() => {
+                const next = !isOptionsJumbled;
+                setIsOptionsJumbled(next);
+                StorageService.setOptionsJumbled(next);
+              }}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all ml-auto ${
+                isOptionsJumbled
+                  ? 'bg-purple-100 dark:bg-purple-950 text-purple-800 dark:text-purple-200 border border-purple-300 dark:border-purple-700 shadow-sm'
+                  : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200'
+              }`}
+              title="Jumble option order (A, B, C, D) for choose-the-correct testing"
+            >
+              <Shuffle className={`w-3.5 h-3.5 ${isOptionsJumbled ? 'text-purple-600 dark:text-purple-400' : 'text-slate-400'}`} />
+              <span>Options: {isOptionsJumbled ? 'Jumbled' : 'Original'}</span>
+            </button>
           </div>
         )}
       </div>
@@ -97,7 +115,8 @@ export const IncorrectReviewView: React.FC<Props> = ({ onStartRetest }) => {
             <QuestionCard
               key={question.id}
               question={question}
-              showAnswerByDefault={true}
+              showAnswerByDefault={false}
+              isJumbled={isOptionsJumbled}
             />
           ))}
         </div>

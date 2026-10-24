@@ -14,8 +14,10 @@ import {
   AlertCircle, 
   FileUp, 
   Calculator,
-  BookOpen
+  BookOpen,
+  Shuffle
 } from 'lucide-react';
+import { StorageService } from '../utils/storage';
 import { NavView } from '../components/Sidebar';
 
 interface Props {
@@ -34,6 +36,7 @@ export const QuestionBankView: React.FC<Props> = ({
   const [searchQuery, setSearchQuery] = useState('');
   const [onlyCalculations, setOnlyCalculations] = useState(false);
   const [statusFilter, setStatusFilter] = useState<VerificationStatus | 'all'>('all');
+  const [isOptionsJumbled, setIsOptionsJumbled] = useState<boolean>(() => StorageService.getOptionsJumbled());
 
   const allQuestions = getAllQuestions();
   const isWeeks1To7Scope = selectedWeek === 'weeks_1_7' || selectedWeek === 'exam_scope';
@@ -311,6 +314,23 @@ export const QuestionBankView: React.FC<Props> = ({
             <option value="missing_options">Missing Options Flagged</option>
             <option value="needs_review">Needs Review</option>
           </select>
+
+          <button
+            onClick={() => {
+              const next = !isOptionsJumbled;
+              setIsOptionsJumbled(next);
+              StorageService.setOptionsJumbled(next);
+            }}
+            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-bold transition-all ${
+              isOptionsJumbled
+                ? 'bg-purple-100 dark:bg-purple-950 text-purple-800 dark:text-purple-200 border border-purple-300 dark:border-purple-700 shadow-sm'
+                : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200'
+            }`}
+            title="Randomize choice order (A, B, C, D) across all questions for choose-the-correct testing"
+          >
+            <Shuffle className={`w-3.5 h-3.5 ${isOptionsJumbled ? 'text-purple-600 dark:text-purple-400' : 'text-slate-400'}`} />
+            <span>Options: {isOptionsJumbled ? 'Jumbled (Choose Correct)' : 'Original Order'}</span>
+          </button>
         </div>
       </div>
 
@@ -350,6 +370,7 @@ export const QuestionBankView: React.FC<Props> = ({
           <QuestionCard
             key={question.id}
             question={question}
+            isJumbled={isOptionsJumbled}
           />
         ))}
 

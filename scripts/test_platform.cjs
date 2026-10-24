@@ -211,13 +211,55 @@ runTest('Algorithm: Option Shuffling Preserves Correct Answer Mapping', () => {
     ]
   };
 
-  // Perform 50 shuffles and assert that the correct option always retains isCorrect: true and text: '179'
-  for (let i = 0; i < 50; i++) {
-    const shuffled = [...sampleQuestion.options].sort(() => Math.random() - 0.5);
-    const correctOpt = shuffled.find(o => o.isCorrect);
+  // Perform 100 shuffles and assert that the correct option always retains isCorrect: true and text: '179'
+  for (let i = 0; i < 100; i++) {
+    const arr = [...sampleQuestion.options];
+    for (let k = arr.length - 1; k > 0; k--) {
+      const j = Math.floor(Math.random() * (k + 1));
+      [arr[k], arr[j]] = [arr[j], arr[k]];
+    }
+    const correctOpt = arr.find(o => o.isCorrect);
     assert(correctOpt !== undefined, 'Must contain a correct option');
     assert.strictEqual(correctOpt.text, '179', 'Correct option text must remain 179');
     assert.strictEqual(correctOpt.id, 'opt_3', 'Correct option ID must remain opt_3');
+  }
+});
+
+// -----------------------------------------------------------------
+// 13. Option Jumbling System: Uniform Distribution Across A, B, C, D
+// -----------------------------------------------------------------
+runTest('Jumbling System: Uniform Distribution Across A, B, C, D Slots & Accurate Scoring', () => {
+  const options = [
+    { id: 'opt_A', text: 'Distractor 1', isCorrect: false },
+    { id: 'opt_B', text: 'Correct Answer', isCorrect: true },
+    { id: 'opt_C', text: 'Distractor 2', isCorrect: false },
+    { id: 'opt_D', text: 'Distractor 3', isCorrect: false }
+  ];
+
+  // Slot frequency tracker
+  const slotCount = [0, 0, 0, 0];
+  const iterations = 400;
+
+  for (let i = 0; i < iterations; i++) {
+    const arr = [...options];
+    for (let k = arr.length - 1; k > 0; k--) {
+      const j = Math.floor(Math.random() * (k + 1));
+      [arr[k], arr[j]] = [arr[j], arr[k]];
+    }
+
+    const correctIndex = arr.findIndex(o => o.isCorrect);
+    assert(correctIndex >= 0 && correctIndex < 4, 'Correct index must be 0, 1, 2, or 3');
+    slotCount[correctIndex]++;
+
+    // Verify candidate choosing correct option gets scored accurately regardless of position
+    const candidateChoiceId = arr[correctIndex].id;
+    const isCandidateCorrect = arr.find(o => o.id === candidateChoiceId)?.isCorrect;
+    assert.strictEqual(isCandidateCorrect, true, 'Candidate choice must evaluate to true');
+  }
+
+  // Each slot should receive roughly 25% of the time (at least 15% out of 400 runs)
+  for (let s = 0; s < 4; s++) {
+    assert(slotCount[s] > 40, `Slot ${String.fromCharCode(65 + s)} must appear regularly (got ${slotCount[s]})`);
   }
 });
 

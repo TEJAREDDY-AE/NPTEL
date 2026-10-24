@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StorageService } from '../utils/storage';
 import { getQuestionById } from '../utils/questionStore';
 import { QuestionCard } from '../components/QuestionCard';
-import { Bookmark, BookmarkCheck, Play, Sparkles, BookOpen } from 'lucide-react';
+import { Bookmark, BookmarkCheck, Play, Sparkles, BookOpen, Shuffle } from 'lucide-react';
 import { Question } from '../types';
 
 interface Props {
@@ -12,6 +12,7 @@ interface Props {
 export const BookmarksView: React.FC<Props> = ({ onStartBookmarkQuiz }) => {
   const [bookmarkIds, setBookmarkIds] = useState<string[]>(() => StorageService.getBookmarks());
   const [selectedWeek, setSelectedWeek] = useState<number | 'all'>('all');
+  const [isOptionsJumbled, setIsOptionsJumbled] = useState<boolean>(() => StorageService.getOptionsJumbled());
 
   const bookmarkedQuestions = bookmarkIds
     .map(id => getQuestionById(id))
@@ -75,6 +76,23 @@ export const BookmarksView: React.FC<Props> = ({ onStartBookmarkQuiz }) => {
                 );
               })}
             </select>
+
+            <button
+              onClick={() => {
+                const next = !isOptionsJumbled;
+                setIsOptionsJumbled(next);
+                StorageService.setOptionsJumbled(next);
+              }}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all ml-auto ${
+                isOptionsJumbled
+                  ? 'bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-200 border border-amber-300 dark:border-amber-700 shadow-sm'
+                  : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200'
+              }`}
+              title="Jumble option order (A, B, C, D) for choose-the-correct testing"
+            >
+              <Shuffle className={`w-3.5 h-3.5 ${isOptionsJumbled ? 'text-amber-600 dark:text-amber-400' : 'text-slate-400'}`} />
+              <span>Options: {isOptionsJumbled ? 'Jumbled' : 'Original'}</span>
+            </button>
           </div>
         )}
       </div>
@@ -99,6 +117,7 @@ export const BookmarksView: React.FC<Props> = ({ onStartBookmarkQuiz }) => {
               key={question.id}
               question={question}
               onBookmarkToggle={handleRefresh}
+              isJumbled={isOptionsJumbled}
             />
           ))}
         </div>

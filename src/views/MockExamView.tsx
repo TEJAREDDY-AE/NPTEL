@@ -6,6 +6,8 @@ import {
   getWeeks6To12Questions,
   getExamScopeQuestions,
   shuffleArray, 
+  buildJumbledOptionsMap,
+  orderQuestionOptionsByIds,
   getQuestionById 
 } from '../utils/questionStore';
 import { StorageService } from '../utils/storage';
@@ -45,6 +47,7 @@ export const MockExamView: React.FC<Props> = ({ onReviewIncorrect }) => {
   const [configDurationMinutes, setConfigDurationMinutes] = useState<number>(30);
   const [configQuestionCount, setConfigQuestionCount] = useState<number>(20);
   const [configWeekScope, setConfigWeekScope] = useState<number | 'all' | 'exam_scope' | 'weeks_1_7' | 'weeks_6_12'>('weeks_1_7');
+  const [configJumbleOptions, setConfigJumbleOptions] = useState<boolean>(() => StorageService.getOptionsJumbled());
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -64,6 +67,7 @@ export const MockExamView: React.FC<Props> = ({ onReviewIncorrect }) => {
 
     pool = shuffleArray(pool).slice(0, configQuestionCount);
     const durationSeconds = configDurationMinutes * 60;
+    const jumbledMap = configJumbleOptions ? buildJumbledOptionsMap(pool) : undefined;
 
     const title = (configWeekScope === 'weeks_1_7' || configWeekScope === 'exam_scope')
       ? `Weeks 1–7 Target Exam Mock (${configQuestionCount} Qs)`
@@ -85,7 +89,9 @@ export const MockExamView: React.FC<Props> = ({ onReviewIncorrect }) => {
       startTime: Date.now(),
       durationSeconds,
       timeRemainingSeconds: durationSeconds,
-      isSubmitted: false
+      isSubmitted: false,
+      isOptionsJumbled: configJumbleOptions,
+      jumbledOptionsMap: jumbledMap
     };
 
     StorageService.saveActiveTestSession(newSession);
@@ -359,6 +365,41 @@ export const MockExamView: React.FC<Props> = ({ onReviewIncorrect }) => {
               </div>
             </div>
 
+            {/* Jumble Options Mode Toggle */}
+            <div 
+              onClick={() => {
+                const nextVal = !configJumbleOptions;
+                setConfigJumbleOptions(nextVal);
+                StorageService.setOptionsJumbled(nextVal);
+              }}
+              className={`p-3.5 rounded-xl border cursor-pointer transition-all flex items-center justify-between ${
+                configJumbleOptions
+                  ? 'bg-purple-50 dark:bg-purple-950/40 border-purple-300 dark:border-purple-800'
+                  : 'bg-slate-50 dark:bg-slate-800/40 border-slate-200 dark:border-slate-800'
+              }`}
+            >
+              <div className="flex items-center gap-3">
+                <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
+                  configJumbleOptions ? 'bg-purple-600 text-white' : 'bg-slate-200 dark:bg-slate-700 text-slate-500'
+                }`}>
+                  <Shuffle className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="text-xs font-bold text-slate-900 dark:text-white">
+                    Jumble Question Choices (Anti-Memorization Mode)
+                  </div>
+                  <div className="text-[11px] text-slate-500 dark:text-slate-400">
+                    Randomizes options A, B, C, D so you test genuine understanding of each problem
+                  </div>
+                </div>
+              </div>
+              <div className={`w-5 h-5 rounded-md flex items-center justify-center border ${
+                configJumbleOptions ? 'bg-purple-600 border-purple-600 text-white' : 'border-slate-300 dark:border-slate-600'
+              }`}>
+                {configJumbleOptions && <CheckCircle2 className="w-3.5 h-3.5" />}
+              </div>
+            </div>
+
             {/* Guarantee Note */}
             <div className="p-3.5 rounded-xl bg-purple-50 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-800 text-xs text-purple-900 dark:text-purple-200 leading-relaxed">
               <strong>Refresh Persistence Active: </strong>
@@ -559,6 +600,11 @@ export const MockExamView: React.FC<Props> = ({ onReviewIncorrect }) => {
                     <Calculator className="w-3 h-3" /> Numerical
                   </span>
                 )}
+                {activeSession?.isOptionsJumbled && (
+                  <span className="text-xs px-2 py-0.5 rounded bg-purple-50 text-purple-800 dark:bg-purple-950 dark:text-purple-300 border border-purple-200 dark:border-purple-800 flex items-center gap-1 font-semibold">
+                    <Shuffle className="w-3 h-3" /> Options Jumbled
+                  </span>
+                )}
               </div>
 
               {/* Mark for Review Button */}
@@ -576,13 +622,28 @@ export const MockExamView: React.FC<Props> = ({ onReviewIncorrect }) => {
             </div>
 
             {/* Question Prompt */}
-            <h3 className="text-base md:text-lg font-bold text-slate-900 dark:text-slate-100 mb-6 leading-relaxed">
+            <h3 className="text-base md:text-lg font-bold text-slate-900 dark:text-slate-100 mb-5 leading-relaxed">
               {currentQ?.questionText}
             </h3>
 
+            {/* Options Header */}
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                Choose the correct option:
+              </span>
+              {activeSession?.isOptionsJumbled && (
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-purple-100 text-purple-800 dark:bg-purple-950 dark:text-purple-300 border border-purple-200 dark:border-purple-800 flex items-center gap-1">
+                  <Shuffle className="w-2.5 h-2.5" /> A–D Jumbled
+                </span>
+              )}
+            </div>
+
             {/* Options */}
             <div className="space-y-3">
-              {currentQ?.options.map((opt, oIdx) => {
+              {orderQuestionOptionsByIds(
+                currentQ?.options || [],
+                activeSession?.isOptionsJumbled ? activeSession?.jumbledOptionsMap?.[currentQ?.id || ''] : undefined
+              ).map((opt, oIdx) => {
                 const letter = String.fromCharCode(65 + oIdx);
                 const isSelected = selectedOptions.includes(opt.id);
 
@@ -592,7 +653,7 @@ export const MockExamView: React.FC<Props> = ({ onReviewIncorrect }) => {
                     onClick={() => handleSelectOption(opt.id)}
                     className={`flex items-start gap-3 p-3.5 rounded-xl border text-sm cursor-pointer transition-all ${
                       isSelected
-                        ? 'bg-purple-50 dark:bg-purple-950/50 border-purple-500 text-purple-950 dark:text-purple-100 ring-2 ring-purple-500/30 font-semibold'
+                        ? 'bg-purple-50 dark:bg-purple-950/50 border-purple-500 text-purple-950 dark:text-purple-100 ring-2 ring-purple-500/30 font-semibold shadow-sm'
                         : 'bg-slate-50/60 dark:bg-slate-800/40 border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 hover:border-purple-300'
                     }`}
                   >
@@ -603,7 +664,7 @@ export const MockExamView: React.FC<Props> = ({ onReviewIncorrect }) => {
                     }`}>
                       {letter}
                     </span>
-                    <span className="pt-0.5">{opt.text}</span>
+                    <span className="pt-0.5 font-medium">{opt.text}</span>
                   </div>
                 );
               })}

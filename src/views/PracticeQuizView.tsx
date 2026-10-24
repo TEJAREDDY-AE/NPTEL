@@ -7,6 +7,8 @@ import {
   getExamScopeQuestions,
   shuffleArray, 
   shuffleQuestionOptions,
+  buildJumbledOptionsMap,
+  orderQuestionOptionsByIds,
   getQuestionById
 } from '../utils/questionStore';
 import { StorageService } from '../utils/storage';
@@ -43,6 +45,7 @@ export const PracticeQuizView: React.FC<Props> = ({
 }) => {
   const [selectedWeek, setSelectedWeek] = useState<number | 'all' | 'exam_scope' | 'weeks_1_7' | 'weeks_6_12'>(initialWeek);
   const [isOrderedMode, setIsOrderedMode] = useState<boolean>(true);
+  const [isOptionsJumbled, setIsOptionsJumbled] = useState<boolean>(() => StorageService.getOptionsJumbled());
   const [isCalculatorOpen, setIsCalculatorOpen] = useState<boolean>(false);
   const [activeSession, setActiveSession] = useState<TestSession | null>(() => {
     const saved = StorageService.getActiveTestSession();
@@ -75,6 +78,7 @@ export const PracticeQuizView: React.FC<Props> = ({
     }
 
     const questionIds = pool.map(q => q.id);
+    const jumbledMap = buildJumbledOptionsMap(pool);
     const title = (week === 'weeks_1_7' || week === 'exam_scope')
       ? `Weeks 1–7 Practice Session (${shuffle ? 'Shuffled' : 'Sequential Order 1→7'})`
       : week === 'weeks_6_12'
@@ -95,7 +99,9 @@ export const PracticeQuizView: React.FC<Props> = ({
       startTime: Date.now(),
       durationSeconds: 0,
       timeRemainingSeconds: 0,
-      isSubmitted: false
+      isSubmitted: false,
+      isOptionsJumbled,
+      jumbledOptionsMap: jumbledMap
     };
 
     StorageService.saveActiveTestSession(newSession);
@@ -114,6 +120,43 @@ export const PracticeQuizView: React.FC<Props> = ({
   // Current Question
   const currentQId = activeSession ? activeSession.questionIds[activeSession.currentQuestionIndex] : null;
   const currentQuestion = currentQId ? getQuestionById(currentQId) : null;
+
+  // Determine displayed options (either jumbled from session map or original)
+  const displayOptions = React.useMemo(() => {
+    if (!currentQuestion) return [];
+    if (!isOptionsJumbled) return currentQuestion.options;
+    const orderedIds = activeSession?.jumbledOptionsMap?.[currentQuestion.id];
+    if (orderedIds && orderedIds.length > 0) {
+      return orderQuestionOptionsByIds(currentQuestion.options, orderedIds);
+    }
+    return currentQuestion.options;
+  }, [currentQuestion, isOptionsJumbled, activeSession?.jumbledOptionsMap]);
+
+  const handleToggleOptionJumble = () => {
+    const nextVal = !isOptionsJumbled;
+    setIsOptionsJumbled(nextVal);
+    StorageService.setOptionsJumbled(nextVal);
+    if (!isAnswerSubmitted) {
+      setSelectedOptionId(null);
+    }
+  };
+
+  const handleReJumbleCurrentOptions = () => {
+    if (!currentQuestion || !activeSession) return;
+    const newOrder = shuffleArray(currentQuestion.options).map(o => o.id);
+    const updatedSession: TestSession = {
+      ...activeSession,
+      jumbledOptionsMap: {
+        ...(activeSession.jumbledOptionsMap || {}),
+        [currentQuestion.id]: newOrder
+      }
+    };
+    StorageService.saveActiveTestSession(updatedSession);
+    setActiveSession(updatedSession);
+    if (!isAnswerSubmitted) {
+      setSelectedOptionId(null);
+    }
+  };
 
   useEffect(() => {
     if (currentQId) {
@@ -208,13 +251,13 @@ export const PracticeQuizView: React.FC<Props> = ({
 
       if (!isAnswerSubmitted) {
         if (key === '1' || key === 'a') {
-          if (currentQuestion.options[0]) setSelectedOptionId(currentQuestion.options[0].id);
+          if (displayOptions[0]) setSelectedOptionId(displayOptions[0].id);
         } else if (key === '2' || key === 'b') {
-          if (currentQuestion.options[1]) setSelectedOptionId(currentQuestion.options[1].id);
+          if (displayOptions[1]) setSelectedOptionId(displayOptions[1].id);
         } else if (key === '3' || key === 'c') {
-          if (currentQuestion.options[2]) setSelectedOptionId(currentQuestion.options[2].id);
+          if (displayOptions[2]) setSelectedOptionId(displayOptions[2].id);
         } else if (key === '4' || key === 'd') {
-          if (currentQuestion.options[3]) setSelectedOptionId(currentQuestion.options[3].id);
+          if (displayOptions[3]) setSelectedOptionId(displayOptions[3].id);
         }
       }
 
@@ -335,6 +378,20 @@ export const PracticeQuizView: React.FC<Props> = ({
             )}
           </button>
 
+          {/* Options Jumbling System Toggle */}
+          <button
+            onClick={handleToggleOptionJumble}
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
+              isOptionsJumbled
+                ? 'bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-200 border border-emerald-300 dark:border-emerald-800 shadow-sm'
+                : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700'
+            }`}
+            title="Randomize option order (A, B, C, D) to prevent position memorization and practice choosing the correct answer"
+          >
+            <Shuffle className={`w-3.5 h-3.5 ${isOptionsJumbled ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-400'}`} />
+            <span>Options: {isOptionsJumbled ? 'Jumbled' : 'Original'}</span>
+          </button>
+
           {/* Formulas Button */}
           <button
             onClick={() => setIsCalculatorOpen(true)}
@@ -407,13 +464,38 @@ export const PracticeQuizView: React.FC<Props> = ({
         </div>
 
         {/* Question Prompt */}
-        <h3 className="text-base md:text-lg font-bold text-slate-900 dark:text-slate-100 mb-6 leading-relaxed">
+        <h3 className="text-base md:text-lg font-bold text-slate-900 dark:text-slate-100 mb-5 leading-relaxed">
           {currentQuestion.questionText}
         </h3>
 
+        {/* Options Header with Jumbling Controls */}
+        <div className="flex items-center justify-between gap-2 mb-3">
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+              {isAnswerSubmitted ? 'Verification Result:' : 'Choose the correct option:'}
+            </span>
+            {isOptionsJumbled && (
+              <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+                <Shuffle className="w-2.5 h-2.5" /> Jumbled A–D
+              </span>
+            )}
+          </div>
+
+          {isOptionsJumbled && (
+            <button
+              onClick={handleReJumbleCurrentOptions}
+              disabled={isAnswerSubmitted}
+              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 hover:bg-emerald-100 disabled:opacity-40 transition-colors"
+              title="Re-jumble choices for this question"
+            >
+              <Shuffle className="w-3 h-3" /> Re-jumble Choices
+            </button>
+          )}
+        </div>
+
         {/* Interactive Options */}
         <div className="space-y-3 mb-6">
-          {currentQuestion.options.map((option, idx) => {
+          {displayOptions.map((option, idx) => {
             const letter = String.fromCharCode(65 + idx);
             const isSelected = selectedOptionId === option.id;
             const isCorrect = option.isCorrect;
@@ -424,7 +506,7 @@ export const PracticeQuizView: React.FC<Props> = ({
               if (isCorrect) {
                 optionStyle = 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-400 dark:border-emerald-700 text-emerald-950 dark:text-emerald-100 font-semibold shadow-sm';
               } else if (isSelected && !isCorrect) {
-                optionStyle = 'bg-rose-50 dark:bg-rose-950/40 border-rose-400 dark:border-rose-700 text-rose-950 dark:text-rose-100';
+                optionStyle = 'bg-rose-50 dark:bg-rose-950/40 border-rose-400 dark:border-rose-700 text-rose-950 dark:text-rose-100 font-semibold';
               } else {
                 optionStyle = 'opacity-60 bg-slate-50 dark:bg-slate-800/20 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400';
               }
@@ -457,13 +539,27 @@ export const PracticeQuizView: React.FC<Props> = ({
                 </span>
 
                 <div className="flex-1 pt-0.5">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span>{option.text}</span>
-                    {isAnswerSubmitted && option.originalPosition && (
-                      <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300">
-                        Official: {option.originalPosition}
-                      </span>
-                    )}
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <span className="font-medium">{option.text}</span>
+                    <div className="flex items-center gap-1.5">
+                      {isAnswerSubmitted && isSelected && (
+                        <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
+                          isCorrect ? 'bg-emerald-200 dark:bg-emerald-900 text-emerald-900 dark:text-emerald-200' : 'bg-rose-200 dark:bg-rose-900 text-rose-900 dark:text-rose-200'
+                        }`}>
+                          {isCorrect ? '✓ Your Choice (Correct)' : '✗ Your Choice (Wrong)'}
+                        </span>
+                      )}
+                      {isAnswerSubmitted && isCorrect && !isSelected && (
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-200/80 dark:bg-emerald-900/80 text-emerald-900 dark:text-emerald-200">
+                          ✓ Correct Answer
+                        </span>
+                      )}
+                      {isAnswerSubmitted && option.originalPosition && (
+                        <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300">
+                          Official: {option.originalPosition}
+                        </span>
+                      )}
+                    </div>
                   </div>
 
                   {isAnswerSubmitted && option.explanation && (

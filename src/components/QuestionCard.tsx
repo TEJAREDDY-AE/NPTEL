@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Question } from '../types';
 import { VerificationBadge } from './VerificationBadge';
 import { StorageService } from '../utils/storage';
+import { shuffleArray } from '../utils/questionStore';
 import { 
   Bookmark, 
   BookmarkCheck, 
@@ -14,7 +15,9 @@ import {
   Lightbulb, 
   BookOpen, 
   Cpu, 
-  FileCheck2 
+  FileCheck2,
+  Shuffle,
+  RotateCcw
 } from 'lucide-react';
 
 interface Props {
@@ -22,16 +25,57 @@ interface Props {
   showAnswerByDefault?: boolean;
   onBookmarkToggle?: () => void;
   className?: string;
+  isJumbled?: boolean;
 }
 
 export const QuestionCard: React.FC<Props> = ({
   question,
   showAnswerByDefault = false,
   onBookmarkToggle,
-  className = ''
+  className = '',
+  isJumbled = false
 }) => {
   const [isExpanded, setIsExpanded] = useState(showAnswerByDefault);
   const [isBookmarked, setIsBookmarked] = useState(() => StorageService.isBookmarked(question.id));
+  
+  // Option Jumbling & Interactive "Choose the Correct" State
+  const [isLocallyJumbled, setIsLocallyJumbled] = useState<boolean>(false);
+  const isJumbledMode = isJumbled || isLocallyJumbled;
+  const [jumbledOptions, setJumbledOptions] = useState<Question['options']>(() => {
+    return isJumbled ? shuffleArray(question.options) : question.options;
+  });
+  const [userSelectedOptId, setUserSelectedOptId] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (isJumbled) {
+      setJumbledOptions(shuffleArray(question.options));
+    } else if (!isLocallyJumbled) {
+      setJumbledOptions(question.options);
+    }
+    setUserSelectedOptId(null);
+  }, [isJumbled, question]);
+
+  const handleJumbleChoices = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsLocallyJumbled(true);
+    setJumbledOptions(shuffleArray(question.options));
+    setUserSelectedOptId(null);
+  };
+
+  const handleResetOrder = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsLocallyJumbled(false);
+    setJumbledOptions(question.options);
+    setUserSelectedOptId(null);
+  };
+
+  const handleSelectOption = (optId: string) => {
+    if (userSelectedOptId === optId) {
+      setUserSelectedOptId(null);
+    } else {
+      setUserSelectedOptId(optId);
+    }
+  };
 
   const handleBookmark = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -96,44 +140,120 @@ export const QuestionCard: React.FC<Props> = ({
         </h3>
       </div>
 
+      {/* Options Header with Jumbling Controls */}
+      <div className="flex items-center justify-between gap-2 mb-2.5">
+        <div className="flex items-center gap-2">
+          <span className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+            {userSelectedOptId ? 'Self-Check Result:' : 'Choose the correct option:'}
+          </span>
+          {isJumbledMode && (
+            <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-100 text-purple-800 dark:bg-purple-950/80 dark:text-purple-300 border border-purple-200 dark:border-purple-800">
+              <Shuffle className="w-2.5 h-2.5" /> Jumbled
+            </span>
+          )}
+        </div>
+
+        <div className="flex items-center gap-1.5">
+          <button
+            type="button"
+            onClick={handleJumbleChoices}
+            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-purple-50 dark:bg-purple-950/40 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800 hover:bg-purple-100 transition-colors"
+            title="Randomize option order (A, B, C, D) for choose-the-correct testing"
+          >
+            <Shuffle className="w-3 h-3" />
+            <span>{isJumbledMode ? 'Re-jumble' : 'Jumble Choices'}</span>
+          </button>
+
+          {isLocallyJumbled && (
+            <button
+              type="button"
+              onClick={handleResetOrder}
+              className="inline-flex items-center gap-1 px-2 py-1 rounded-lg text-[11px] font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 transition-colors"
+              title="Reset to original assignment option order"
+            >
+              <RotateCcw className="w-3 h-3" />
+              <span>Original</span>
+            </button>
+          )}
+
+          {userSelectedOptId && (
+            <button
+              type="button"
+              onClick={() => setUserSelectedOptId(null)}
+              className="text-[11px] text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 underline px-1"
+            >
+              Clear Choice
+            </button>
+          )}
+        </div>
+      </div>
+
       {/* Options List */}
       <div className="space-y-2 mb-4">
-        {question.options.map((option, idx) => {
+        {(isJumbledMode ? jumbledOptions : question.options).map((option, idx) => {
           const letter = String.fromCharCode(65 + idx); // A, B, C, D
           const isCorrect = option.isCorrect;
+          const isSelected = userSelectedOptId === option.id;
+          const showAnswerFeedback = isExpanded || userSelectedOptId !== null;
           
+          let containerStyle = 'bg-slate-50/50 dark:bg-slate-800/40 border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 hover:border-blue-400 hover:bg-blue-50/30 cursor-pointer';
+          let badgeStyle = 'bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300';
+
+          if (showAnswerFeedback) {
+            if (isCorrect) {
+              containerStyle = 'bg-emerald-50/90 dark:bg-emerald-950/40 border-emerald-400 dark:border-emerald-700 text-emerald-950 dark:text-emerald-100 font-medium shadow-sm';
+              badgeStyle = 'bg-emerald-600 text-white';
+            } else if (isSelected && !isCorrect) {
+              containerStyle = 'bg-rose-50 dark:bg-rose-950/40 border-rose-400 dark:border-rose-700 text-rose-950 dark:text-rose-100 font-medium';
+              badgeStyle = 'bg-rose-600 text-white';
+            } else {
+              containerStyle = 'opacity-70 bg-slate-50/40 dark:bg-slate-800/20 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400';
+            }
+          }
+
           return (
             <div
               key={option.id || idx}
-              className={`flex items-start gap-3 p-3 rounded-xl border text-sm transition-all ${
-                isExpanded && isCorrect
-                  ? 'bg-emerald-50/80 dark:bg-emerald-950/30 border-emerald-300 dark:border-emerald-800 text-emerald-950 dark:text-emerald-100'
-                  : 'bg-slate-50/50 dark:bg-slate-800/40 border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200'
-              }`}
+              onClick={() => handleSelectOption(option.id)}
+              className={`flex items-start gap-3 p-3 rounded-xl border text-sm transition-all ${containerStyle}`}
             >
               <div className="flex-shrink-0 mt-0.5">
-                <span
-                  className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs ${
-                    isExpanded && isCorrect
-                      ? 'bg-emerald-600 text-white'
-                      : 'bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300'
-                  }`}
-                >
-                  {isExpanded && isCorrect ? <Check className="w-3.5 h-3.5" /> : letter}
+                <span className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs ${badgeStyle}`}>
+                  {showAnswerFeedback && isCorrect ? (
+                    <Check className="w-3.5 h-3.5" />
+                  ) : showAnswerFeedback && isSelected && !isCorrect ? (
+                    <X className="w-3.5 h-3.5" />
+                  ) : (
+                    letter
+                  )}
                 </span>
               </div>
 
               <div className="flex-1">
-                <div className="flex flex-wrap items-center gap-2">
+                <div className="flex flex-wrap items-center justify-between gap-2">
                   <span className="font-medium">{option.text}</span>
-                  {isExpanded && option.originalPosition && (
-                    <span className="text-[11px] font-mono px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300">
-                      Original: {option.originalPosition}
-                    </span>
-                  )}
+                  <div className="flex items-center gap-1.5">
+                    {isSelected && (
+                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
+                        isCorrect ? 'bg-emerald-200 dark:bg-emerald-900 text-emerald-900 dark:text-emerald-200' : 'bg-rose-200 dark:bg-rose-900 text-rose-900 dark:text-rose-200'
+                      }`}>
+                        {isCorrect ? '✓ Your Choice (Correct)' : '✗ Your Choice'}
+                      </span>
+                    )}
+                    {showAnswerFeedback && isCorrect && !isSelected && (
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-200/80 dark:bg-emerald-900/80 text-emerald-900 dark:text-emerald-200">
+                        ✓ Correct Answer
+                      </span>
+                    )}
+                    {showAnswerFeedback && option.originalPosition && (
+                      <span className="text-[11px] font-mono px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300">
+                        Official: {option.originalPosition}
+                      </span>
+                    )}
+                  </div>
                 </div>
 
-                {isExpanded && option.explanation && (
+                {showAnswerFeedback && option.explanation && (
                   <p className="mt-1 text-xs text-slate-500 dark:text-slate-400 italic">
                     {option.explanation}
                   </p>

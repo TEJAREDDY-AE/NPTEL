@@ -133,6 +133,23 @@ export const StorageService = {
     }
   },
 
+  getOptionsJumbled(): boolean {
+    try {
+      const data = localStorage.getItem('nptel_options_jumbled_v1');
+      return data !== null ? data === 'true' : true; // Default to true for authentic exam practice
+    } catch {
+      return true;
+    }
+  },
+
+  setOptionsJumbled(enabled: boolean): void {
+    try {
+      localStorage.setItem('nptel_options_jumbled_v1', String(enabled));
+    } catch (e) {
+      console.warn('Storage write error for options jumbled:', e);
+    }
+  },
+
   clearAllData(): void {
     try {
       localStorage.removeItem(STORAGE_KEYS.BOOKMARKS);

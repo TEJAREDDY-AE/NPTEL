@@ -70,18 +70,7 @@ export function getQuestionById(id: string): Question | undefined {
 }
 
 /**
- * Shuffles options for a question while preserving exact association with the correct answer
- */
-export function shuffleQuestionOptions(question: Question): Question {
-  const shuffledOptions = [...question.options].sort(() => Math.random() - 0.5);
-  return {
-    ...question,
-    options: shuffledOptions
-  };
-}
-
-/**
- * Fisher-Yates array shuffle for randomized practice and mock exams
+ * Fisher-Yates array shuffle for randomized practice, mock exams, and option jumbling
  */
 export function shuffleArray<T>(array: T[]): T[] {
   const arr = [...array];
@@ -90,6 +79,47 @@ export function shuffleArray<T>(array: T[]): T[] {
     [arr[i], arr[j]] = [arr[j], arr[i]];
   }
   return arr;
+}
+
+/**
+ * Shuffles options for a question while preserving exact association with the correct answer
+ */
+export function shuffleQuestionOptions(question: Question): Question {
+  return {
+    ...question,
+    options: shuffleArray(question.options)
+  };
+}
+
+/**
+ * Generates a stable jumbled option ID map for an array of questions
+ */
+export function buildJumbledOptionsMap(questions: Question[]): Record<string, string[]> {
+  const map: Record<string, string[]> = {};
+  for (const q of questions) {
+    map[q.id] = shuffleArray(q.options).map(o => o.id);
+  }
+  return map;
+}
+
+/**
+ * Reorders a question's options based on an array of option IDs
+ */
+export function orderQuestionOptionsByIds(options: Question['options'], orderedIds?: string[]): Question['options'] {
+  if (!orderedIds || orderedIds.length === 0) return options;
+  const optionMap = new Map(options.map(o => [o.id, o]));
+  const ordered: Question['options'] = [];
+  for (const id of orderedIds) {
+    const opt = optionMap.get(id);
+    if (opt) {
+      ordered.push(opt);
+      optionMap.delete(id);
+    }
+  }
+  for (const opt of optionMap.values()) {
+    ordered.push(opt);
+  }
+  return ordered.length > 0 ? ordered : options;
 }
 
 export function filterQuestions(questions: Question[], filters: SearchFilters): Question[] {
