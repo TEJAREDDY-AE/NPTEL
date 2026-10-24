@@ -67,7 +67,7 @@ export const Sidebar: React.FC<Props> = ({
   const navItems: NavItem[] = [
     // Core Exploration
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard, category: 'Overview' },
-    { id: 'question_bank', label: 'Week-Wise Bank', icon: Layers, badge: 'Weeks 6-12', badgeColor: 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20', category: 'Study Materials' },
+    { id: 'question_bank', label: 'Week-Wise Bank', icon: Layers, badge: 'Weeks 1-12', badgeColor: 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20', category: 'Study Materials' },
     { id: 'answer_key', label: 'Official Answer Key', icon: KeyRound, category: 'Study Materials' },
     { id: 'verification', label: 'Verification & RFCs', icon: CheckCircle2, badge: 'Verified', badgeColor: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20', category: 'Study Materials' },
     
